@@ -1,0 +1,87 @@
+openapi: 3.0.3
+info:
+  title: dLocal Chargebacks API
+  version: '2.1'
+  description: |
+    Retrieve chargeback details and status, simulate chargebacks in sandbox,
+    and receive asynchronous chargeback notifications via webhook.
+servers:
+  - url: https://api.dlocal.com
+    description: Production
+  - url: https://sandbox.dlocal.com
+    description: Sandbox
+tags:
+  - name: Chargebacks
+    description: Retrieve and simulate chargebacks.
+paths:
+  /chargebacks/{chargeback_id}:
+    get:
+      tags: [Chargebacks]
+      operationId: retrieveChargeback
+      summary: Retrieve A Chargeback
+      parameters:
+        - name: chargeback_id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Chargeback returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chargeback'
+  /chargebacks/{chargeback_id}/status:
+    get:
+      tags: [Chargebacks]
+      operationId: retrieveChargebackStatus
+      summary: Retrieve A Chargeback Status
+      parameters:
+        - name: chargeback_id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Status returned
+  /chargebacks/simulate:
+    post:
+      tags: [Chargebacks]
+      operationId: simulateChargeback
+      summary: Simulate A Chargeback (Sandbox Only)
+      description: Simulate a chargeback against a payment in the sandbox environment.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [payment_id]
+              properties:
+                payment_id: { type: string }
+                reason_code: { type: string }
+      responses:
+        '200':
+          description: Chargeback simulated
+components:
+  schemas:
+    Chargeback:
+      type: object
+      properties:
+        id: { type: string }
+        payment_id: { type: string }
+        amount: { type: number }
+        currency: { type: string }
+        status: { type: string }
+        status_code: { type: string }
+        status_detail: { type: string }
+        reason_code: { type: string }
+        category: { type: string }
+        created_date: { type: string, format: date-time }
+  securitySchemes:
+    dLocalSignature:
+      type: apiKey
+      in: header
+      name: Authorization
+security:
+  - dLocalSignature: []

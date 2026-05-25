@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/d-local/main/json-schema/platforms-account-schema.json",
+  "title": "dLocal for Platforms Account",
+  "type": "object",
+  "required": ["account_id", "status", "creation_date"],
+  "properties": {
+    "account_id": {"type": "string"},
+    "status": {"type": "string"},
+    "status_code": {"type": "string"},
+    "creation_date": {"type": "string", "format": "date-time"},
+    "tax_category": {"type": "string", "enum": ["company", "individual"]},
+    "account_name": {"type": "string"},
+    "account_email": {"type": "string", "format": "email"},
+    "account_country": {"type": "string", "pattern": "^[A-Z]{2}$"},
+    "consents": {"type": "array", "items": {"type": "object"}},
+    "ubo_id": {"type": "string"}
+  }
+}

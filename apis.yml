@@ -1,0 +1,488 @@
+aid: d-local
+name: dLocal
+url: https://raw.githubusercontent.com/api-evangelist/d-local/refs/heads/main/apis.yml
+image: https://avatars.githubusercontent.com/u/22692935
+description: |
+  dLocal (NASDAQ: DLO) is a Uruguay-headquartered emerging-markets payment
+  infrastructure platform connecting global merchants with billions of
+  consumers across 60+ countries in Latin America, Africa, the Middle East,
+  and Asia. dLocal exposes a unified set of REST APIs for accepting payments
+  (Payins) via 1,000+ local methods, disbursing funds (Payouts V3) to
+  beneficiaries via local rails, tokenizing cards, managing marketplace
+  sub-merchants (dLocal for Platforms), performing KYC verifications,
+  handling chargebacks, enrolling users for recurring Pix flows, and pulling
+  real-time exchange rates. Native iOS and Android SDKs are published as
+  open source on GitHub.
+created: '2026-05-24'
+modified: '2026-05-24'
+position: Consuming
+specificationVersion: '0.16'
+tags:
+  - Payments
+  - Payouts
+  - EmergingMarkets
+  - LatAm
+  - Africa
+  - Asia
+  - FX
+  - Fintech
+apis:
+  - aid: d-local:d-local-payments-api
+    name: dLocal Payments API
+    tags:
+      - Payments
+      - Payins
+      - Cards
+    humanURL: https://docs.dlocal.com/reference/create-payment
+    baseURL: https://api.dlocal.com
+    properties:
+      - url: https://docs.dlocal.com/reference/create-payment
+        type: Documentation
+      - url: https://docs.dlocal.com/reference/retrieve-a-payment
+        type: Documentation
+      - url: https://docs.dlocal.com/docs/make-payment
+        type: GettingStarted
+      - url: openapi/d-local-payments-api-openapi.yml
+        type: OpenAPI
+      - url: json-schema/payments-payment-schema.json
+        type: JSONSchema
+      - url: json-structure/payments-payment-structure.json
+        type: JSONStructure
+      - url: examples/payments-create-payment-example.json
+        type: Example
+      - url: examples/payments-retrieve-payment-example.json
+        type: Example
+      - url: examples/payments-pix-example.json
+        type: Example
+      - url: capabilities/payments-payments.yaml
+        type: NaftikoCapability
+    description: |
+      Create, retrieve, cancel, and authorize payments using 1,000+ local
+      payment methods including cards, Pix, UPI, M-Pesa, Boleto, OXXO, SPEI,
+      mobile money, cash vouchers, BNPL, wallets, and QR codes across 60+
+      countries. Authenticated with V2-HMAC-SHA256 signature.
+  - aid: d-local:d-local-refunds-api
+    name: dLocal Refunds API
+    tags:
+      - Refunds
+      - Payments
+    humanURL: https://docs.dlocal.com/reference/make-a-refund
+    baseURL: https://api.dlocal.com
+    properties:
+      - url: https://docs.dlocal.com/reference/make-a-refund
+        type: Documentation
+      - url: https://docs.dlocal.com/docs/refunds
+        type: Documentation
+      - url: openapi/d-local-refunds-api-openapi.yml
+        type: OpenAPI
+      - url: json-schema/refunds-refund-schema.json
+        type: JSONSchema
+      - url: examples/refunds-make-refund-example.json
+        type: Example
+      - url: capabilities/refunds-refunds.yaml
+        type: NaftikoCapability
+    description: |
+      Create, retrieve, and inspect refunds against previously successful
+      payments. Refunds may be full or partial and are settled in the
+      original payment currency.
+  - aid: d-local:d-local-cards-api
+    name: dLocal Cards API
+    tags:
+      - Cards
+      - Tokenization
+    humanURL: https://docs.dlocal.com/reference/create-a-card
+    baseURL: https://api.dlocal.com
+    properties:
+      - url: https://docs.dlocal.com/reference/create-a-card
+        type: Documentation
+      - url: https://docs.dlocal.com/docs/saving-cards
+        type: Documentation
+      - url: openapi/d-local-cards-api-openapi.yml
+        type: OpenAPI
+      - url: json-schema/cards-card-token-schema.json
+        type: JSONSchema
+      - url: examples/cards-create-card-example.json
+        type: Example
+      - url: capabilities/cards-cards.yaml
+        type: NaftikoCapability
+    description: |
+      Securely tokenize cards (server-side) for repeat usage. Returns a
+      card_id token consumable by subsequent Payments and Authorizations.
+  - aid: d-local:d-local-payouts-v3-api
+    name: dLocal Payouts V3 API
+    tags:
+      - Payouts
+      - Disbursements
+      - Crossborder
+    humanURL: https://docs.dlocal.com/reference/requesting-payout-v3
+    baseURL: https://api.dlocal.com
+    properties:
+      - url: https://docs.dlocal.com/reference/requesting-payout-v3
+        type: Documentation
+      - url: https://docs.dlocal.com/docs/overview-payouts-v3
+        type: Documentation
+      - url: https://docs.dlocal.com/reference/security-payouts-v3
+        type: Authentication
+      - url: openapi/d-local-payouts-v3-api-openapi.yml
+        type: OpenAPI
+      - url: json-schema/payouts-v3-payout-schema.json
+        type: JSONSchema
+      - url: json-structure/payouts-v3-payout-structure.json
+        type: JSONStructure
+      - url: examples/payouts-v3-request-payout-example.json
+        type: Example
+      - url: examples/payouts-v3-get-balance-example.json
+        type: Example
+      - url: capabilities/payouts-v3-payouts.yaml
+        type: NaftikoCapability
+    description: |
+      Disburse funds to beneficiaries across 60+ countries via local bank
+      transfers, instant payments, cards, mobile money, and cash pick-up.
+      Includes balance, quoting, release, and cancel operations. Uses
+      OAuth2 Bearer authentication.
+  - aid: d-local:d-local-platforms-api
+    name: dLocal For Platforms API
+    tags:
+      - Marketplace
+      - Platforms
+      - Accounts
+      - KYC
+    humanURL: https://docs.dlocal.com/docs/platforms-overview
+    baseURL: https://marketplace-api.dlocal.com
+    properties:
+      - url: https://docs.dlocal.com/docs/platforms-overview
+        type: Documentation
+      - url: https://docs.dlocal.com/reference/create-account-v2-platforms-1
+        type: Documentation
+      - url: https://docs.dlocal.com/reference/notifications-v2-platforms
+        type: Documentation
+      - url: openapi/d-local-platforms-api-openapi.yml
+        type: OpenAPI
+      - url: json-schema/platforms-account-schema.json
+        type: JSONSchema
+      - url: examples/platforms-create-account-example.json
+        type: Example
+      - url: capabilities/platforms-accounts.yaml
+        type: NaftikoCapability
+    description: |
+      The dLocal for Platforms (marketplace) API onboards sub-merchant
+      accounts, manages KYC, attaches bank accounts, settles inter-account
+      transfers, and reports balances. Designed for marketplaces and
+      platforms that hold funds on behalf of sub-users.
+  - aid: d-local:d-local-kyc-verifications-api
+    name: dLocal KYC Verifications API
+    tags:
+      - KYC
+      - Compliance
+      - Verifications
+    humanURL: https://docs.dlocal.com/docs/kyc-verifications-overview
+    baseURL: https://api.dlocal.com
+    properties:
+      - url: https://docs.dlocal.com/docs/kyc-verifications-overview
+        type: Documentation
+      - url: https://docs.dlocal.com/docs/kyc-verifications-process
+        type: Documentation
+      - url: https://docs.dlocal.com/reference/create-verification-1
+        type: Documentation
+      - url: openapi/d-local-kyc-verifications-api-openapi.yml
+        type: OpenAPI
+      - url: examples/kyc-create-verification-example.json
+        type: Example
+      - url: capabilities/kyc-verifications.yaml
+        type: NaftikoCapability
+    description: |
+      Create and manage KYC verifications across remittance, payouts-on-hold,
+      payins-on-hold, and standalone flows. Receives asynchronous status
+      updates via webhook.
+  - aid: d-local:d-local-chargebacks-api
+    name: dLocal Chargebacks API
+    tags:
+      - Chargebacks
+      - Disputes
+      - Payments
+    humanURL: https://docs.dlocal.com/reference/retrieve-a-chargeback
+    baseURL: https://api.dlocal.com
+    properties:
+      - url: https://docs.dlocal.com/reference/retrieve-a-chargeback
+        type: Documentation
+      - url: https://docs.dlocal.com/docs/chargebacks
+        type: Documentation
+      - url: https://docs.dlocal.com/docs/chargeback-categories
+        type: Documentation
+      - url: openapi/d-local-chargebacks-api-openapi.yml
+        type: OpenAPI
+    description: |
+      Retrieve chargeback details and status, simulate chargebacks in the
+      sandbox, and receive asynchronous chargeback notifications via webhook.
+  - aid: d-local:d-local-enrollments-api
+    name: dLocal Enrollments API
+    tags:
+      - Enrollments
+      - Recurring
+      - Pix
+      - Brazil
+    humanURL: https://docs.dlocal.com/reference/create-enrollment
+    baseURL: https://api.dlocal.com
+    properties:
+      - url: https://docs.dlocal.com/reference/create-enrollment
+        type: Documentation
+      - url: https://docs.dlocal.com/docs/brazil-pix-automatico
+        type: Documentation
+      - url: https://docs.dlocal.com/docs/brazil-pix-biometrics
+        type: Documentation
+      - url: https://docs.dlocal.com/docs/brazil-smartpix
+        type: Documentation
+      - url: openapi/d-local-enrollments-api-openapi.yml
+        type: OpenAPI
+    description: |
+      Enroll payers for recurring Pix Automático, Pix Biometrics, and
+      SmartPix transactions. Once enrolled, payers can be charged
+      repeatedly without re-authorization.
+  - aid: d-local:d-local-exchange-rates-api
+    name: dLocal Exchange Rates API
+    tags:
+      - FX
+      - ExchangeRates
+    humanURL: https://docs.dlocal.com/reference/get-an-exchange-rate
+    baseURL: https://api.dlocal.com
+    properties:
+      - url: https://docs.dlocal.com/reference/get-an-exchange-rate
+        type: Documentation
+      - url: openapi/d-local-exchange-rates-api-openapi.yml
+        type: OpenAPI
+      - url: examples/exchange-rates-get-rate-example.json
+        type: Example
+    description: |
+      Retrieve real-time FX rates between settlement currencies and local
+      currencies before creating a payment or payout.
+common:
+  - url: https://dlocal.com/
+    type: Portal
+  - url: https://docs.dlocal.com/
+    type: Documentation
+  - url: https://docs.dlocal.com/reference/api
+    type: APIReference
+  - url: https://docs.dlocal.com/docs/get-started
+    type: GettingStarted
+  - url: https://docs.dlocal.com/docs/make-a-test-payment
+    name: Make a test payment
+    type: Quickstart
+  - url: https://docs.dlocal.com/docs/enable-live-mode
+    type: Documentation
+  - url: https://docs.dlocal.com/docs/initial-settings
+    type: Documentation
+  - url: https://docs.dlocal.com/docs/generate-signature
+    type: Authentication
+  - url: https://docs.dlocal.com/docs/get-api-credentials-new
+    type: Authentication
+  - url: https://docs.dlocal.com/docs/pci-compliance
+    type: Compliance
+  - url: https://docs.dlocal.com/docs/using-llms
+    name: Using LLMs with dLocal (MCP Server)
+    type: Documentation
+  - url: https://docs.dlocal.com/llms.txt
+    name: dLocal LLM-friendly docs index
+    type: Documentation
+  - url: https://docs.dlocal.com/reference/postman-api-collection
+    name: dLocal Postman Collection
+    type: SDK
+  - url: https://dlocal.statuspage.io/
+    type: StatusPage
+  - url: https://dlocal.com/blog/
+    type: Blog
+  - url: https://dlocal.com/contact-sales/
+    type: SignUp
+  - url: https://dlocal.com/careers/
+    name: dLocal Careers
+    type: Resources
+  - url: https://dlocal.com/press-releases/
+    name: dLocal Press Releases
+    type: Newsletter
+  - url: https://investor.dlocal.com/
+    name: 'dLocal Investor Relations (NASDAQ: DLO)'
+    type: Resources
+  - url: https://dlocal.com/terms-and-conditions/
+    type: TermsOfService
+  - url: https://dlocal.com/privacy-policy/
+    type: PrivacyPolicy
+  - url: http://intercom.help/end-user-team-faqs/en
+    type: Support
+  - url: https://github.com/dlocal
+    type: GitHubOrganization
+  - url: https://github.com/dlocal/dlocal-direct-ios-sdk
+    name: dLocal Direct iOS SDK
+    type: SDK
+  - url: https://github.com/dlocal/dlocal-direct-android-sdk
+    name: dLocal Direct Android SDK
+    type: SDK
+  - url: https://github.com/dlocal/mobile-checkout-sdk-ios
+    name: dLocal Mobile Checkout iOS SDK
+    type: SDK
+  - url: https://github.com/dlocal/mobile-checkout-sdk-android
+    name: dLocal Mobile Checkout Android SDK
+    type: SDK
+  - url: https://github.com/dlocal/web-drop-in-sdk-android
+    name: dLocal Web Drop-In Android SDK
+    type: SDK
+  - url: https://github.com/dlocal/data-collector-sdk-ios
+    name: dLocal Data Collector iOS SDK
+    type: SDK
+  - url: https://github.com/dlocal/data-collector-sdk-android
+    name: dLocal Data Collector Android SDK
+    type: SDK
+  - url: https://github.com/dlocal/dlocal-data-collector-capacitor-plugin
+    name: dLocal Data Collector Capacitor Plugin
+    type: SDK
+  - url: https://github.com/dlocal/dlocal-direct-js-native-integration
+    name: dLocal Direct JS-Native Integration
+    type: SDK
+  - url: https://github.com/dlocal/smart-fields-examples
+    name: dLocal SmartFields Examples
+    type: CodeExamples
+  - url: https://github.com/dlocal/Starter-Code-Examples
+    name: dLocal Starter Code Examples
+    type: CodeExamples
+  - url: https://docs.dlocal.com/reference/including-dlocaljs
+    name: dlocal.js (SmartFields)
+    type: SDK
+  - url: https://docs.dlocal.com/reference/troubleshooting-integration
+    type: Troubleshooting
+  - url: https://docs.dlocal.com/reference/troubleshooting-signature
+    type: Troubleshooting
+  - url: https://docs.dlocal.com/reference/payment-status-codes
+    type: Documentation
+  - url: https://docs.dlocal.com/reference/http-errors-payments
+    type: Errors
+  - url: https://docs.dlocal.com/reference/http-errors-refunds
+    type: Errors
+  - url: https://docs.dlocal.com/reference/http-errors-cards
+    type: Errors
+  - url: https://docs.dlocal.com/reference/error-codes-payouts-v3
+    type: Errors
+  - url: https://docs.dlocal.com/reference/country-reference
+    type: Documentation
+  - url: https://docs.dlocal.com/docs/overview-payins
+    type: Documentation
+  - url: https://docs.dlocal.com/docs/overview-payouts-v3
+    type: Documentation
+  - url: https://docs.dlocal.com/docs/platforms-overview
+    type: Documentation
+  - url: https://docs.dlocal.com/docs/overview-smart-fields
+    name: SmartFields overview
+    type: Documentation
+  - url: https://docs.dlocal.com/docs/integrate-checkout
+    name: dLocal Go (Hosted Checkout)
+    type: Documentation
+  - url: https://docs.dlocal.com/docs/payment-links
+    type: Documentation
+  - url: https://docs.dlocal.com/docs/fraud-prevention
+    name: Defense Suite (Fraud Prevention)
+    type: Documentation
+  - url: rules/d-local-rules.yml
+    type: SpectralRules
+  - url: vocabulary/d-local-vocabulary.yml
+    type: Vocabulary
+  - url: json-ld/d-local-context.jsonld
+    type: JSONLD
+  - url: capabilities/emerging-markets-payments.yaml
+    name: dLocal Emerging-Markets Payments Workflow
+    type: NaftikoCapability
+  - url: plans/d-local-plans-pricing.yml
+    type: Plans
+  - url: rate-limits/d-local-rate-limits.yml
+    type: RateLimits
+  - url: finops/d-local-finops.yml
+    type: FinOps
+  - type: Features
+    data:
+      - 1,000+ local payment methods across 60+ countries in Latin America, Africa, the Middle East, and Asia
+      - Single REST API for Payins, Payouts, Refunds, Cards, Chargebacks, Enrollments, and Exchange Rates
+      - Payments API authenticated with V2-HMAC-SHA256 signature (X-Login, X-Trans-Key, X-Date)
+      - Payouts V3 API with OAuth2 Bearer tokens, quotes for FX lock-in, on-hold release, and explicit fee breakdown
+      - dLocal for Platforms (marketplace) API for sub-merchant onboarding, KYC, bank accounts, balances, and inter-account transfers
+      - KYC Verifications API for remitter, beneficiary, and standalone identity checks
+      - Brazilian Pix support including Pix Automático recurring, Pix Biometrics, and SmartPix
+      - India network tokenization for RBI-compliant card storage
+      - African Mobile Money (M-Pesa and equivalents) and Africa-specific instant payment rails
+      - Authorization and capture flow for delayed-capture card transactions
+      - 3D Secure 2.x authentication and card network token support
+      - SmartFields client-side field-level tokenization via dlocal.js
+      - SmartPix native and redirect flows for Brazilian recurring on-demand payments
+      - Defense Suite for fraud management and chargeback prevention
+      - Virtual Accounts for bank-transfer reconciliation
+      - Hosted Checkout (dLocal Go) and Payment Links
+      - dLocal Direct, Mobile Checkout, Web Drop-In, and Data Collector SDKs for iOS, Android, and Capacitor
+      - Postman Collection and llms.txt index of OpenAPI operations
+      - Built-in dLocal MCP Server for LLM-assisted integration
+      - Sandbox environment at sandbox.dlocal.com (and marketplace-api.dlocal-sbox.com) with chargeback simulation
+      - Webhook notifications for payments, refunds, chargebacks, payouts, verifications, and platform accounts
+      - Real-time exchange rate endpoint for quoting before payin/payout
+      - IP allow-list enforcement on production endpoints
+    sources:
+      - https://dlocal.com/
+      - https://docs.dlocal.com/
+      - https://docs.dlocal.com/reference/api
+      - https://github.com/dlocal
+  - type: UseCases
+    data:
+      - name: Global subscription billing in emerging markets
+        description: Charge LatAm, African, and Asian customers in their preferred local currency and method (Pix, UPI, mobile money) for SaaS, streaming, and gaming subscriptions.
+      - name: Cross-border payroll and contractor payouts
+        description: Pay employees and contractors in 60+ countries using instant local rails, bank transfers, mobile money, and cash pick-up.
+      - name: Marketplace and platform payouts
+        description: Onboard sub-merchants via dLocal for Platforms, split payments, and settle balances between accounts.
+      - name: Remittances
+        description: Power consumer remittance corridors with FX quoting, KYC verification, and local-currency disbursement.
+      - name: Travel and ride-hailing
+        description: Enable global travel and mobility platforms to collect from local consumers and pay out to local drivers/hosts.
+      - name: E-commerce expansion
+        description: Help global merchants like Amazon, Shein, and Shopify accept local methods such as Boleto, OXXO, SPEI, and Pix.
+      - name: Stablecoin settlement
+        description: Use Stablecoin Full for cross-border settlement when fiat rails are slow or expensive.
+  - type: Integrations
+    data:
+      - name: Brazil Pix
+        description: Native Pix, Pix Automático (recurring), Pix Biometrics, and SmartPix support.
+      - name: India UPI and network tokenization
+        description: UPI collect/intent flows plus RBI-compliant network tokenization.
+      - name: Africa M-Pesa and Mobile Money
+        description: M-Pesa, MTN MoMo, Orange Money, and other Mobile Money rails.
+      - name: Mexico SPEI and OXXO
+        description: Bank transfer (SPEI) and cash voucher (OXXO) coverage.
+      - name: Stablecoins
+        description: Stablecoin Full product for crypto-rail settlement.
+      - name: Google Pay (Paytm bridge)
+        description: Google Pay integration via the Paytm bridge.
+      - name: Mercado Pago
+        description: Device ID object support for fraud signals on Mercado Pago.
+      - name: Postman
+        description: Official Postman collection covering the full REST API.
+      - name: Model Context Protocol (MCP)
+        description: Built-in dLocal MCP server exposes API operations to LLM agents.
+  - type: Solutions
+    data:
+      - name: Payins
+        description: Accept local payment methods across 60+ countries.
+      - name: Payouts
+        description: Disburse funds via local rails to employees, contractors, partners, and consumers.
+      - name: dLocal for Platforms
+        description: Marketplace and platform multi-merchant payment solution.
+      - name: Defense Suite
+        description: Fraud-management and chargeback-prevention toolkit.
+      - name: Invoice Collection
+        description: Local-currency billing and collection.
+      - name: Stablecoin Full
+        description: Stablecoin payin/payout rails for cross-border settlement.
+      - name: dLocal Direct
+        description: Mobile SDK product for native iOS and Android in-app checkout.
+      - name: SmartFields
+        description: Client-side field-level tokenization via dlocal.js.
+      - name: dLocal Go
+        description: Hosted checkout product.
+      - name: Payment Links
+        description: Shareable links for one-off collections.
+maintainers:
+  - FN: Kin Lane
+    email: info@apievangelist.com
+    X: apievangelist
+    url: https://apievangelist.com

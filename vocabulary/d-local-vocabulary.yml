@@ -1,0 +1,148 @@
+name: dLocal Vocabulary
+description: Controlled vocabulary mapping dLocal API concepts to operational and capability dimensions for the API Evangelist network.
+url: https://raw.githubusercontent.com/api-evangelist/d-local/main/vocabulary/d-local-vocabulary.yml
+created: '2026-05-24'
+modified: '2026-05-24'
+
+domains:
+  - name: Payments
+    description: Accepting funds from end users via 1,000+ local payment methods across LatAm, Africa, and Asia.
+  - name: Payouts
+    description: Disbursing funds to beneficiaries via local bank transfers, instant payments, mobile money, cards, and cash pick-up.
+  - name: Compliance
+    description: KYC verifications, AML screening, and chargeback management.
+  - name: Marketplace
+    description: dLocal for Platforms — onboarding sub-merchants, KYC, balances, and inter-account transfers.
+  - name: Tokenization
+    description: Secure card storage via the Cards API and SmartFields client-side tokenization.
+
+concepts:
+  - name: Payment
+    description: A payin transaction created via the Payments API.
+  - name: Refund
+    description: A full or partial reversal of a previous payment.
+  - name: Payout
+    description: An outbound disbursement to a beneficiary via Payouts V3.
+  - name: CardToken
+    description: A secure server-side card representation usable for repeat charges.
+  - name: Verification
+    description: A KYC compliance check on a remitter, beneficiary, or standalone identity.
+  - name: Chargeback
+    description: A consumer-initiated dispute against a card payment.
+  - name: Enrollment
+    description: A recurring-payment enrollment for Pix Automático, Pix Biometrics, or SmartPix.
+  - name: Account
+    description: A sub-merchant account managed under dLocal for Platforms.
+  - name: Quote
+    description: A locked FX rate generated before requesting a payout.
+  - name: ExchangeRate
+    description: A real-time FX rate between a settlement and local currency.
+
+paymentMethods:
+  - PIX
+  - SmartPix
+  - PixAutomatico
+  - PixBiometrics
+  - UPI
+  - MPesa
+  - Boleto
+  - OXXO
+  - SPEI
+  - Multicaixa
+  - MobileMoney
+  - BankTransfer
+  - CASH_PICK_UP
+  - INSTANT_PAYMENT
+  - CreditCard
+  - DebitCard
+  - DigitalWallet
+  - Stablecoin
+
+regions:
+  LatAm:
+    - Argentina
+    - Bolivia
+    - Brazil
+    - Chile
+    - Colombia
+    - Costa Rica
+    - Dominican Republic
+    - Ecuador
+    - El Salvador
+    - Guatemala
+    - Honduras
+    - Mexico
+    - Nicaragua
+    - Panama
+    - Paraguay
+    - Peru
+    - Uruguay
+  Africa:
+    - Algeria
+    - Bahrain
+    - Burkina Faso
+    - Cameroon
+    - Chad
+    - Democratic Republic of Congo
+    - Egypt
+    - Ghana
+    - Guinea-Bissau
+    - Ivory Coast
+    - Jordan
+    - Kenya
+    - Madagascar
+    - Mali
+    - Morocco
+    - Niger
+    - Nigeria
+    - Oman
+    - Qatar
+    - Rwanda
+    - Saudi Arabia
+    - Senegal
+    - South Africa
+    - Tanzania
+    - Turkey
+    - Uganda
+    - United Arab Emirates
+    - Zimbabwe
+  Asia:
+    - Bangladesh
+    - China
+    - Hong Kong
+    - India
+    - Indonesia
+    - Japan
+    - Malaysia
+    - Pakistan
+    - Philippines
+    - Sri Lanka
+    - Thailand
+    - Vietnam
+
+statuses:
+  payment:
+    - PAID
+    - PENDING
+    - REJECTED
+    - CANCELLED
+    - AUTHORIZED
+    - EXPIRED
+    - VERIFIED
+    - REFUNDED
+  refund:
+    - SUCCESS
+    - PENDING
+    - REJECTED
+  payout:
+    - CREATED
+    - PENDING
+    - ON_HOLD
+    - PAID
+    - REJECTED
+    - CANCELLED
+  verification:
+    - PENDING
+    - APPROVED
+    - REJECTED
+    - EXPIRED

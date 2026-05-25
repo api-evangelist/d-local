@@ -1,0 +1,28 @@
+{
+  "request": {
+    "type": "REMITTANCE",
+    "flow": "remitter",
+    "notification_url": "https://merchant.example.com/dlocal/kyc-webhooks",
+    "attributes": {
+      "first_name": "Maria",
+      "last_name": "Silva",
+      "document": "53033315550",
+      "document_type": "CPF",
+      "country": "BR",
+      "email": "maria.silva@example.com"
+    }
+  },
+  "response": {
+    "id": "ver-7c9e6679-7425-40de-944b-e07fc1f90ae7",
+    "type": "REMITTANCE",
+    "status": "PENDING",
+    "status_detail": "Verification under review",
+    "created_date": "2026-05-24T14:32:11.000Z",
+    "expiration_date": "2026-05-25T14:32:11.000Z",
+    "attributes": {
+      "first_name": "Maria",
+      "last_name": "Silva",
+      "country": "BR"
+    }
+  }
+}

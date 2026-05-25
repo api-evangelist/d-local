@@ -1,0 +1,26 @@
+{
+  "request": {
+    "country": "BR",
+    "card": {
+      "holder_name": "Maria Silva",
+      "expiration_month": 10,
+      "expiration_year": 2028,
+      "number": "4111111111111111",
+      "cvv": "123"
+    },
+    "payer": {
+      "name": "Maria Silva",
+      "email": "maria.silva@example.com",
+      "document": "53033315550"
+    }
+  },
+  "response": {
+    "holder_name": "Maria Silva",
+    "expiration_month": 10,
+    "expiration_year": 2028,
+    "brand": "VI",
+    "last4": "1111",
+    "card_id": "CID-7c9e6679-7425-40de-944b-e07fc1f90ae7",
+    "country": "BR"
+  }
+}

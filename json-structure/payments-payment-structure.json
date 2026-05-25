@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-structure.org/draft/2025-05/schema",
+  "name": "dLocalPayment",
+  "type": "object",
+  "description": "Structural definition of a dLocal Payment used for cross-language code generation and contract enforcement.",
+  "fields": {
+    "id": {"type": "string", "required": true, "description": "dLocal-generated payment identifier."},
+    "amount": {"type": "decimal", "precision": 10, "scale": 2, "required": true},
+    "currency": {"type": "string", "length": 3, "format": "iso-4217", "required": true},
+    "country": {"type": "string", "length": 2, "format": "iso-3166-alpha-2", "required": true},
+    "payment_method_id": {"type": "string", "description": "Local payment method code (e.g. PIX, CARD, VI, MC, UPI, MPESA)."},
+    "payment_method_type": {"type": "enum", "values": ["CARD", "TICKET", "BANK_TRANSFER", "WALLET"]},
+    "payment_method_flow": {"type": "enum", "values": ["DIRECT", "REDIRECT"]},
+    "created_date": {"type": "datetime", "format": "iso-8601"},
+    "approved_date": {"type": "datetime", "format": "iso-8601"},
+    "status": {"type": "enum", "values": ["PAID", "PENDING", "REJECTED", "CANCELLED", "AUTHORIZED", "EXPIRED", "VERIFIED", "REFUNDED"]},
+    "status_code": {"type": "string"},
+    "status_detail": {"type": "string"},
+    "order_id": {"type": "string"},
+    "notification_url": {"type": "string", "format": "uri"},
+    "redirect_url": {"type": "string", "format": "uri"}
+  }
+}

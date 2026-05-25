@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/d-local/main/json-schema/payouts-v3-payout-schema.json",
+  "title": "dLocal Payout",
+  "description": "A dLocal Payouts V3 disbursement to a beneficiary.",
+  "type": "object",
+  "required": ["id", "external_id", "amount", "currency", "country", "status"],
+  "properties": {
+    "id": {"type": "string"},
+    "external_id": {"type": "string"},
+    "status": {"type": "string"},
+    "status_code": {"type": "string"},
+    "status_detail": {"type": "string"},
+    "created_date": {"type": "string", "format": "date-time"},
+    "last_updated": {"type": "string", "format": "date-time"},
+    "amount": {"type": "number"},
+    "currency": {"type": "string", "pattern": "^[A-Z]{3}$"},
+    "currency_to_pay": {"type": "string", "pattern": "^[A-Z]{3}$"},
+    "country": {"type": "string", "pattern": "^[A-Z]{2}$"},
+    "payment_method_id": {"type": "string", "enum": ["BANK_TRANSFER", "INSTANT_PAYMENT", "CARD", "CASH_PICK_UP"]},
+    "purpose": {"type": "string", "enum": ["REMITTANCES", "PAYROLL", "SUPPLIER_PAYMENT", "REFUND", "AID", "INVESTMENT", "OTHER"]},
+    "flow_type": {"type": "string", "enum": ["B2C", "B2B", "P2P"]},
+    "amount_details": {
+      "type": "object",
+      "properties": {
+        "fees": {"type": "number"},
+        "taxes": {"type": "number"},
+        "exchange_rate": {"type": "number"}
+      }
+    },
+    "beneficiary": {"type": "object"}
+  }
+}

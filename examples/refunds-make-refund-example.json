@@ -1,0 +1,18 @@
+{
+  "request": {
+    "payment_id": "D-4-cf8a3c44-2bd9-49d3-b7b5-2c63b94ad44a",
+    "amount": 50.00,
+    "currency": "BRL",
+    "notification_url": "https://merchant.example.com/dlocal/refund-webhooks"
+  },
+  "response": {
+    "id": "REF-42342",
+    "payment_id": "D-4-cf8a3c44-2bd9-49d3-b7b5-2c63b94ad44a",
+    "status": "SUCCESS",
+    "amount": 50.00,
+    "currency": "BRL",
+    "created_date": "2026-05-24T15:03:03.000Z",
+    "status_code": 200,
+    "status_detail": "The refund was paid"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/exchange-rates?from_currency=USD&to_currency=BRL&country=BR"
+  },
+  "response": {
+    "from_currency": "USD",
+    "to_currency": "BRL",
+    "rate": 5.12,
+    "inverse_rate": 0.1953,
+    "country": "BR",
+    "updated_at": "2026-05-24T14:00:00.000Z"
+  }
+}

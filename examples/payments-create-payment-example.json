@@ -1,0 +1,53 @@
+{
+  "request": {
+    "amount": 120.00,
+    "currency": "BRL",
+    "country": "BR",
+    "payment_method_id": "CARD",
+    "payment_method_flow": "DIRECT",
+    "payer": {
+      "name": "Maria Silva",
+      "email": "maria.silva@example.com",
+      "document": "53033315550",
+      "address": {
+        "street": "Rua das Flores",
+        "number": "123",
+        "city": "Sao Paulo",
+        "state": "SP",
+        "zip_code": "01310-100",
+        "country": "BR"
+      }
+    },
+    "card": {
+      "holder_name": "Maria Silva",
+      "expiration_month": 10,
+      "expiration_year": 2028,
+      "number": "4111111111111111",
+      "cvv": "123"
+    },
+    "order_id": "ORDER-657874",
+    "notification_url": "https://merchant.example.com/dlocal/webhooks"
+  },
+  "response": {
+    "id": "D-4-cf8a3c44-2bd9-49d3-b7b5-2c63b94ad44a",
+    "amount": 120.00,
+    "currency": "BRL",
+    "country": "BR",
+    "payment_method_id": "CARD",
+    "payment_method_type": "CARD",
+    "payment_method_flow": "DIRECT",
+    "card": {
+      "holder_name": "Maria Silva",
+      "expiration_month": 10,
+      "expiration_year": 2028,
+      "brand": "VI",
+      "last4": "1111"
+    },
+    "created_date": "2026-05-24T14:32:11.000Z",
+    "approved_date": "2026-05-24T14:32:12.000Z",
+    "status": "PAID",
+    "status_code": "200",
+    "status_detail": "The payment was paid",
+    "order_id": "ORDER-657874"
+  }
+}

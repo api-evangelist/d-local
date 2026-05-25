@@ -1,0 +1,72 @@
+extends:
+  - spectral:oas
+formats:
+  - oas3
+documentationUrl: https://docs.dlocal.com/
+rules:
+  # Inherit common best practices
+  operation-operationId: error
+  operation-operationId-unique: error
+  operation-tag-defined: error
+  operation-tags: warn
+  operation-description: warn
+  operation-success-response: error
+  oas3-server-not-example.com: error
+
+  # dLocal-specific conventions
+  dlocal-summary-title-case:
+    description: Operation summaries should be in Title Case.
+    message: "{{property}} summary should use Title Case (e.g. 'Create A Payment')."
+    severity: warn
+    given: $.paths.*[get,put,post,delete,patch].summary
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][A-Za-z0-9]*(\\s+(A|An|The|To|For|Of|And|In|On|By|At|With|From)?\\s*[A-Z][A-Za-z0-9]*)*$"
+
+  dlocal-server-base-url:
+    description: dLocal APIs must declare production and sandbox servers.
+    message: dLocal specs should expose api.dlocal.com (or marketplace-api.dlocal.com) plus a sandbox server.
+    severity: warn
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://(api|sandbox|marketplace-api)\\.dlocal(-sbox)?\\.com$"
+
+  dlocal-iso-currency:
+    description: Currency fields should reference ISO-4217 three-letter codes.
+    message: Currency property should describe ISO-4217.
+    severity: hint
+    given: $.components.schemas.*.properties.currency
+    then:
+      field: description
+      function: truthy
+
+  dlocal-iso-country:
+    description: Country fields should reference ISO 3166-1 alpha-2 codes.
+    message: Country property should describe ISO 3166-1 alpha-2.
+    severity: hint
+    given: $.components.schemas.*.properties.country
+    then:
+      field: description
+      function: truthy
+
+  dlocal-authorization-security:
+    description: Every operation should declare security via the dLocal signature or bearer scheme.
+    severity: warn
+    given: $.paths.*[get,put,post,delete,patch]
+    then:
+      field: security
+      function: truthy
+
+  dlocal-notification-url-uri:
+    description: notification_url and callback_url fields must be format uri.
+    message: "{{path}} should have format: uri"
+    severity: warn
+    given: "$..properties[?(@property === 'notification_url' || @property === 'callback_url')]"
+    then:
+      field: format
+      function: pattern
+      functionOptions:
+        match: "uri"

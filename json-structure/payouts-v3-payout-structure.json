@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-structure.org/draft/2025-05/schema",
+  "name": "dLocalPayout",
+  "type": "object",
+  "description": "Structural definition of a dLocal Payouts V3 disbursement.",
+  "fields": {
+    "id": {"type": "string", "required": true},
+    "external_id": {"type": "string", "required": true, "description": "Merchant-supplied unique identifier."},
+    "status": {"type": "string"},
+    "amount": {"type": "decimal", "precision": 16, "scale": 2, "required": true},
+    "currency": {"type": "string", "length": 3, "format": "iso-4217"},
+    "currency_to_pay": {"type": "string", "length": 3, "format": "iso-4217"},
+    "country": {"type": "string", "length": 2, "format": "iso-3166-alpha-2"},
+    "payment_method_id": {"type": "enum", "values": ["BANK_TRANSFER", "INSTANT_PAYMENT", "CARD", "CASH_PICK_UP"]},
+    "purpose": {"type": "enum", "values": ["REMITTANCES", "PAYROLL", "SUPPLIER_PAYMENT", "REFUND", "AID", "INVESTMENT", "OTHER"]},
+    "flow_type": {"type": "enum", "values": ["B2C", "B2B", "P2P"]},
+    "created_date": {"type": "datetime", "format": "iso-8601"},
+    "last_updated": {"type": "datetime", "format": "iso-8601"}
+  }
+}

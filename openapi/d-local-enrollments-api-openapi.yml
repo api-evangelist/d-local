@@ -1,0 +1,104 @@
+openapi: 3.0.3
+info:
+  title: dLocal Enrollments API
+  version: '2.1'
+  description: |
+    Enrollments power Brazil's Pix Automático recurring payments and
+    Pix biometrics flows. Use Enrollments to register a payer once and
+    subsequently charge them through Pix recurring transactions.
+servers:
+  - url: https://api.dlocal.com
+    description: Production
+  - url: https://sandbox.dlocal.com
+    description: Sandbox
+tags:
+  - name: Enrollments
+    description: Create, retrieve, and cancel Pix enrollments.
+paths:
+  /enrollments:
+    post:
+      tags: [Enrollments]
+      operationId: createEnrollment
+      summary: Create An Enrollment
+      description: Enroll a payer for Pix Automático or Pix Biometrics recurring transactions.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrollmentRequest'
+      responses:
+        '200':
+          description: Enrollment created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Enrollment'
+  /enrollments/{enrollment_id}:
+    get:
+      tags: [Enrollments]
+      operationId: getEnrollment
+      summary: Get An Enrollment
+      parameters:
+        - name: enrollment_id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Enrollment returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Enrollment'
+  /enrollments/{enrollment_id}/cancel:
+    post:
+      tags: [Enrollments]
+      operationId: cancelEnrollment
+      summary: Cancel An Enrollment
+      parameters:
+        - name: enrollment_id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Enrollment cancelled
+components:
+  schemas:
+    EnrollmentRequest:
+      type: object
+      required: [country, payer, notification_url]
+      properties:
+        country: { type: string }
+        type:
+          type: string
+          enum: [PIX_AUTOMATICO, PIX_BIOMETRICS, SMARTPIX]
+        payer:
+          type: object
+          properties:
+            name: { type: string }
+            email: { type: string, format: email }
+            document: { type: string }
+        notification_url: { type: string, format: uri }
+        callback_url: { type: string, format: uri }
+        max_amount: { type: number }
+    Enrollment:
+      type: object
+      properties:
+        id: { type: string }
+        status:
+          type: string
+          enum: [PENDING, ACTIVE, CANCELLED, EXPIRED]
+        redirect_url: { type: string, format: uri }
+        created_date: { type: string, format: date-time }
+        expiration_date: { type: string, format: date-time }
+        type: { type: string }
+        country: { type: string }
+  securitySchemes:
+    dLocalSignature:
+      type: apiKey
+      in: header
+      name: Authorization
+security:
+  - dLocalSignature: []

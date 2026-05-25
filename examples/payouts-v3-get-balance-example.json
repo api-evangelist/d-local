@@ -1,0 +1,12 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/payouts/v3/balance"
+  },
+  "response": {
+    "currency": "USD",
+    "available_balance": 42123.12,
+    "previous_day_closing_balance": 200000,
+    "current_balance_date": "2026-05-23"
+  }
+}

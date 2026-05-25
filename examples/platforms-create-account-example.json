@@ -1,0 +1,32 @@
+{
+  "request": {
+    "platform_type": "marketplace",
+    "tax_category": "individual",
+    "account_name": "Loja do Joao",
+    "account_email": "joao@lojadojoao.com",
+    "account_country": "BR",
+    "notification_url": "https://platform.example.com/dlocal/webhooks",
+    "consents": [
+      {"type": "data_collection", "accepted": true},
+      {"type": "terms_and_conditions", "accepted": true}
+    ],
+    "company_information": {
+      "tax_id": "12345678909",
+      "documents": []
+    },
+    "settings": {
+      "pricing_tier": "standard",
+      "settlement_timing": "T+1"
+    }
+  },
+  "response": {
+    "account_id": "ACC-7c9e6679-7425-40de-944b-e07fc1f90ae7",
+    "status": "PENDING",
+    "status_code": "100",
+    "creation_date": "2026-05-24T14:32:11.000Z",
+    "consents": [
+      {"type": "data_collection", "accepted": true, "timestamp": "2026-05-24T14:32:11.000Z"}
+    ],
+    "ubo_id": "UBO-aa11bb22-cc33"
+  }
+}

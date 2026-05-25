@@ -1,0 +1,46 @@
+{
+  "request": {
+    "external_id": "PAYOUT-2026-05-24-0001",
+    "country": "BR",
+    "payment_method_id": "INSTANT_PAYMENT",
+    "amount": 500.00,
+    "currency": "USD",
+    "currency_to_pay": "BRL",
+    "purpose": "PAYROLL",
+    "flow_type": "B2C",
+    "statement_descriptor": "ACME Payroll",
+    "description": "May 2026 payroll",
+    "notification_url": "https://merchant.example.com/dlocal/payout-webhooks",
+    "beneficiary": {
+      "first_name": "Carlos",
+      "last_name": "Mendes",
+      "email": "carlos.mendes@example.com",
+      "document": "12345678909",
+      "document_type": "CPF",
+      "bank_details": {
+        "bank_code": "001",
+        "bank_account": "12345-6",
+        "account_type": "checking",
+        "branch": "0001"
+      }
+    }
+  },
+  "response": {
+    "id": "PYO-aa11bb22-cc33-dd44-ee55-ff6677889900",
+    "external_id": "PAYOUT-2026-05-24-0001",
+    "status": "PENDING",
+    "status_code": "100",
+    "status_detail": "Payout is being processed",
+    "created_date": "2026-05-24T14:32:11.000Z",
+    "amount": 500.00,
+    "currency": "USD",
+    "currency_to_pay": "BRL",
+    "country": "BR",
+    "payment_method_id": "INSTANT_PAYMENT",
+    "amount_details": {
+      "fees": 5.00,
+      "taxes": 0,
+      "exchange_rate": 5.12
+    }
+  }
+}

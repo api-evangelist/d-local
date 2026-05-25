@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: dLocal Refunds API — Refunds
+  description: dLocal Refunds capability — create, retrieve, and list refunds for prior payments.
+  tags:
+  - dLocal
+  - Refunds
+  created: '2026-05-24'
+  modified: '2026-05-24'
+binds:
+- namespace: env
+  keys:
+    DLOCAL_LOGIN: DLOCAL_LOGIN
+    DLOCAL_TRANS_KEY: DLOCAL_TRANS_KEY
+    DLOCAL_SECRET: DLOCAL_SECRET
+capability:
+  consumes:
+  - type: http
+    namespace: refunds-refunds
+    baseUri: https://api.dlocal.com
+    description: dLocal Refunds business capability.
+    resources:
+    - name: refunds
+      path: /refunds
+      operations:
+      - name: makerefund
+        method: POST
+        description: dLocal Make A Refund
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: refund-by-id
+      path: /refunds/{refund_id}
+      operations:
+      - name: retrieverefund
+        method: GET
+        description: dLocal Retrieve A Refund
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: refund_id
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: X-Trans-Key
+      value: '{{env.DLOCAL_TRANS_KEY}}'
+      placement: header
+  exposes:
+  - type: mcp
+    namespace: refunds-refunds-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for dLocal Refunds.
+    tools:
+    - name: dlocal-make-refund
+      description: dLocal Make A Refund
+      hints: { readOnly: false, destructive: true, idempotent: false }
+      call: refunds-refunds.makerefund
+      with: { body: tools.body }
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dlocal-retrieve-refund
+      description: dLocal Retrieve A Refund
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: refunds-refunds.retrieverefund
+      with: { refund_id: tools.refund_id }
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,78 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: dLocal
+providerId: d-local
+created: '2026-05-24'
+modified: '2026-05-24'
+reconciled: false
+tags:
+  - Rate Limiting
+  - Quotas
+  - Payments
+description: |
+  dLocal does not publish explicit per-second or per-minute API rate limits in
+  the public documentation. Limits are commercially negotiated based on
+  projected transactions-per-second (TPS) and configured per merchant account.
+  IP allow-listing and signature throttling apply to all environments.
+sources:
+  - https://docs.dlocal.com/docs/get-started.md
+  - https://docs.dlocal.com/docs/generate-signature.md
+  - https://docs.dlocal.com/reference/payins-security.md
+  - https://docs.dlocal.com/reference/security-payouts-v3.md
+responseCodes:
+  throttled: 429
+  serverError: 500
+  forbidden: 403
+algorithm: per-merchant-quota
+authentication:
+  payins:
+    scheme: V2-HMAC-SHA256
+    headers:
+      - X-Login
+      - X-Trans-Key
+      - X-Date
+      - X-Version
+      - Authorization
+    signedString: X-Login + X-Date + RequestBody
+    hashFunction: HMAC-SHA256
+    encoding: hex-lowercase
+  payouts_v3:
+    scheme: OAuth2 Bearer
+    headers:
+      - Authorization
+      - X-Date
+      - X-Version
+  platforms:
+    scheme: OAuth2 Bearer
+    headers:
+      - Authorization
+ipAllowList:
+  required: true
+  description: Production merchant IPs must be registered in the dLocal Merchant Dashboard before traffic is accepted.
+limits:
+  - api: Payments (Payins)
+    scope: per-merchant
+    note: TPS limit configured per merchant; default sandbox limit applies. Contact support to raise.
+  - api: Payouts V3
+    scope: per-merchant
+    note: TPS limit configured per merchant. Sandbox always returns 1000.00 balance and capped throughput.
+  - api: For Platforms
+    scope: per-merchant
+    note: Onboarding endpoints generally rate-limited to protect KYC backend services.
+  - api: KYC Verifications
+    scope: per-merchant
+    note: Webhook-driven; throughput tied to KYC processing capacity.
+idempotency:
+  - api: Payouts V3
+    mechanism: external_id (merchant-supplied unique identifier)
+    note: Duplicate external_id returns 400 Bad Request.
+  - api: Refunds
+    mechanism: payment_id (only one in-flight refund per payment)
+errors:
+  - code: 403
+    meaning: Unregistered IP, invalid credentials, or insufficient funds (Payouts).
+  - code: 429
+    meaning: Too many requests — back off and retry.
+  - code: 500
+    meaning: Internal server error.

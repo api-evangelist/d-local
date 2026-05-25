@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/d-local/main/json-schema/cards-card-token-schema.json",
+  "title": "dLocal Card Token",
+  "type": "object",
+  "required": ["card_id", "brand", "last4"],
+  "properties": {
+    "card_id": {"type": "string"},
+    "holder_name": {"type": "string"},
+    "expiration_month": {"type": "integer"},
+    "expiration_year": {"type": "integer"},
+    "brand": {"type": "string"},
+    "last4": {"type": "string"},
+    "country": {"type": "string", "pattern": "^[A-Z]{2}$"}
+  }
+}

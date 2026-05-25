@@ -1,0 +1,128 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: dLocal
+providerId: d-local
+created: '2026-05-24'
+modified: '2026-05-24'
+reconciled: false
+tags:
+  - Payments
+  - Payouts
+  - EmergingMarkets
+  - FX
+  - Crossborder
+description: |
+  dLocal does not publish public per-transaction fees. The commercial model is
+  contact-sales/enterprise — pricing varies by country, payment method, volume,
+  settlement currency, and FX margin. This file documents the commercial
+  structure publicly observable from dLocal's documentation, contracts, and
+  investor disclosures.
+sources:
+  - https://dlocal.com/
+  - https://dlocal.com/contact-sales/
+  - https://docs.dlocal.com/
+  - https://investor.dlocal.com/
+plans:
+  - id: d-local-payins-enterprise
+    name: dLocal Payins (Enterprise)
+    type: contact-sales
+    description: |
+      Accept 1,000+ local payment methods across 60+ countries.
+      Pricing is per-transaction with a separate FX/conversion margin where
+      applicable; negotiated by volume and country mix.
+    entries:
+      - label: Payin transaction fee
+        name: payin_transaction_fee
+        type: per-transaction
+        timeFrame: usage
+        geo: per-country
+        unit: 1
+        price: contact-sales
+        description: Fixed + percentage per successful payin; varies by country and method.
+      - label: FX/conversion margin
+        name: fx_margin
+        type: per-transaction
+        timeFrame: usage
+        geo: per-country
+        unit: 1
+        price: contact-sales
+        description: Spread on conversion between settlement currency and local currency.
+      - label: Chargeback fee
+        name: chargeback_fee
+        type: per-event
+        timeFrame: usage
+        geo: per-country
+        unit: 1
+        price: contact-sales
+        description: Per chargeback raised against a card transaction.
+      - label: Refund fee
+        name: refund_fee
+        type: per-event
+        timeFrame: usage
+        geo: per-country
+        unit: 1
+        price: contact-sales
+  - id: d-local-payouts-enterprise
+    name: dLocal Payouts (Enterprise)
+    type: contact-sales
+    description: |
+      Disburse to beneficiaries via local bank transfers, instant payments,
+      mobile money, cards, and cash pick-up across 60+ countries.
+    entries:
+      - label: Payout transaction fee
+        name: payout_transaction_fee
+        type: per-transaction
+        timeFrame: usage
+        geo: per-country
+        unit: 1
+        price: contact-sales
+      - label: FX/conversion margin
+        name: fx_margin
+        type: per-transaction
+        timeFrame: usage
+        geo: per-country
+        unit: 1
+        price: contact-sales
+  - id: d-local-for-platforms
+    name: dLocal for Platforms (Marketplace)
+    type: contact-sales
+    description: |
+      Pricing tier configurable per sub-merchant account; supports installments
+      fee responsibility split between platform and sub-merchant.
+    entries:
+      - label: Platform fee
+        name: platform_fee
+        type: per-transaction
+        timeFrame: usage
+        geo: per-country
+        unit: 1
+        price: contact-sales
+  - id: d-local-defense-suite
+    name: dLocal Defense Suite
+    type: contact-sales
+    description: Fraud-management and chargeback-prevention add-on.
+    entries:
+      - label: Defense Suite subscription
+        name: defense_suite_subscription
+        type: subscription
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: contact-sales
+  - id: d-local-stablecoin-full
+    name: Stablecoin Full
+    type: contact-sales
+    description: Stablecoin payin and payout rails for cross-border settlement.
+    entries:
+      - label: Stablecoin transaction fee
+        name: stablecoin_transaction_fee
+        type: per-transaction
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: contact-sales
+notes:
+  - dLocal's investor disclosures report take rate (revenue / TPV) of roughly 1.0%-1.5% blended across regions; per-deal pricing varies widely.
+  - Free sandbox; merchants must complete an Initial Settings step before enabling Live mode.
+  - Payouts V3 returns explicit fees, taxes, and exchange_rate breakdown in the amount_details response object.

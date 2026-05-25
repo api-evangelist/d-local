@@ -1,0 +1,121 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: dLocal
+providerId: d-local
+created: '2026-05-24'
+modified: '2026-05-24'
+reconciled: false
+tags:
+  - FinOps
+  - FOCUS
+  - Payments
+  - Crossborder
+description: |
+  FOCUS-aligned FinOps definition for dLocal's emerging-markets payments
+  platform. The primary metering unit is the transaction (payin, payout,
+  refund, chargeback), with FX/conversion margin and country-specific
+  fees layered on top.
+sources:
+  - https://dlocal.com/
+  - https://docs.dlocal.com/
+  - https://investor.dlocal.com/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: dLocal
+serviceCategory: Financial Services / Payments
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+    - Usage
+    - Tax
+    - Adjustment
+    - Refund
+    - Chargeback
+  primaryUnit: transaction
+  secondaryUnits:
+    - usd_volume
+    - fx_spread
+focusColumns:
+  ServiceName: dLocal Payments Platform
+  ServiceCategory: Financial Services
+  ProviderName: dLocal
+  PublisherName: dLocal
+  InvoiceIssuerName: dLocal
+  PricingCategory: Usage-Based
+  PricingUnit: transaction
+  BillingCurrency: USD
+meters:
+  - name: payin_count
+    unit: transaction
+    aggregation: sum
+    dimensions: [country, payment_method, merchant_id]
+  - name: payin_volume
+    unit: usd
+    aggregation: sum
+    dimensions: [country, currency, merchant_id]
+  - name: payout_count
+    unit: transaction
+    aggregation: sum
+    dimensions: [country, payment_method, merchant_id, flow_type, purpose]
+  - name: payout_volume
+    unit: usd
+    aggregation: sum
+    dimensions: [country, currency, merchant_id]
+  - name: refund_count
+    unit: transaction
+    aggregation: sum
+    dimensions: [country, merchant_id]
+  - name: chargeback_count
+    unit: transaction
+    aggregation: sum
+    dimensions: [country, reason_code, merchant_id]
+  - name: fx_spread
+    unit: usd
+    aggregation: sum
+    dimensions: [from_currency, to_currency, merchant_id]
+chargeTypes:
+  - name: payin_transaction_fee
+    chargeCategory: Usage
+    description: Per-payin fee (fixed + percentage), varies by country and method.
+  - name: payout_transaction_fee
+    chargeCategory: Usage
+    description: Per-payout fee, varies by country and method.
+  - name: fx_margin
+    chargeCategory: Usage
+    description: Spread on currency conversion between settlement and local currencies.
+  - name: chargeback_fee
+    chargeCategory: Chargeback
+    description: Per-chargeback fee when a card dispute is raised.
+  - name: refund_fee
+    chargeCategory: Refund
+    description: Per-refund operational fee.
+  - name: defense_suite_subscription
+    chargeCategory: Usage
+    description: Subscription fee for the Defense Suite fraud-management add-on.
+costAllocation:
+  recommendedTags:
+    - merchant_id
+    - country
+    - region
+    - payment_method
+    - flow_type
+    - purpose
+    - currency
+  reportingDimensions:
+    - by_country
+    - by_payment_method
+    - by_currency
+    - by_region
+    - by_flow_type
+discountModel:
+  description: Volume-based pricing negotiated per merchant; no public discount schedule.
+reportingSurface:
+  - https://docs.dlocal.com/docs/reporting-payins.md
+  - https://docs.dlocal.com/docs/reporting-payouts-v3.md

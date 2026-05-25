@@ -1,0 +1,74 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "dlocal": "https://api-evangelist.github.io/d-local/vocab#",
+    "Payment": "dlocal:Payment",
+    "Refund": "dlocal:Refund",
+    "Payout": "dlocal:Payout",
+    "CardToken": "dlocal:CardToken",
+    "Account": "dlocal:Account",
+    "Verification": "dlocal:Verification",
+    "Chargeback": "dlocal:Chargeback",
+    "Enrollment": "dlocal:Enrollment",
+    "id": "@id",
+    "amount": {
+      "@id": "schema:price",
+      "@type": "xsd:decimal"
+    },
+    "currency": {
+      "@id": "schema:priceCurrency"
+    },
+    "country": "dlocal:country",
+    "payment_method_id": "dlocal:paymentMethodId",
+    "payment_method_type": "dlocal:paymentMethodType",
+    "payment_method_flow": "dlocal:paymentMethodFlow",
+    "status": "schema:orderStatus",
+    "status_code": "dlocal:statusCode",
+    "status_detail": "dlocal:statusDetail",
+    "order_id": "dlocal:orderId",
+    "external_id": "dlocal:externalId",
+    "created_date": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "approved_date": {
+      "@id": "dlocal:approvedDate",
+      "@type": "xsd:dateTime"
+    },
+    "last_updated": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "notification_url": {
+      "@id": "dlocal:notificationUrl",
+      "@type": "@id"
+    },
+    "redirect_url": {
+      "@id": "dlocal:redirectUrl",
+      "@type": "@id"
+    },
+    "card": "dlocal:card",
+    "holder_name": "dlocal:holderName",
+    "expiration_month": "dlocal:expirationMonth",
+    "expiration_year": "dlocal:expirationYear",
+    "brand": "dlocal:brand",
+    "last4": "dlocal:last4",
+    "card_id": "dlocal:cardId",
+    "payer": "dlocal:payer",
+    "beneficiary": "dlocal:beneficiary",
+    "purpose": "dlocal:purpose",
+    "flow_type": "dlocal:flowType",
+    "currency_to_pay": "dlocal:currencyToPay",
+    "exchange_rate": "dlocal:exchangeRate",
+    "available_balance": "dlocal:availableBalance",
+    "account_id": "dlocal:accountId",
+    "account_country": "dlocal:accountCountry",
+    "tax_category": "dlocal:taxCategory",
+    "ubo_id": "dlocal:uboId",
+    "verification_id": "dlocal:verificationId",
+    "chargeback_id": "dlocal:chargebackId",
+    "reason_code": "dlocal:reasonCode",
+    "enrollment_id": "dlocal:enrollmentId"
+  }
+}

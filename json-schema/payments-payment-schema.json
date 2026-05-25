@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/d-local/main/json-schema/payments-payment-schema.json",
+  "title": "dLocal Payment",
+  "description": "A dLocal Payment object representing a payin from a local payment method.",
+  "type": "object",
+  "required": ["id", "amount", "currency", "country", "status"],
+  "properties": {
+    "id": {"type": "string"},
+    "amount": {"type": "number"},
+    "currency": {"type": "string", "pattern": "^[A-Z]{3}$"},
+    "country": {"type": "string", "pattern": "^[A-Z]{2}$"},
+    "payment_method_id": {"type": "string"},
+    "payment_method_type": {"type": "string", "enum": ["CARD", "TICKET", "BANK_TRANSFER", "WALLET"]},
+    "payment_method_flow": {"type": "string", "enum": ["DIRECT", "REDIRECT"]},
+    "card": {
+      "type": "object",
+      "properties": {
+        "holder_name": {"type": "string"},
+        "expiration_month": {"type": "integer"},
+        "expiration_year": {"type": "integer"},
+        "brand": {"type": "string"},
+        "last4": {"type": "string"}
+      }
+    },
+    "created_date": {"type": "string", "format": "date-time"},
+    "approved_date": {"type": "string", "format": "date-time"},
+    "status": {"type": "string", "enum": ["PAID", "PENDING", "REJECTED", "CANCELLED", "AUTHORIZED", "EXPIRED", "VERIFIED", "REFUNDED"]},
+    "status_code": {"type": "string"},
+    "status_detail": {"type": "string"},
+    "order_id": {"type": "string"},
+    "notification_url": {"type": "string", "format": "uri"},
+    "redirect_url": {"type": "string", "format": "uri"},
+    "refunds": {"type": "array", "items": {"type": "object"}}
+  }
+}
