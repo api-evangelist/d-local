@@ -1,0 +1,133 @@
+arazzo: 1.0.1
+info:
+  title: dLocal Create Payment and Confirm Status
+  summary: Discover a supported payment method, create a payment, then poll its status until it settles.
+  description: >-
+    The canonical dLocal payins flow. The workflow first lists the local
+    payment methods available for the target country, then creates a payment
+    using the supplied payer and amount, and finally branches on the create
+    response: if the payment is already PAID it ends, otherwise it polls the
+    lightweight status endpoint until the payment resolves. Every step spells
+    out its request inline so the flow can be read and executed without opening
+    the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: paymentsApi
+  url: ../openapi/d-local-payments-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-payment-and-confirm-status
+  summary: Resolve a payment method, create a payment, and confirm its final status.
+  description: >-
+    Searches the payment methods for the country, creates a payment with the
+    supplied payer and order details, and then either ends when the payment is
+    immediately PAID or polls the status endpoint until it leaves the PENDING
+    state.
+  inputs:
+    type: object
+    required:
+    - country
+    - currency
+    - amount
+    - orderId
+    - payerName
+    - payerEmail
+    - payerDocument
+    properties:
+      country:
+        type: string
+        description: ISO 3166-1 alpha-2 country code for the payment (e.g. BR).
+      currency:
+        type: string
+        description: ISO-4217 three-letter currency code (e.g. BRL).
+      amount:
+        type: number
+        description: Transaction amount in the specified currency.
+      orderId:
+        type: string
+        description: Merchant-provided order identifier.
+      paymentMethodId:
+        type: string
+        description: Local payment method code to charge (e.g. PIX, CARD).
+      payerName:
+        type: string
+        description: Full name of the payer.
+      payerEmail:
+        type: string
+        description: Email address of the payer.
+      payerDocument:
+        type: string
+        description: National identification document of the payer.
+      notificationUrl:
+        type: string
+        description: URL to receive asynchronous payment status notifications.
+  steps:
+  - stepId: listPaymentMethods
+    description: >-
+      List the local payment methods supported for the target country so the
+      caller can confirm the chosen method is available before charging.
+    operationId: searchPaymentMethods
+    parameters:
+    - name: country
+      in: query
+      value: $inputs.country
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      paymentMethods: $response.body
+  - stepId: createPayment
+    description: >-
+      Create a payment with the supplied amount, currency, and payer using a
+      DIRECT payment method flow.
+    operationId: createPayment
+    requestBody:
+      contentType: application/json
+      payload:
+        amount: $inputs.amount
+        currency: $inputs.currency
+        country: $inputs.country
+        payment_method_id: $inputs.paymentMethodId
+        payment_method_flow: DIRECT
+        order_id: $inputs.orderId
+        notification_url: $inputs.notificationUrl
+        payer:
+          name: $inputs.payerName
+          email: $inputs.payerEmail
+          document: $inputs.payerDocument
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      paymentId: $response.body#/id
+      status: $response.body#/status
+      redirectUrl: $response.body#/redirect_url
+    onSuccess:
+    - name: alreadyPaid
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == "PAID"
+        type: jsonpath
+    - name: needsPolling
+      type: goto
+      stepId: pollStatus
+      criteria:
+      - context: $response.body
+        condition: $.status != "PAID"
+        type: jsonpath
+  - stepId: pollStatus
+    description: >-
+      Retrieve the lightweight status snapshot for the payment to confirm
+      whether it has settled or remains pending.
+    operationId: retrievePaymentStatus
+    parameters:
+    - name: payment_id
+      in: path
+      value: $steps.createPayment.outputs.paymentId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      finalStatus: $response.body#/status
+      statusDetail: $response.body#/status_detail
+  outputs:
+    paymentId: $steps.createPayment.outputs.paymentId
+    finalStatus: $steps.pollStatus.outputs.finalStatus

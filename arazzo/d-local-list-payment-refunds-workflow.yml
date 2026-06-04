@@ -1,0 +1,75 @@
+arazzo: 1.0.1
+info:
+  title: dLocal List and Inspect Payment Refunds
+  summary: Confirm a payment, list all refunds raised against it, then retrieve one refund in detail.
+  description: >-
+    A reconciliation flow for a payment's refund history. The workflow retrieves
+    the payment to confirm it exists, lists every refund recorded against that
+    payment, and then retrieves the first refund in full detail for inspection.
+    Every step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: paymentsApi
+  url: ../openapi/d-local-payments-api-openapi.yml
+  type: openapi
+- name: refundsApi
+  url: ../openapi/d-local-refunds-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: list-payment-refunds
+  summary: List a payment's refunds and retrieve the first refund in detail.
+  description: >-
+    Confirms the payment exists, lists all refunds against it, and retrieves the
+    first listed refund in full.
+  inputs:
+    type: object
+    required:
+    - paymentId
+    properties:
+      paymentId:
+        type: string
+        description: Identifier of the payment whose refunds are being reviewed.
+  steps:
+  - stepId: confirmPayment
+    description: >-
+      Retrieve the payment to confirm it exists before listing its refunds.
+    operationId: retrievePayment
+    parameters:
+    - name: payment_id
+      in: path
+      value: $inputs.paymentId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      paymentId: $response.body#/id
+      status: $response.body#/status
+  - stepId: listRefunds
+    description: >-
+      List all refunds recorded against the payment.
+    operationId: retrieveOrderRefund
+    parameters:
+    - name: payment_id
+      in: path
+      value: $inputs.paymentId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      firstRefundId: $response.body#/0/id
+      refunds: $response.body
+  - stepId: retrieveRefundDetail
+    description: >-
+      Retrieve the first listed refund in full detail for inspection.
+    operationId: retrieveRefund
+    parameters:
+    - name: refund_id
+      in: path
+      value: $steps.listRefunds.outputs.firstRefundId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      refundStatus: $response.body#/status
+      refundAmount: $response.body#/amount
+  outputs:
+    refunds: $steps.listRefunds.outputs.refunds
+    firstRefundStatus: $steps.retrieveRefundDetail.outputs.refundStatus

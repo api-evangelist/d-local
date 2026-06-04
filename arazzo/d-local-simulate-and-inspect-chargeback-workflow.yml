@@ -1,0 +1,135 @@
+arazzo: 1.0.1
+info:
+  title: dLocal Simulate and Inspect Chargeback
+  summary: Create a payment, simulate a chargeback against it in sandbox, then inspect the chargeback and its status.
+  description: >-
+    A sandbox-only dispute-handling rehearsal. The workflow creates a payment,
+    simulates a chargeback against that payment in the sandbox environment, then
+    retrieves the chargeback details and its status so dispute-handling logic
+    can be exercised end to end. Every step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: paymentsApi
+  url: ../openapi/d-local-payments-api-openapi.yml
+  type: openapi
+- name: chargebacksApi
+  url: ../openapi/d-local-chargebacks-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: simulate-and-inspect-chargeback
+  summary: Create a payment, simulate a chargeback, and inspect its details and status.
+  description: >-
+    Creates a payment, simulates a chargeback against it in sandbox, and then
+    retrieves the chargeback and its status to exercise dispute handling.
+  inputs:
+    type: object
+    required:
+    - country
+    - currency
+    - amount
+    - orderId
+    - paymentMethodId
+    - payerName
+    - payerEmail
+    - payerDocument
+    - chargebackId
+    properties:
+      country:
+        type: string
+        description: ISO 3166-1 alpha-2 country code (e.g. BR).
+      currency:
+        type: string
+        description: ISO-4217 currency code (e.g. BRL).
+      amount:
+        type: number
+        description: Transaction amount to charge.
+      orderId:
+        type: string
+        description: Merchant-provided order identifier.
+      paymentMethodId:
+        type: string
+        description: Local payment method code (e.g. CARD).
+      payerName:
+        type: string
+        description: Full name of the payer.
+      payerEmail:
+        type: string
+        description: Email address of the payer.
+      payerDocument:
+        type: string
+        description: National identification document of the payer.
+      reasonCode:
+        type: string
+        description: Chargeback reason code to simulate.
+      chargebackId:
+        type: string
+        description: Identifier of the resulting chargeback to inspect (from the chargeback webhook).
+  steps:
+  - stepId: createPayment
+    description: >-
+      Create a payment that the simulated chargeback will be raised against.
+    operationId: createPayment
+    requestBody:
+      contentType: application/json
+      payload:
+        amount: $inputs.amount
+        currency: $inputs.currency
+        country: $inputs.country
+        payment_method_id: $inputs.paymentMethodId
+        payment_method_flow: DIRECT
+        order_id: $inputs.orderId
+        payer:
+          name: $inputs.payerName
+          email: $inputs.payerEmail
+          document: $inputs.payerDocument
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      paymentId: $response.body#/id
+  - stepId: simulateChargeback
+    description: >-
+      Simulate a chargeback against the created payment in the sandbox
+      environment.
+    operationId: simulateChargeback
+    requestBody:
+      contentType: application/json
+      payload:
+        payment_id: $steps.createPayment.outputs.paymentId
+        reason_code: $inputs.reasonCode
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      simulateResult: $response.body
+  - stepId: retrieveChargeback
+    description: >-
+      Retrieve the full chargeback record for the dispute raised against the
+      payment.
+    operationId: retrieveChargeback
+    parameters:
+    - name: chargeback_id
+      in: path
+      value: $inputs.chargebackId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      chargebackPaymentId: $response.body#/payment_id
+      category: $response.body#/category
+      reasonCode: $response.body#/reason_code
+  - stepId: retrieveChargebackStatus
+    description: >-
+      Retrieve the lightweight status of the chargeback to drive dispute
+      handling.
+    operationId: retrieveChargebackStatus
+    parameters:
+    - name: chargeback_id
+      in: path
+      value: $inputs.chargebackId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      chargebackStatus: $response.body
+  outputs:
+    paymentId: $steps.createPayment.outputs.paymentId
+    chargebackPaymentId: $steps.retrieveChargeback.outputs.chargebackPaymentId

@@ -1,0 +1,126 @@
+arazzo: 1.0.1
+info:
+  title: dLocal Onboard Sub-Merchant Account
+  summary: Create a platform sub-merchant account, attach a bank account, then confirm KYC and balance.
+  description: >-
+    The platform/marketplace onboarding flow. The workflow creates a new
+    sub-merchant account, retrieves it to confirm it persisted, attaches a bank
+    account for settlement, reads the account KYC state, and finally reads the
+    account balance. Every step spells out its request inline so the flow can be
+    read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: platformsApi
+  url: ../openapi/d-local-platforms-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: onboard-submerchant-account
+  summary: Create a sub-merchant account, attach a bank account, and confirm KYC and balance.
+  description: >-
+    Onboards a sub-merchant account, confirms it was created, adds a settlement
+    bank account, and reads the account's KYC state and balance.
+  inputs:
+    type: object
+    required:
+    - platformType
+    - taxCategory
+    - accountName
+    - accountEmail
+    - accountCountry
+    - bankAccount
+    properties:
+      platformType:
+        type: string
+        description: Platform type classification for the sub-merchant.
+      taxCategory:
+        type: string
+        description: Account tax category (company or individual).
+      accountName:
+        type: string
+        description: Legal or trading name of the sub-merchant.
+      accountEmail:
+        type: string
+        description: Contact email for the sub-merchant account.
+      accountCountry:
+        type: string
+        description: ISO 3166-1 alpha-2 country of the sub-merchant.
+      notificationUrl:
+        type: string
+        description: URL to receive asynchronous account notifications.
+      bankAccount:
+        type: object
+        description: Bank account payload to attach for settlement.
+  steps:
+  - stepId: createAccount
+    description: >-
+      Onboard a new sub-merchant account (company or individual).
+    operationId: createAccount
+    requestBody:
+      contentType: application/json
+      payload:
+        platform_type: $inputs.platformType
+        tax_category: $inputs.taxCategory
+        account_name: $inputs.accountName
+        account_email: $inputs.accountEmail
+        account_country: $inputs.accountCountry
+        notification_url: $inputs.notificationUrl
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      accountId: $response.body#/account_id
+      status: $response.body#/status
+  - stepId: getAccount
+    description: >-
+      Retrieve the newly created account to confirm it persisted.
+    operationId: getAccount
+    parameters:
+    - name: account_id
+      in: path
+      value: $steps.createAccount.outputs.accountId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+  - stepId: addBankAccount
+    description: >-
+      Attach a bank account to the sub-merchant account for settlement.
+    operationId: addBankAccount
+    parameters:
+    - name: account_id
+      in: path
+      value: $steps.createAccount.outputs.accountId
+    requestBody:
+      contentType: application/json
+      payload: $inputs.bankAccount
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      bankAccountResult: $response.body
+  - stepId: getAccountKyc
+    description: >-
+      Read the account KYC state to confirm onboarding verification progress.
+    operationId: getAccountKyc
+    parameters:
+    - name: account_id
+      in: path
+      value: $steps.createAccount.outputs.accountId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      kyc: $response.body
+  - stepId: getAccountBalance
+    description: >-
+      Read the sub-merchant account balance.
+    operationId: getAccountBalance
+    parameters:
+    - name: account_id
+      in: path
+      value: $steps.createAccount.outputs.accountId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      balance: $response.body
+  outputs:
+    accountId: $steps.createAccount.outputs.accountId
+    kyc: $steps.getAccountKyc.outputs.kyc
+    balance: $steps.getAccountBalance.outputs.balance

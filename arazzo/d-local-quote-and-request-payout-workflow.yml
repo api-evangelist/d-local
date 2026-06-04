@@ -1,0 +1,144 @@
+arazzo: 1.0.1
+info:
+  title: dLocal Quote and Request Payout
+  summary: Check balance, lock an FX quote, request a payout against the quote, then confirm its status.
+  description: >-
+    The full payouts disbursement flow. The workflow first checks the merchant
+    payout balance, locks in an FX quote for the disbursement amount, requests a
+    payout that references the locked quote and the beneficiary, and finally
+    retrieves the payout to confirm its status. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: payoutsApi
+  url: ../openapi/d-local-payouts-v3-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: quote-and-request-payout
+  summary: Lock an FX quote and disburse a payout to a beneficiary.
+  description: >-
+    Checks the payout balance, creates an FX quote, requests a payout that
+    references the quote and beneficiary, and confirms the resulting payout
+    status.
+  inputs:
+    type: object
+    required:
+    - externalId
+    - country
+    - amount
+    - currency
+    - paymentMethodId
+    - purpose
+    - flowType
+    - beneficiaryFirstName
+    - beneficiaryLastName
+    - beneficiaryDocument
+    properties:
+      externalId:
+        type: string
+        description: Merchant-provided unique payout identifier.
+      country:
+        type: string
+        description: Destination country ISO 3166-1 alpha-2 code.
+      amount:
+        type: number
+        description: Payout amount in the source currency.
+      currency:
+        type: string
+        description: ISO-4217 source currency code.
+      currencyToPay:
+        type: string
+        description: Currency the beneficiary is paid in.
+      paymentMethodId:
+        type: string
+        description: Payout method (BANK_TRANSFER, INSTANT_PAYMENT, CARD, CASH_PICK_UP).
+      purpose:
+        type: string
+        description: Payout purpose (e.g. REMITTANCES, PAYROLL, SUPPLIER_PAYMENT).
+      flowType:
+        type: string
+        description: Transaction flow type (B2C, B2B, P2P).
+      beneficiaryFirstName:
+        type: string
+        description: Beneficiary first name.
+      beneficiaryLastName:
+        type: string
+        description: Beneficiary last name.
+      beneficiaryDocument:
+        type: string
+        description: Beneficiary national identification document.
+      notificationUrl:
+        type: string
+        description: URL to receive asynchronous payout notifications.
+  steps:
+  - stepId: checkBalance
+    description: >-
+      Retrieve the merchant's available payout balance to confirm sufficient
+      funds before disbursing.
+    operationId: getPayoutsBalance
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      availableBalance: $response.body#/available_balance
+      balanceCurrency: $response.body#/currency
+  - stepId: createQuote
+    description: >-
+      Generate an FX quote that locks the exchange rate for the disbursement
+      amount.
+    operationId: createQuote
+    requestBody:
+      contentType: application/json
+      payload:
+        country: $inputs.country
+        amount: $inputs.amount
+        currency: $inputs.currency
+        currency_to_pay: $inputs.currencyToPay
+        payment_method_id: $inputs.paymentMethodId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      quoteId: $response.body#/quote_id
+      exchangeRate: $response.body#/exchange_rate
+  - stepId: requestPayout
+    description: >-
+      Request a payout to the beneficiary that references the locked FX quote.
+    operationId: requestPayout
+    requestBody:
+      contentType: application/json
+      payload:
+        external_id: $inputs.externalId
+        country: $inputs.country
+        payment_method_id: $inputs.paymentMethodId
+        amount: $inputs.amount
+        currency: $inputs.currency
+        currency_to_pay: $inputs.currencyToPay
+        quote_id: $steps.createQuote.outputs.quoteId
+        purpose: $inputs.purpose
+        flow_type: $inputs.flowType
+        notification_url: $inputs.notificationUrl
+        beneficiary:
+          first_name: $inputs.beneficiaryFirstName
+          last_name: $inputs.beneficiaryLastName
+          document: $inputs.beneficiaryDocument
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      payoutId: $response.body#/id
+      status: $response.body#/status
+  - stepId: confirmPayout
+    description: >-
+      Retrieve the payout to confirm its current status after the request.
+    operationId: getPayout
+    parameters:
+    - name: payout_id
+      in: path
+      value: $steps.requestPayout.outputs.payoutId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      finalStatus: $response.body#/status
+      statusDetail: $response.body#/status_detail
+  outputs:
+    payoutId: $steps.requestPayout.outputs.payoutId
+    finalStatus: $steps.confirmPayout.outputs.finalStatus

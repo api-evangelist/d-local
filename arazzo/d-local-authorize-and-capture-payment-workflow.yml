@@ -1,0 +1,171 @@
+arazzo: 1.0.1
+info:
+  title: dLocal Authorize and Capture Payment
+  summary: Authorize a card transaction, confirm the authorization, then capture the funds.
+  description: >-
+    The two-step card authorize-then-capture flow. The workflow authorizes a
+    card transaction without capturing funds (capture=false), retrieves the
+    payment to confirm it reached the AUTHORIZED state, and then branches: when
+    the payment is authorized it captures the funds, otherwise it cancels the
+    authorization to release the hold. Every step spells out its request inline
+    so the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: paymentsApi
+  url: ../openapi/d-local-payments-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: authorize-and-capture-payment
+  summary: Authorize a card payment and capture it once it is confirmed AUTHORIZED.
+  description: >-
+    Creates an authorization with capture=false, confirms the AUTHORIZED status,
+    and either captures the held funds or cancels the authorization when it is
+    not authorized.
+  inputs:
+    type: object
+    required:
+    - country
+    - currency
+    - amount
+    - orderId
+    - holderName
+    - cardNumber
+    - expirationMonth
+    - expirationYear
+    - cvv
+    - payerName
+    - payerEmail
+    - payerDocument
+    properties:
+      country:
+        type: string
+        description: ISO 3166-1 alpha-2 country code (e.g. BR).
+      currency:
+        type: string
+        description: ISO-4217 three-letter currency code (e.g. BRL).
+      amount:
+        type: number
+        description: Transaction amount to authorize and capture.
+      orderId:
+        type: string
+        description: Merchant-provided order identifier.
+      holderName:
+        type: string
+        description: Cardholder name as printed on the card.
+      cardNumber:
+        type: string
+        description: Primary account number of the card.
+      expirationMonth:
+        type: integer
+        description: Card expiration month (1-12).
+      expirationYear:
+        type: integer
+        description: Card expiration year (four digits).
+      cvv:
+        type: string
+        description: Card verification value.
+      payerName:
+        type: string
+        description: Full name of the payer.
+      payerEmail:
+        type: string
+        description: Email address of the payer.
+      payerDocument:
+        type: string
+        description: National identification document of the payer.
+  steps:
+  - stepId: createAuthorization
+    description: >-
+      Authorize a card transaction without capturing funds by setting
+      capture=false on the card object.
+    operationId: createAuthorization
+    requestBody:
+      contentType: application/json
+      payload:
+        amount: $inputs.amount
+        currency: $inputs.currency
+        country: $inputs.country
+        payment_method_id: CARD
+        payment_method_flow: DIRECT
+        order_id: $inputs.orderId
+        payer:
+          name: $inputs.payerName
+          email: $inputs.payerEmail
+          document: $inputs.payerDocument
+        card:
+          holder_name: $inputs.holderName
+          number: $inputs.cardNumber
+          expiration_month: $inputs.expirationMonth
+          expiration_year: $inputs.expirationYear
+          cvv: $inputs.cvv
+          capture: false
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      authorizationId: $response.body#/id
+      status: $response.body#/status
+  - stepId: confirmAuthorization
+    description: >-
+      Retrieve the payment to confirm whether it reached the AUTHORIZED state
+      before attempting to capture.
+    operationId: retrievePayment
+    parameters:
+    - name: payment_id
+      in: path
+      value: $steps.createAuthorization.outputs.authorizationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+    onSuccess:
+    - name: authorized
+      type: goto
+      stepId: captureFunds
+      criteria:
+      - context: $response.body
+        condition: $.status == "AUTHORIZED"
+        type: jsonpath
+    - name: notAuthorized
+      type: goto
+      stepId: cancelAuthorization
+      criteria:
+      - context: $response.body
+        condition: $.status != "AUTHORIZED"
+        type: jsonpath
+  - stepId: captureFunds
+    description: >-
+      Capture the full authorized amount, completing the transaction.
+    operationId: captureAuthorization
+    parameters:
+    - name: authorization_id
+      in: path
+      value: $steps.createAuthorization.outputs.authorizationId
+    requestBody:
+      contentType: application/json
+      payload:
+        amount: $inputs.amount
+        currency: $inputs.currency
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      capturedPaymentId: $steps.createAuthorization.outputs.authorizationId
+    onSuccess:
+    - name: done
+      type: end
+  - stepId: cancelAuthorization
+    description: >-
+      Release the authorization hold when the payment did not reach the
+      AUTHORIZED state.
+    operationId: cancelAuthorization
+    parameters:
+    - name: authorization_id
+      in: path
+      value: $steps.createAuthorization.outputs.authorizationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      cancelledAuthorizationId: $steps.createAuthorization.outputs.authorizationId
+  outputs:
+    authorizationId: $steps.createAuthorization.outputs.authorizationId
+    capturedPaymentId: $steps.captureFunds.outputs.capturedPaymentId

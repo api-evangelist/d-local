@@ -1,0 +1,98 @@
+arazzo: 1.0.1
+info:
+  title: dLocal Manage Account Bank Accounts
+  summary: Add a bank account to a sub-merchant, list the account's bank accounts, retrieve one, then disable it.
+  description: >-
+    Lifecycle management of the bank accounts attached to a platform
+    sub-merchant. The workflow adds a bank account, lists all bank accounts on
+    the sub-merchant, retrieves a specific bank account in detail, and finally
+    disables it. Every step spells out its request inline so the flow can be
+    read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: platformsApi
+  url: ../openapi/d-local-platforms-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: manage-account-bank-accounts
+  summary: Add, list, retrieve, and disable a sub-merchant's bank account.
+  description: >-
+    Adds a bank account to the sub-merchant, lists its bank accounts, retrieves
+    a specific bank account, and disables a bank account.
+  inputs:
+    type: object
+    required:
+    - accountId
+    - bankAccount
+    - bankAccountId
+    properties:
+      accountId:
+        type: string
+        description: Sub-merchant account identifier.
+      bankAccount:
+        type: object
+        description: Bank account payload to attach to the sub-merchant.
+      bankAccountId:
+        type: string
+        description: Identifier of the bank account to retrieve and disable.
+  steps:
+  - stepId: addBankAccount
+    description: >-
+      Attach a new bank account to the sub-merchant account.
+    operationId: addBankAccount
+    parameters:
+    - name: account_id
+      in: path
+      value: $inputs.accountId
+    requestBody:
+      contentType: application/json
+      payload: $inputs.bankAccount
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      addResult: $response.body
+  - stepId: listBankAccounts
+    description: >-
+      List all bank accounts attached to the sub-merchant account.
+    operationId: getBankAccountList
+    parameters:
+    - name: account_id
+      in: path
+      value: $inputs.accountId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      bankAccounts: $response.body
+  - stepId: getBankAccount
+    description: >-
+      Retrieve a specific bank account on the sub-merchant in detail.
+    operationId: getBankAccount
+    parameters:
+    - name: account_id
+      in: path
+      value: $inputs.accountId
+    - name: bank_account_id
+      in: path
+      value: $inputs.bankAccountId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      bankAccount: $response.body
+  - stepId: disableBankAccount
+    description: >-
+      Disable the specified bank account on the sub-merchant account.
+    operationId: disableBankAccount
+    parameters:
+    - name: account_id
+      in: path
+      value: $inputs.accountId
+    - name: bank_account_id
+      in: path
+      value: $inputs.bankAccountId
+    successCriteria:
+    - condition: $statusCode == 204
+    outputs:
+      disabledBankAccountId: $inputs.bankAccountId
+  outputs:
+    bankAccounts: $steps.listBankAccounts.outputs.bankAccounts
+    disabledBankAccountId: $steps.disableBankAccount.outputs.disabledBankAccountId

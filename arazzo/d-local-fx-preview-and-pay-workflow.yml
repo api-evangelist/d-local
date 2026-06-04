@@ -1,0 +1,113 @@
+arazzo: 1.0.1
+info:
+  title: dLocal FX Preview and Pay
+  summary: Preview the exchange rate for a corridor, then create a payment in the local currency.
+  description: >-
+    Previews the conversion rate before charging. The workflow retrieves the
+    real-time exchange rate between the settlement currency and the local
+    currency, then creates a payment in the local currency for the target
+    country. This lets a merchant show the customer the live FX rate before the
+    charge is placed. Every step spells out its request inline so the flow can
+    be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: exchangeRatesApi
+  url: ../openapi/d-local-exchange-rates-api-openapi.yml
+  type: openapi
+- name: paymentsApi
+  url: ../openapi/d-local-payments-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: fx-preview-and-pay
+  summary: Preview an FX rate and create a payment in the local currency.
+  description: >-
+    Retrieves the exchange rate for the settlement-to-local corridor and then
+    creates a payment denominated in the local currency for the target country.
+  inputs:
+    type: object
+    required:
+    - fromCurrency
+    - toCurrency
+    - country
+    - amount
+    - orderId
+    - paymentMethodId
+    - payerName
+    - payerEmail
+    - payerDocument
+    properties:
+      fromCurrency:
+        type: string
+        description: Settlement currency to convert from (e.g. USD).
+      toCurrency:
+        type: string
+        description: Local currency to convert to (e.g. BRL).
+      country:
+        type: string
+        description: ISO 3166-1 alpha-2 country code (e.g. BR).
+      amount:
+        type: number
+        description: Amount in the local currency to charge.
+      orderId:
+        type: string
+        description: Merchant-provided order identifier.
+      paymentMethodId:
+        type: string
+        description: Local payment method code (e.g. PIX, CARD).
+      payerName:
+        type: string
+        description: Full name of the payer.
+      payerEmail:
+        type: string
+        description: Email address of the payer.
+      payerDocument:
+        type: string
+        description: National identification document of the payer.
+  steps:
+  - stepId: getExchangeRate
+    description: >-
+      Retrieve the real-time exchange rate for the settlement-to-local currency
+      corridor so the rate can be shown before charging.
+    operationId: getExchangeRate
+    parameters:
+    - name: from_currency
+      in: query
+      value: $inputs.fromCurrency
+    - name: to_currency
+      in: query
+      value: $inputs.toCurrency
+    - name: country
+      in: query
+      value: $inputs.country
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      rate: $response.body#/rate
+      inverseRate: $response.body#/inverse_rate
+  - stepId: createLocalPayment
+    description: >-
+      Create a payment denominated in the local currency now that the live FX
+      rate has been previewed.
+    operationId: createPayment
+    requestBody:
+      contentType: application/json
+      payload:
+        amount: $inputs.amount
+        currency: $inputs.toCurrency
+        country: $inputs.country
+        payment_method_id: $inputs.paymentMethodId
+        payment_method_flow: DIRECT
+        order_id: $inputs.orderId
+        payer:
+          name: $inputs.payerName
+          email: $inputs.payerEmail
+          document: $inputs.payerDocument
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      paymentId: $response.body#/id
+      status: $response.body#/status
+  outputs:
+    rate: $steps.getExchangeRate.outputs.rate
+    paymentId: $steps.createLocalPayment.outputs.paymentId
+    status: $steps.createLocalPayment.outputs.status

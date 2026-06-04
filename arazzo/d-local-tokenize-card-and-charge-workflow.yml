@@ -1,0 +1,146 @@
+arazzo: 1.0.1
+info:
+  title: dLocal Tokenize Card and Charge
+  summary: Tokenize a card, verify the stored token, then charge it in a card payment.
+  description: >-
+    Stores a card for repeat usage and immediately uses the resulting token to
+    create a card payment. The workflow tokenizes the raw card via the Cards
+    API, retrieves the stored token to confirm it persisted, and then creates a
+    DIRECT card payment referencing the token so no raw PAN is sent on the
+    charge. Every step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: cardsApi
+  url: ../openapi/d-local-cards-api-openapi.yml
+  type: openapi
+- name: paymentsApi
+  url: ../openapi/d-local-payments-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: tokenize-card-and-charge
+  summary: Tokenize a card and use the token to create a card payment.
+  description: >-
+    Creates a card token from the supplied card and payer, retrieves the token
+    to confirm it was stored, and then charges the token in a new card payment.
+  inputs:
+    type: object
+    required:
+    - country
+    - currency
+    - amount
+    - orderId
+    - holderName
+    - cardNumber
+    - expirationMonth
+    - expirationYear
+    - cvv
+    - payerName
+    - payerEmail
+    - payerDocument
+    properties:
+      country:
+        type: string
+        description: ISO 3166-1 alpha-2 country code (e.g. BR).
+      currency:
+        type: string
+        description: ISO-4217 three-letter currency code (e.g. BRL).
+      amount:
+        type: number
+        description: Transaction amount in the specified currency.
+      orderId:
+        type: string
+        description: Merchant-provided order identifier.
+      holderName:
+        type: string
+        description: Cardholder name as printed on the card.
+      cardNumber:
+        type: string
+        description: Primary account number of the card to tokenize.
+      expirationMonth:
+        type: integer
+        description: Card expiration month (1-12).
+      expirationYear:
+        type: integer
+        description: Card expiration year (four digits).
+      cvv:
+        type: string
+        description: Card verification value.
+      payerName:
+        type: string
+        description: Full name of the payer.
+      payerEmail:
+        type: string
+        description: Email address of the payer.
+      payerDocument:
+        type: string
+        description: National identification document of the payer.
+  steps:
+  - stepId: createCard
+    description: >-
+      Tokenize the supplied card for use in future payments, returning a
+      card_id token in place of the raw card number.
+    operationId: createCard
+    requestBody:
+      contentType: application/json
+      payload:
+        country: $inputs.country
+        card:
+          holder_name: $inputs.holderName
+          number: $inputs.cardNumber
+          expiration_month: $inputs.expirationMonth
+          expiration_year: $inputs.expirationYear
+          cvv: $inputs.cvv
+        payer:
+          name: $inputs.payerName
+          email: $inputs.payerEmail
+          document: $inputs.payerDocument
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      cardId: $response.body#/card_id
+      brand: $response.body#/brand
+      last4: $response.body#/last4
+  - stepId: retrieveCard
+    description: >-
+      Retrieve the stored card token to confirm it persisted before charging
+      it.
+    operationId: retrieveCard
+    parameters:
+    - name: card_id
+      in: path
+      value: $steps.createCard.outputs.cardId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      cardId: $response.body#/card_id
+  - stepId: chargeCard
+    description: >-
+      Create a DIRECT card payment that references the stored card token so the
+      raw card number is never re-sent.
+    operationId: createPayment
+    requestBody:
+      contentType: application/json
+      payload:
+        amount: $inputs.amount
+        currency: $inputs.currency
+        country: $inputs.country
+        payment_method_id: CARD
+        payment_method_flow: DIRECT
+        order_id: $inputs.orderId
+        payer:
+          name: $inputs.payerName
+          email: $inputs.payerEmail
+          document: $inputs.payerDocument
+        card:
+          token: $steps.retrieveCard.outputs.cardId
+          capture: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      paymentId: $response.body#/id
+      status: $response.body#/status
+  outputs:
+    cardId: $steps.createCard.outputs.cardId
+    paymentId: $steps.chargeCard.outputs.paymentId
+    status: $steps.chargeCard.outputs.status

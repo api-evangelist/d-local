@@ -1,0 +1,126 @@
+arazzo: 1.0.1
+info:
+  title: dLocal Create and Resolve KYC Verification
+  summary: Create a KYC verification, confirm it persisted, then branch on its status to update state or list documents.
+  description: >-
+    Drives a KYC verification to a decision point. The workflow creates a
+    verification for a client, retrieves it to confirm it persisted, and then
+    branches on the verification status: when it is still PENDING it updates the
+    verification state to move it forward, and when it has resolved it lists the
+    verification documents for record keeping. Every step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: kycVerificationsApi
+  url: ../openapi/d-local-kyc-verifications-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-and-resolve-kyc-verification
+  summary: Create a KYC verification and either advance its state or list its documents.
+  description: >-
+    Creates a KYC verification, confirms it, and branches on the verification
+    status to either update its state when PENDING or list its documents when
+    resolved.
+  inputs:
+    type: object
+    required:
+    - type
+    - notificationUrl
+    - attributes
+    properties:
+      type:
+        type: string
+        description: Verification type (REMITTANCE or STANDALONE).
+      notificationUrl:
+        type: string
+        description: URL to receive asynchronous verification result notifications.
+      attributes:
+        type: object
+        description: Client information attributes (name, document, country, etc.).
+      flow:
+        type: string
+        description: Verification flow (remitter, beneficiary, or standalone).
+      newState:
+        type: string
+        description: State value to apply when advancing a pending verification.
+  steps:
+  - stepId: createVerification
+    description: >-
+      Submit a KYC verification for the client.
+    operationId: createVerification
+    requestBody:
+      contentType: application/json
+      payload:
+        type: $inputs.type
+        notification_url: $inputs.notificationUrl
+        attributes: $inputs.attributes
+        flow: $inputs.flow
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      verificationId: $response.body#/id
+      status: $response.body#/status
+  - stepId: confirmVerification
+    description: >-
+      Retrieve the verification to confirm it persisted and inspect its current
+      status.
+    operationId: getVerification
+    parameters:
+    - name: verification_id
+      in: path
+      value: $steps.createVerification.outputs.verificationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+    onSuccess:
+    - name: stillPending
+      type: goto
+      stepId: advanceState
+      criteria:
+      - context: $response.body
+        condition: $.status == "PENDING"
+        type: jsonpath
+    - name: resolved
+      type: goto
+      stepId: listDocuments
+      criteria:
+      - context: $response.body
+        condition: $.status != "PENDING"
+        type: jsonpath
+  - stepId: advanceState
+    description: >-
+      Update the verification state to move a pending verification forward.
+    operationId: updateVerificationState
+    parameters:
+    - name: verification_id
+      in: path
+      value: $steps.createVerification.outputs.verificationId
+    requestBody:
+      contentType: application/json
+      payload:
+        state: $inputs.newState
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      updatedVerificationId: $steps.createVerification.outputs.verificationId
+    onSuccess:
+    - name: done
+      type: end
+  - stepId: listDocuments
+    description: >-
+      List the verification documents for a resolved verification for record
+      keeping.
+    operationId: getVerificationDocuments
+    parameters:
+    - name: verification_id
+      in: path
+      value: $steps.createVerification.outputs.verificationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      documents: $response.body
+  outputs:
+    verificationId: $steps.createVerification.outputs.verificationId
+    documents: $steps.listDocuments.outputs.documents

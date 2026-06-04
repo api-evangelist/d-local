@@ -1,0 +1,140 @@
+arazzo: 1.0.1
+info:
+  title: dLocal Enroll and Charge Recurring
+  summary: Enroll a payer for Pix Automatico, confirm the enrollment is ACTIVE, then place the first recurring charge.
+  description: >-
+    Sets up Brazil's Pix Automatico recurring payments. The workflow enrolls a
+    payer, retrieves the enrollment to confirm it became ACTIVE, and then
+    branches: when the enrollment is active it creates the first recurring
+    payment, otherwise it ends so the caller can drive the payer through the
+    redirect_url returned at enrollment. Every step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: enrollmentsApi
+  url: ../openapi/d-local-enrollments-api-openapi.yml
+  type: openapi
+- name: paymentsApi
+  url: ../openapi/d-local-payments-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: enroll-and-charge-recurring
+  summary: Enroll a payer for Pix recurring and charge them once the enrollment is ACTIVE.
+  description: >-
+    Creates a Pix enrollment, confirms it is ACTIVE, and creates the first
+    recurring payment when active or ends to await payer authorization when not.
+  inputs:
+    type: object
+    required:
+    - country
+    - notificationUrl
+    - payerName
+    - payerEmail
+    - payerDocument
+    - amount
+    - currency
+    - orderId
+    properties:
+      country:
+        type: string
+        description: ISO 3166-1 alpha-2 country code (e.g. BR).
+      notificationUrl:
+        type: string
+        description: URL to receive asynchronous enrollment and payment notifications.
+      payerName:
+        type: string
+        description: Full name of the payer.
+      payerEmail:
+        type: string
+        description: Email address of the payer.
+      payerDocument:
+        type: string
+        description: National identification document of the payer.
+      maxAmount:
+        type: number
+        description: Maximum amount authorized per recurring charge.
+      amount:
+        type: number
+        description: Amount of the first recurring charge.
+      currency:
+        type: string
+        description: ISO-4217 currency code (e.g. BRL).
+      orderId:
+        type: string
+        description: Merchant-provided order identifier for the first charge.
+  steps:
+  - stepId: createEnrollment
+    description: >-
+      Enroll the payer for Pix Automatico recurring transactions.
+    operationId: createEnrollment
+    requestBody:
+      contentType: application/json
+      payload:
+        country: $inputs.country
+        type: PIX_AUTOMATICO
+        notification_url: $inputs.notificationUrl
+        max_amount: $inputs.maxAmount
+        payer:
+          name: $inputs.payerName
+          email: $inputs.payerEmail
+          document: $inputs.payerDocument
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      enrollmentId: $response.body#/id
+      status: $response.body#/status
+      redirectUrl: $response.body#/redirect_url
+  - stepId: confirmEnrollment
+    description: >-
+      Retrieve the enrollment to confirm whether it became ACTIVE before
+      charging.
+    operationId: getEnrollment
+    parameters:
+    - name: enrollment_id
+      in: path
+      value: $steps.createEnrollment.outputs.enrollmentId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+    onSuccess:
+    - name: active
+      type: goto
+      stepId: chargeRecurring
+      criteria:
+      - context: $response.body
+        condition: $.status == "ACTIVE"
+        type: jsonpath
+    - name: awaitingAuthorization
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status != "ACTIVE"
+        type: jsonpath
+  - stepId: chargeRecurring
+    description: >-
+      Create the first recurring Pix payment now that the enrollment is active.
+    operationId: createPayment
+    requestBody:
+      contentType: application/json
+      payload:
+        amount: $inputs.amount
+        currency: $inputs.currency
+        country: $inputs.country
+        payment_method_id: PIX
+        payment_method_flow: DIRECT
+        order_id: $inputs.orderId
+        notification_url: $inputs.notificationUrl
+        payer:
+          name: $inputs.payerName
+          email: $inputs.payerEmail
+          document: $inputs.payerDocument
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      paymentId: $response.body#/id
+      status: $response.body#/status
+  outputs:
+    enrollmentId: $steps.createEnrollment.outputs.enrollmentId
+    paymentId: $steps.chargeRecurring.outputs.paymentId

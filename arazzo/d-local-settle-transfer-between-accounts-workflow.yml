@@ -1,0 +1,91 @@
+arazzo: 1.0.1
+info:
+  title: dLocal Settle Transfer Between Accounts
+  summary: Check the source account balance, transfer funds to another account, then confirm the transfer.
+  description: >-
+    Moves funds between two platform accounts. The workflow reads the source
+    account balance to confirm sufficient funds, creates a transfer from the
+    source account to the destination account, and then retrieves the transfer
+    to confirm it settled. Every step spells out its request inline so the flow
+    can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: platformsApi
+  url: ../openapi/d-local-platforms-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: settle-transfer-between-accounts
+  summary: Check balance, transfer funds between accounts, and confirm settlement.
+  description: >-
+    Reads the source account balance, creates a transfer to the destination
+    account, and retrieves the transfer to confirm it settled.
+  inputs:
+    type: object
+    required:
+    - fromAccount
+    - toAccount
+    - amount
+    - currency
+    properties:
+      fromAccount:
+        type: string
+        description: Source account identifier to debit.
+      toAccount:
+        type: string
+        description: Destination account identifier to credit.
+      amount:
+        type: number
+        description: Amount to transfer.
+      currency:
+        type: string
+        description: ISO-4217 currency code of the transfer.
+      description:
+        type: string
+        description: Free-text description of the transfer.
+  steps:
+  - stepId: checkSourceBalance
+    description: >-
+      Read the source account balance to confirm it holds sufficient funds
+      before transferring.
+    operationId: getAccountBalance
+    parameters:
+    - name: account_id
+      in: path
+      value: $inputs.fromAccount
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      balance: $response.body
+  - stepId: createTransfer
+    description: >-
+      Create a transfer moving funds from the source account to the destination
+      account.
+    operationId: createTransfer
+    requestBody:
+      contentType: application/json
+      payload:
+        from_account: $inputs.fromAccount
+        to_account: $inputs.toAccount
+        amount: $inputs.amount
+        currency: $inputs.currency
+        description: $inputs.description
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      transferId: $response.body#/id
+  - stepId: confirmTransfer
+    description: >-
+      Retrieve the transfer to confirm it settled.
+    operationId: getTransfer
+    parameters:
+    - name: transfer_id
+      in: path
+      value: $steps.createTransfer.outputs.transferId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      transfer: $response.body
+  outputs:
+    transferId: $steps.createTransfer.outputs.transferId
+    transfer: $steps.confirmTransfer.outputs.transfer

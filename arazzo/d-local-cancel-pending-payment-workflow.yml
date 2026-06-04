@@ -1,0 +1,124 @@
+arazzo: 1.0.1
+info:
+  title: dLocal Cancel Pending Payment
+  summary: Create an alternative payment, check its status, and cancel it while it is still PENDING.
+  description: >-
+    Handles abandoned alternative (non-card) payments such as cash tickets and
+    bank transfers. The workflow creates an alternative payment, polls its
+    status, and then branches: when the payment is still PENDING it cancels it
+    to release the order, and when it has already resolved it ends without
+    cancelling. Every step spells out its request inline so the flow can be read
+    and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: paymentsApi
+  url: ../openapi/d-local-payments-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: cancel-pending-payment
+  summary: Create an alternative payment and cancel it if it is still PENDING.
+  description: >-
+    Creates an alternative payment, polls its status, and cancels it only while
+    it remains in the PENDING state.
+  inputs:
+    type: object
+    required:
+    - country
+    - currency
+    - amount
+    - orderId
+    - paymentMethodId
+    - payerName
+    - payerEmail
+    - payerDocument
+    properties:
+      country:
+        type: string
+        description: ISO 3166-1 alpha-2 country code (e.g. BR).
+      currency:
+        type: string
+        description: ISO-4217 currency code (e.g. BRL).
+      amount:
+        type: number
+        description: Transaction amount.
+      orderId:
+        type: string
+        description: Merchant-provided order identifier.
+      paymentMethodId:
+        type: string
+        description: Local alternative payment method code (e.g. PIX, a cash voucher code).
+      payerName:
+        type: string
+        description: Full name of the payer.
+      payerEmail:
+        type: string
+        description: Email address of the payer.
+      payerDocument:
+        type: string
+        description: National identification document of the payer.
+  steps:
+  - stepId: createPayment
+    description: >-
+      Create an alternative (non-card) payment using a REDIRECT payment method
+      flow.
+    operationId: createPayment
+    requestBody:
+      contentType: application/json
+      payload:
+        amount: $inputs.amount
+        currency: $inputs.currency
+        country: $inputs.country
+        payment_method_id: $inputs.paymentMethodId
+        payment_method_flow: REDIRECT
+        order_id: $inputs.orderId
+        payer:
+          name: $inputs.payerName
+          email: $inputs.payerEmail
+          document: $inputs.payerDocument
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      paymentId: $response.body#/id
+      status: $response.body#/status
+  - stepId: checkStatus
+    description: >-
+      Retrieve the lightweight status snapshot to decide whether the payment is
+      still cancellable.
+    operationId: retrievePaymentStatus
+    parameters:
+    - name: payment_id
+      in: path
+      value: $steps.createPayment.outputs.paymentId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+    onSuccess:
+    - name: stillPending
+      type: goto
+      stepId: cancelPayment
+      criteria:
+      - context: $response.body
+        condition: $.status == "PENDING"
+        type: jsonpath
+    - name: alreadyResolved
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status != "PENDING"
+        type: jsonpath
+  - stepId: cancelPayment
+    description: >-
+      Cancel the pending alternative payment to release the order.
+    operationId: cancelAlternativePayment
+    parameters:
+    - name: payment_id
+      in: path
+      value: $steps.createPayment.outputs.paymentId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      cancelledStatus: $response.body#/status
+  outputs:
+    paymentId: $steps.createPayment.outputs.paymentId
+    cancelledStatus: $steps.cancelPayment.outputs.cancelledStatus

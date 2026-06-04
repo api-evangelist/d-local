@@ -256,6 +256,54 @@ apis:
       Retrieve real-time FX rates between settlement currencies and local
       currencies before creating a payment or payout.
 common:
+  - type: ArazzoWorkflows
+    url: arazzo/
+    workflows:
+    - url: arazzo/d-local-authorize-and-capture-payment-workflow.yml
+      name: dLocal Authorize and Capture Payment
+      summary: Authorize a card transaction, confirm the authorization, then capture the funds.
+    - url: arazzo/d-local-cancel-pending-payment-workflow.yml
+      name: dLocal Cancel Pending Payment
+      summary: Create an alternative payment, check its status, and cancel it while it is still PENDING.
+    - url: arazzo/d-local-create-and-resolve-kyc-verification-workflow.yml
+      name: dLocal Create and Resolve KYC Verification
+      summary: Create a KYC verification, confirm it persisted, then branch on its status to update state or list documents.
+    - url: arazzo/d-local-create-payment-and-confirm-status-workflow.yml
+      name: dLocal Create Payment and Confirm Status
+      summary: Discover a supported payment method, create a payment, then poll its status until it settles.
+    - url: arazzo/d-local-enroll-and-charge-recurring-workflow.yml
+      name: dLocal Enroll and Charge Recurring
+      summary: Enroll a payer for Pix Automatico, confirm the enrollment is ACTIVE, then place the first recurring charge.
+    - url: arazzo/d-local-fx-preview-and-pay-workflow.yml
+      name: dLocal FX Preview and Pay
+      summary: Preview the exchange rate for a corridor, then create a payment in the local currency.
+    - url: arazzo/d-local-hold-and-release-payout-workflow.yml
+      name: dLocal Hold and Release Payout
+      summary: Request a payout on hold, review it, then release or cancel based on the review.
+    - url: arazzo/d-local-list-payment-refunds-workflow.yml
+      name: dLocal List and Inspect Payment Refunds
+      summary: Confirm a payment, list all refunds raised against it, then retrieve one refund in detail.
+    - url: arazzo/d-local-manage-account-bank-accounts-workflow.yml
+      name: dLocal Manage Account Bank Accounts
+      summary: Add a bank account to a sub-merchant, list the account's bank accounts, retrieve one, then disable it.
+    - url: arazzo/d-local-onboard-submerchant-account-workflow.yml
+      name: dLocal Onboard Sub-Merchant Account
+      summary: Create a platform sub-merchant account, attach a bank account, then confirm KYC and balance.
+    - url: arazzo/d-local-quote-and-request-payout-workflow.yml
+      name: dLocal Quote and Request Payout
+      summary: Check balance, lock an FX quote, request a payout against the quote, then confirm its status.
+    - url: arazzo/d-local-refund-payment-and-confirm-workflow.yml
+      name: dLocal Refund Payment and Confirm
+      summary: Confirm a payment is PAID, issue a refund against it, then verify the refund status.
+    - url: arazzo/d-local-settle-transfer-between-accounts-workflow.yml
+      name: dLocal Settle Transfer Between Accounts
+      summary: Check the source account balance, transfer funds to another account, then confirm the transfer.
+    - url: arazzo/d-local-simulate-and-inspect-chargeback-workflow.yml
+      name: dLocal Simulate and Inspect Chargeback
+      summary: Create a payment, simulate a chargeback against it in sandbox, then inspect the chargeback and its status.
+    - url: arazzo/d-local-tokenize-card-and-charge-workflow.yml
+      name: dLocal Tokenize Card and Charge
+      summary: Tokenize a card, verify the stored token, then charge it in a card payment.
   - url: https://dlocal.com/
     type: Portal
   - url: https://docs.dlocal.com/

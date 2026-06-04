@@ -1,0 +1,153 @@
+arazzo: 1.0.1
+info:
+  title: dLocal Hold and Release Payout
+  summary: Request a payout on hold, review it, then release or cancel based on the review.
+  description: >-
+    A controlled disbursement flow for payouts that require manual review. The
+    workflow requests a payout with on_hold=true, retrieves it to inspect the
+    held payout, and then branches: when the held payout is approved it releases
+    the funds, otherwise it cancels the payout. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: payoutsApi
+  url: ../openapi/d-local-payouts-v3-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: hold-and-release-payout
+  summary: Create a held payout and release or cancel it after review.
+  description: >-
+    Requests a payout with on_hold=true, retrieves it to confirm it is held,
+    and either releases the held funds or cancels the payout depending on the
+    held status.
+  inputs:
+    type: object
+    required:
+    - externalId
+    - country
+    - amount
+    - currency
+    - paymentMethodId
+    - purpose
+    - flowType
+    - beneficiaryFirstName
+    - beneficiaryLastName
+    - beneficiaryDocument
+    properties:
+      externalId:
+        type: string
+        description: Merchant-provided unique payout identifier.
+      country:
+        type: string
+        description: Destination country ISO 3166-1 alpha-2 code.
+      amount:
+        type: number
+        description: Payout amount in the source currency.
+      currency:
+        type: string
+        description: ISO-4217 source currency code.
+      paymentMethodId:
+        type: string
+        description: Payout method (BANK_TRANSFER, INSTANT_PAYMENT, CARD, CASH_PICK_UP).
+      purpose:
+        type: string
+        description: Payout purpose (e.g. REMITTANCES, PAYROLL).
+      flowType:
+        type: string
+        description: Transaction flow type (B2C, B2B, P2P).
+      beneficiaryFirstName:
+        type: string
+        description: Beneficiary first name.
+      beneficiaryLastName:
+        type: string
+        description: Beneficiary last name.
+      beneficiaryDocument:
+        type: string
+        description: Beneficiary national identification document.
+  steps:
+  - stepId: requestHeldPayout
+    description: >-
+      Request a payout with on_hold=true so the disbursement is created but not
+      yet released to the beneficiary.
+    operationId: requestPayout
+    requestBody:
+      contentType: application/json
+      payload:
+        external_id: $inputs.externalId
+        country: $inputs.country
+        payment_method_id: $inputs.paymentMethodId
+        amount: $inputs.amount
+        currency: $inputs.currency
+        purpose: $inputs.purpose
+        flow_type: $inputs.flowType
+        on_hold: true
+        beneficiary:
+          first_name: $inputs.beneficiaryFirstName
+          last_name: $inputs.beneficiaryLastName
+          document: $inputs.beneficiaryDocument
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      payoutId: $response.body#/id
+      status: $response.body#/status
+  - stepId: reviewPayout
+    description: >-
+      Retrieve the held payout to review its status before deciding to release
+      or cancel.
+    operationId: getPayout
+    parameters:
+    - name: payout_id
+      in: path
+      value: $steps.requestHeldPayout.outputs.payoutId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+    onSuccess:
+    - name: cancelRejected
+      type: goto
+      stepId: cancelPayout
+      criteria:
+      - context: $response.body
+        condition: $.status == "CANCELLED"
+        type: jsonpath
+    - name: releaseApproved
+      type: goto
+      stepId: releasePayout
+      criteria:
+      - context: $response.body
+        condition: $.status != "CANCELLED"
+        type: jsonpath
+  - stepId: releasePayout
+    description: >-
+      Release the previously held payout so the funds are disbursed to the
+      beneficiary.
+    operationId: releasePayout
+    parameters:
+    - name: payout_id
+      in: path
+      value: $steps.requestHeldPayout.outputs.payoutId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      releasedPayoutId: $steps.requestHeldPayout.outputs.payoutId
+    onSuccess:
+    - name: done
+      type: end
+  - stepId: cancelPayout
+    description: >-
+      Cancel the held payout when the review determines it should not be
+      disbursed.
+    operationId: cancelPayout
+    parameters:
+    - name: payout_id
+      in: path
+      value: $steps.requestHeldPayout.outputs.payoutId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      cancelledPayoutId: $steps.requestHeldPayout.outputs.payoutId
+  outputs:
+    payoutId: $steps.requestHeldPayout.outputs.payoutId
+    releasedPayoutId: $steps.releasePayout.outputs.releasedPayoutId
