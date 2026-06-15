@@ -1,0 +1,348 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "dLocal For Platforms API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create An Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://marketplace-api.dlocal.com/v2/accounts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Onboard a new sub-merchant account (company or individual)."
+        },
+        {
+          "info": {
+            "name": "Get An Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://marketplace-api.dlocal.com/v2/accounts/:account_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get An Account"
+        },
+        {
+          "info": {
+            "name": "Update An Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://marketplace-api.dlocal.com/v2/accounts/:account_id/update",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update An Account"
+        },
+        {
+          "info": {
+            "name": "Block An Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://marketplace-api.dlocal.com/v2/accounts/:account_id/block",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Block An Account"
+        },
+        {
+          "info": {
+            "name": "Unblock An Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://marketplace-api.dlocal.com/v2/accounts/:account_id/unblock",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Unblock An Account"
+        },
+        {
+          "info": {
+            "name": "Cancel An Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://marketplace-api.dlocal.com/v2/accounts/:account_id/cancel",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel An Account"
+        },
+        {
+          "info": {
+            "name": "Get Account Balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://marketplace-api.dlocal.com/v2/accounts/:account_id/balance",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Account Balance"
+        },
+        {
+          "info": {
+            "name": "Get Account Credentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://marketplace-api.dlocal.com/v2/accounts/:account_id/credentials",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Account Credentials"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "KYC",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Account KYC",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://marketplace-api.dlocal.com/v2/accounts/:account_id/kyc",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Account KYC"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "BankAccounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Bank Account List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://marketplace-api.dlocal.com/v2/accounts/:account_id/bank-accounts",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Bank Account List"
+        },
+        {
+          "info": {
+            "name": "Add Bank Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://marketplace-api.dlocal.com/v2/accounts/:account_id/bank-accounts",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add Bank Account"
+        },
+        {
+          "info": {
+            "name": "Get A Bank Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://marketplace-api.dlocal.com/v2/accounts/:account_id/bank-accounts/:bank_account_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "bank_account_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get A Bank Account"
+        },
+        {
+          "info": {
+            "name": "Disable A Bank Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://marketplace-api.dlocal.com/v2/accounts/:account_id/bank-accounts/:bank_account_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "bank_account_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Disable A Bank Account"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Transfers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create A Transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://marketplace-api.dlocal.com/v2/transfers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create A Transfer"
+        },
+        {
+          "info": {
+            "name": "Get A Transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://marketplace-api.dlocal.com/v2/transfers/:transfer_id",
+            "params": [
+              {
+                "name": "transfer_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get A Transfer"
+        },
+        {
+          "info": {
+            "name": "Cancel A Transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://marketplace-api.dlocal.com/v2/transfers/:transfer_id/cancel",
+            "params": [
+              {
+                "name": "transfer_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel A Transfer"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

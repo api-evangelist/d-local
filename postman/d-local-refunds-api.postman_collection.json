@@ -1,0 +1,435 @@
+{
+  "info": {
+    "_postman_id": "aab7d9c7-796f-4502-9289-01ddc5876339",
+    "name": "dLocal Refunds API",
+    "description": "Create and track refunds against successful payments. Refunds can be\nfull or partial and are settled in the original payment currency.\n\n\nContact Support:\n Name: dLocal Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:01:02.000Z",
+    "updatedAt": "2026-06-05T15:01:03.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-aab7d9c7-796f-4502-9289-01ddc5876339"
+  },
+  "item": [
+    {
+      "name": "refunds",
+      "item": [
+        {
+          "name": "{refund_id}",
+          "item": [
+            {
+              "name": "status",
+              "item": [
+                {
+                  "name": "Retrieve A Refund Status",
+                  "id": "e9e129c5-0981-4cd4-9cb2-c07566ef30ea",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/refunds/:refund_id/status",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "refunds",
+                        ":refund_id",
+                        "status"
+                      ],
+                      "variable": [
+                        {
+                          "id": "2b708833-62b1-47c3-8675-b29686491eac",
+                          "key": "refund_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieve just the status of a refund."
+                  },
+                  "response": [
+                    {
+                      "id": "1f781aa6-4c98-4a12-883a-3e465dd84f2b",
+                      "name": "Refund status returned",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/refunds/:refund_id/status",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "refunds",
+                            ":refund_id",
+                            "status"
+                          ],
+                          "variable": [
+                            {
+                              "key": "refund_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:01:03.000Z",
+                      "updatedAt": "2026-06-05T15:01:03.000Z",
+                      "uid": "35240-1f781aa6-4c98-4a12-883a-3e465dd84f2b"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:01:03.000Z",
+                  "updatedAt": "2026-06-05T15:01:03.000Z",
+                  "uid": "35240-e9e129c5-0981-4cd4-9cb2-c07566ef30ea"
+                }
+              ],
+              "id": "40fbaa23-2723-4eaa-b3c5-310e619d847e",
+              "createdAt": "2026-06-05T15:01:03.000Z",
+              "updatedAt": "2026-06-05T15:01:03.000Z",
+              "uid": "35240-40fbaa23-2723-4eaa-b3c5-310e619d847e"
+            },
+            {
+              "name": "Retrieve A Refund",
+              "id": "3da43dcd-b726-4892-9e90-a847530c2f54",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/refunds/:refund_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "refunds",
+                    ":refund_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "2692e902-ce8d-4cf9-b055-4c187b40c3b9",
+                      "key": "refund_id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieve a refund by ID."
+              },
+              "response": [
+                {
+                  "id": "fd1260a1-0c42-4e82-938e-1499fba545ef",
+                  "name": "Refund returned",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/refunds/:refund_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "refunds",
+                        ":refund_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "refund_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"payment_id\": \"<string>\",\n  \"status\": \"PENDING\",\n  \"status_code\": \"<integer>\",\n  \"status_detail\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"created_date\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T15:01:03.000Z",
+                  "updatedAt": "2026-06-05T15:01:03.000Z",
+                  "uid": "35240-fd1260a1-0c42-4e82-938e-1499fba545ef"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:03.000Z",
+              "updatedAt": "2026-06-05T15:01:03.000Z",
+              "uid": "35240-3da43dcd-b726-4892-9e90-a847530c2f54"
+            }
+          ],
+          "id": "6a106149-39f0-4001-b081-33744d06ba85",
+          "createdAt": "2026-06-05T15:01:03.000Z",
+          "updatedAt": "2026-06-05T15:01:03.000Z",
+          "uid": "35240-6a106149-39f0-4001-b081-33744d06ba85"
+        },
+        {
+          "name": "Make A Refund",
+          "id": "b33b53e9-c585-4238-b7f6-6cf4b9d7a208",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"payment_id\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"notification_url\": \"<uri>\",\n  \"description\": \"<string>\",\n  \"beneficiary\": {}\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/refunds",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "refunds"
+              ]
+            },
+            "description": "Initiate a refund for a previous payment. Omit `amount` to refund the full payment."
+          },
+          "response": [
+            {
+              "id": "09563c71-6e16-4860-a32b-2d1e4ef0bec2",
+              "name": "Refund created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payment_id\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"notification_url\": \"<uri>\",\n  \"description\": \"<string>\",\n  \"beneficiary\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/refunds",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "refunds"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"payment_id\": \"<string>\",\n  \"status\": \"PENDING\",\n  \"status_code\": \"<integer>\",\n  \"status_detail\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"created_date\": \"<dateTime>\"\n}",
+              "createdAt": "2026-06-05T15:01:03.000Z",
+              "updatedAt": "2026-06-05T15:01:03.000Z",
+              "uid": "35240-09563c71-6e16-4860-a32b-2d1e4ef0bec2"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:03.000Z",
+          "updatedAt": "2026-06-05T15:01:03.000Z",
+          "uid": "35240-b33b53e9-c585-4238-b7f6-6cf4b9d7a208"
+        }
+      ],
+      "id": "a04ff398-547f-48df-b323-56956f2dcece",
+      "createdAt": "2026-06-05T15:01:03.000Z",
+      "updatedAt": "2026-06-05T15:01:03.000Z",
+      "uid": "35240-a04ff398-547f-48df-b323-56956f2dcece"
+    },
+    {
+      "name": "payments",
+      "item": [
+        {
+          "name": "{payment_id}",
+          "item": [
+            {
+              "name": "refunds",
+              "item": [
+                {
+                  "name": "Retrieve Order Refund",
+                  "id": "32106dc5-359a-4fae-bc3c-5286e1dc7ae0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/payments/:payment_id/refunds",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "payments",
+                        ":payment_id",
+                        "refunds"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9d0ce260-8a3c-4985-89cb-6b528d316f77",
+                          "key": "payment_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "List all refunds for a given payment."
+                  },
+                  "response": [
+                    {
+                      "id": "98a762c8-64a3-4b8f-8b36-cf052af670f6",
+                      "name": "Refunds returned",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/payments/:payment_id/refunds",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "payments",
+                            ":payment_id",
+                            "refunds"
+                          ],
+                          "variable": [
+                            {
+                              "key": "payment_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:01:03.000Z",
+                      "updatedAt": "2026-06-05T15:01:03.000Z",
+                      "uid": "35240-98a762c8-64a3-4b8f-8b36-cf052af670f6"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:01:03.000Z",
+                  "updatedAt": "2026-06-05T15:01:03.000Z",
+                  "uid": "35240-32106dc5-359a-4fae-bc3c-5286e1dc7ae0"
+                }
+              ],
+              "id": "026be049-d841-49fb-9b35-51ae0f68a7e5",
+              "createdAt": "2026-06-05T15:01:03.000Z",
+              "updatedAt": "2026-06-05T15:01:03.000Z",
+              "uid": "35240-026be049-d841-49fb-9b35-51ae0f68a7e5"
+            }
+          ],
+          "id": "c30b59ca-369d-49a6-952f-eb9bd18d454e",
+          "createdAt": "2026-06-05T15:01:03.000Z",
+          "updatedAt": "2026-06-05T15:01:03.000Z",
+          "uid": "35240-c30b59ca-369d-49a6-952f-eb9bd18d454e"
+        }
+      ],
+      "id": "8ffbb0b6-7080-464a-97c3-672a0e8500ae",
+      "createdAt": "2026-06-05T15:01:03.000Z",
+      "updatedAt": "2026-06-05T15:01:03.000Z",
+      "uid": "35240-8ffbb0b6-7080-464a-97c3-672a0e8500ae"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.dlocal.com"
+    }
+  ]
+}

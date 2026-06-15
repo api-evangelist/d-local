@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "dLocal Enrollments API",
+    "version": "2.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Enrollments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create An Enrollment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dlocal.com/enrollments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enroll a payer for Pix Automático or Pix Biometrics recurring transactions."
+        },
+        {
+          "info": {
+            "name": "Get An Enrollment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dlocal.com/enrollments/:enrollment_id",
+            "params": [
+              {
+                "name": "enrollment_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get An Enrollment"
+        },
+        {
+          "info": {
+            "name": "Cancel An Enrollment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dlocal.com/enrollments/:enrollment_id/cancel",
+            "params": [
+              {
+                "name": "enrollment_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel An Enrollment"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

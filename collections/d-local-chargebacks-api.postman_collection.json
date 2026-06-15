@@ -1,0 +1,320 @@
+{
+  "item": [
+    {
+      "id": "cf212caa-98f1-4528-a1ea-8f0afc218a8c",
+      "name": "Chargebacks",
+      "description": {
+        "content": "Retrieve and simulate chargebacks.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bc0c54d4-e9cf-45e1-8505-0f3015cd0d88",
+          "name": "Retrieve A Chargeback",
+          "request": {
+            "name": "Retrieve A Chargeback",
+            "description": {},
+            "url": {
+              "path": [
+                "chargebacks",
+                ":chargeback_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chargeback_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b0e00e88-b157-4036-8385-a528e900b0fd",
+              "name": "Chargeback returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chargebacks",
+                    ":chargeback_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chargeback_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"payment_id\": \"string\",\n  \"amount\": 8907.225218879039,\n  \"currency\": \"string\",\n  \"status\": \"string\",\n  \"status_code\": \"string\",\n  \"status_detail\": \"string\",\n  \"reason_code\": \"string\",\n  \"category\": \"string\",\n  \"created_date\": \"1969-07-26T09:35:05.563Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "43cd356a-06bf-4cfa-811a-bf2bfb3285d9",
+          "name": "Retrieve A Chargeback Status",
+          "request": {
+            "name": "Retrieve A Chargeback Status",
+            "description": {},
+            "url": {
+              "path": [
+                "chargebacks",
+                ":chargeback_id",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chargeback_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ccd85560-7987-4cff-8ecd-7b068728ce4f",
+              "name": "Status returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chargebacks",
+                    ":chargeback_id",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chargeback_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b7c48768-2cab-4d7c-9a88-f96686c5d19f",
+          "name": "Simulate A Chargeback (Sandbox Only)",
+          "request": {
+            "name": "Simulate A Chargeback (Sandbox Only)",
+            "description": {
+              "content": "Simulate a chargeback against a payment in the sandbox environment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chargebacks",
+                "simulate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"payment_id\": \"<string>\",\n  \"reason_code\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b52cdedc-8996-463e-93ba-0910a87705eb",
+              "name": "Chargeback simulated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chargebacks",
+                    "simulate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payment_id\": \"<string>\",\n  \"reason_code\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.dlocal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "15976b10-e42c-4aed-acca-33b3f4bfa6b6",
+    "name": "dLocal Chargebacks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Retrieve chargeback details and status, simulate chargebacks in sandbox,\nand receive asynchronous chargeback notifications via webhook.\n",
+      "type": "text/plain"
+    }
+  }
+}

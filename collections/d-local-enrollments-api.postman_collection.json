@@ -1,0 +1,326 @@
+{
+  "item": [
+    {
+      "id": "b6ff865d-ad18-430e-ad1d-a91950a1e6f8",
+      "name": "Enrollments",
+      "description": {
+        "content": "Create, retrieve, and cancel Pix enrollments.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "57101c32-c3f2-4f38-832f-239f738fa5e5",
+          "name": "Create An Enrollment",
+          "request": {
+            "name": "Create An Enrollment",
+            "description": {
+              "content": "Enroll a payer for Pix Automático or Pix Biometrics recurring transactions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enrollments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"country\": \"<string>\",\n  \"payer\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"document\": \"<string>\"\n  },\n  \"notification_url\": \"<uri>\",\n  \"type\": \"<string>\",\n  \"callback_url\": \"<uri>\",\n  \"max_amount\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "efc8f0d9-d5c3-4e69-bc9c-d811dd12b042",
+              "name": "Enrollment created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrollments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country\": \"<string>\",\n  \"payer\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"document\": \"<string>\"\n  },\n  \"notification_url\": \"<uri>\",\n  \"type\": \"<string>\",\n  \"callback_url\": \"<uri>\",\n  \"max_amount\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"EXPIRED\",\n  \"redirect_url\": \"https://HCXXtOc.ubjkk5d9st-w5J\",\n  \"created_date\": \"2025-02-08T18:16:46.439Z\",\n  \"expiration_date\": \"1998-11-26T13:57:10.024Z\",\n  \"type\": \"string\",\n  \"country\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7fe83686-43a0-4cdd-be86-b89af5347e33",
+          "name": "Get An Enrollment",
+          "request": {
+            "name": "Get An Enrollment",
+            "description": {},
+            "url": {
+              "path": [
+                "enrollments",
+                ":enrollment_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "enrollment_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ffa7f4e4-19e2-4b7e-a2c9-ba9dfec3bbda",
+              "name": "Enrollment returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrollments",
+                    ":enrollment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enrollment_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"EXPIRED\",\n  \"redirect_url\": \"https://HCXXtOc.ubjkk5d9st-w5J\",\n  \"created_date\": \"2025-02-08T18:16:46.439Z\",\n  \"expiration_date\": \"1998-11-26T13:57:10.024Z\",\n  \"type\": \"string\",\n  \"country\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c8066bd2-7636-4aee-a991-0541e9e1c0f0",
+          "name": "Cancel An Enrollment",
+          "request": {
+            "name": "Cancel An Enrollment",
+            "description": {},
+            "url": {
+              "path": [
+                "enrollments",
+                ":enrollment_id",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "enrollment_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dc7706df-5762-4906-9637-576c7a2885a3",
+              "name": "Enrollment cancelled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrollments",
+                    ":enrollment_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enrollment_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.dlocal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dd3e70d3-8be1-4510-ac99-dc53b763a240",
+    "name": "dLocal Enrollments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Enrollments power Brazil's Pix Automático recurring payments and\nPix biometrics flows. Use Enrollments to register a payer once and\nsubsequently charge them through Pix recurring transactions.\n",
+      "type": "text/plain"
+    }
+  }
+}

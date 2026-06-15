@@ -1,0 +1,328 @@
+{
+  "info": {
+    "_postman_id": "f5d4a15b-b08e-4e23-8b9e-1bd905f522aa",
+    "name": "dLocal Chargebacks API",
+    "description": "Retrieve chargeback details and status, simulate chargebacks in sandbox,\nand receive asynchronous chargeback notifications via webhook.\n",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:01:23.000Z",
+    "updatedAt": "2026-06-05T15:01:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f5d4a15b-b08e-4e23-8b9e-1bd905f522aa"
+  },
+  "item": [
+    {
+      "name": "chargebacks",
+      "item": [
+        {
+          "name": "{chargeback_id}",
+          "item": [
+            {
+              "name": "status",
+              "item": [
+                {
+                  "name": "Retrieve A Chargeback Status",
+                  "id": "976f49e9-04bf-4f83-89ba-677b95da047e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/chargebacks/:chargeback_id/status",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "chargebacks",
+                        ":chargeback_id",
+                        "status"
+                      ],
+                      "variable": [
+                        {
+                          "id": "259d0d85-9713-4dea-a39f-c85a070ff10f",
+                          "key": "chargeback_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "a95bf721-b289-4f37-bc57-351709b52da2",
+                      "name": "Status returned",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/chargebacks/:chargeback_id/status",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "chargebacks",
+                            ":chargeback_id",
+                            "status"
+                          ],
+                          "variable": [
+                            {
+                              "key": "chargeback_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:01:24.000Z",
+                      "updatedAt": "2026-06-05T15:01:24.000Z",
+                      "uid": "35240-a95bf721-b289-4f37-bc57-351709b52da2"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:01:24.000Z",
+                  "updatedAt": "2026-06-05T15:01:24.000Z",
+                  "uid": "35240-976f49e9-04bf-4f83-89ba-677b95da047e"
+                }
+              ],
+              "id": "1f2a03fc-debc-4ce1-ba04-5443d7479dd4",
+              "createdAt": "2026-06-05T15:01:24.000Z",
+              "updatedAt": "2026-06-05T15:01:24.000Z",
+              "uid": "35240-1f2a03fc-debc-4ce1-ba04-5443d7479dd4"
+            },
+            {
+              "name": "Retrieve A Chargeback",
+              "id": "53bbb7c9-9b73-4b72-8cec-49959cee8213",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/chargebacks/:chargeback_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "chargebacks",
+                    ":chargeback_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "92d0c10d-062c-4b3b-9183-6dd7102912f3",
+                      "key": "chargeback_id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "b3e5248b-4bf6-4d46-af09-ceb02f0205fd",
+                  "name": "Chargeback returned",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/chargebacks/:chargeback_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "chargebacks",
+                        ":chargeback_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "chargeback_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"payment_id\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"status\": \"<string>\",\n  \"status_code\": \"<string>\",\n  \"status_detail\": \"<string>\",\n  \"reason_code\": \"<string>\",\n  \"category\": \"<string>\",\n  \"created_date\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T15:01:24.000Z",
+                  "updatedAt": "2026-06-05T15:01:24.000Z",
+                  "uid": "35240-b3e5248b-4bf6-4d46-af09-ceb02f0205fd"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:24.000Z",
+              "updatedAt": "2026-06-05T15:01:24.000Z",
+              "uid": "35240-53bbb7c9-9b73-4b72-8cec-49959cee8213"
+            }
+          ],
+          "id": "92ef982c-baa1-4269-8565-58633cc61ecd",
+          "createdAt": "2026-06-05T15:01:24.000Z",
+          "updatedAt": "2026-06-05T15:01:24.000Z",
+          "uid": "35240-92ef982c-baa1-4269-8565-58633cc61ecd"
+        },
+        {
+          "name": "simulate",
+          "item": [
+            {
+              "name": "Simulate A Chargeback (Sandbox Only)",
+              "id": "2be7b8f2-78f6-4af0-a041-100f23b6d561",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payment_id\": \"<string>\",\n  \"reason_code\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/chargebacks/simulate",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "chargebacks",
+                    "simulate"
+                  ]
+                },
+                "description": "Simulate a chargeback against a payment in the sandbox environment."
+              },
+              "response": [
+                {
+                  "id": "110a8e7f-e812-43f1-b6c8-6a5c5d6a67ef",
+                  "name": "Chargeback simulated",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"payment_id\": \"<string>\",\n  \"reason_code\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/chargebacks/simulate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "chargebacks",
+                        "simulate"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:01:24.000Z",
+                  "updatedAt": "2026-06-05T15:01:24.000Z",
+                  "uid": "35240-110a8e7f-e812-43f1-b6c8-6a5c5d6a67ef"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:24.000Z",
+              "updatedAt": "2026-06-05T15:01:24.000Z",
+              "uid": "35240-2be7b8f2-78f6-4af0-a041-100f23b6d561"
+            }
+          ],
+          "id": "0f9a3e04-e1cf-405f-8e62-c0de572d8590",
+          "createdAt": "2026-06-05T15:01:24.000Z",
+          "updatedAt": "2026-06-05T15:01:24.000Z",
+          "uid": "35240-0f9a3e04-e1cf-405f-8e62-c0de572d8590"
+        }
+      ],
+      "id": "b19b5a81-3790-4f92-8a8b-2d288e3bce1f",
+      "createdAt": "2026-06-05T15:01:24.000Z",
+      "updatedAt": "2026-06-05T15:01:24.000Z",
+      "uid": "35240-b19b5a81-3790-4f92-8a8b-2d288e3bce1f"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.dlocal.com"
+    }
+  ]
+}

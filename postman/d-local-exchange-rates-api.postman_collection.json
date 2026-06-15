@@ -1,0 +1,153 @@
+{
+  "info": {
+    "_postman_id": "98a2e399-45c0-48bc-a335-d8a4c67dbb22",
+    "name": "dLocal Exchange Rates API",
+    "description": "Retrieve real-time exchange rates between settlement currencies and\nlocal currencies. Use this before creating a payment or payout to\npreview the conversion rate.\n",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:01:25.000Z",
+    "updatedAt": "2026-06-05T15:01:25.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-98a2e399-45c0-48bc-a335-d8a4c67dbb22"
+  },
+  "item": [
+    {
+      "name": "exchange-rates",
+      "item": [
+        {
+          "name": "Get An Exchange Rate",
+          "id": "d24fc3b9-baa0-4099-a589-1ca89cd193df",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/exchange-rates?from_currency=<string>&to_currency=<string>&country=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "exchange-rates"
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "from_currency",
+                  "value": "<string>"
+                },
+                {
+                  "description": "(Required) ",
+                  "key": "to_currency",
+                  "value": "<string>"
+                },
+                {
+                  "key": "country",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b069e8ec-b0e8-4aaf-a7fa-0aef5c352503",
+              "name": "Exchange rate returned",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/exchange-rates?from_currency=<string>&to_currency=<string>&country=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "exchange-rates"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "from_currency",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "to_currency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"from_currency\": \"<string>\",\n  \"to_currency\": \"<string>\",\n  \"rate\": \"<number>\",\n  \"inverse_rate\": \"<number>\",\n  \"country\": \"<string>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+              "createdAt": "2026-06-05T15:01:25.000Z",
+              "updatedAt": "2026-06-05T15:01:25.000Z",
+              "uid": "35240-b069e8ec-b0e8-4aaf-a7fa-0aef5c352503"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:25.000Z",
+          "updatedAt": "2026-06-05T15:01:25.000Z",
+          "uid": "35240-d24fc3b9-baa0-4099-a589-1ca89cd193df"
+        }
+      ],
+      "id": "3d1bb7d5-7d4f-4916-89c1-970949844f05",
+      "createdAt": "2026-06-05T15:01:25.000Z",
+      "updatedAt": "2026-06-05T15:01:25.000Z",
+      "uid": "35240-3d1bb7d5-7d4f-4916-89c1-970949844f05"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.dlocal.com"
+    }
+  ]
+}

@@ -1,0 +1,983 @@
+{
+  "item": [
+    {
+      "id": "6dfdf57d-69cb-4a30-b427-ea17519f5c14",
+      "name": "Payments",
+      "description": {
+        "content": "Create and manage payments using local payment methods.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ebb1352d-5b08-4fce-ab70-ad59007327de",
+          "name": "Create A Payment",
+          "request": {
+            "name": "Create A Payment",
+            "description": {
+              "content": "Create a new payment using a local payment method in the target country.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"country\": \"<string>\",\n  \"payment_method_flow\": \"<string>\",\n  \"payer\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"document\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"birth_date\": \"<date>\",\n    \"address\": {\n      \"street\": \"<string>\",\n      \"number\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip_code\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"ip\": \"<string>\",\n    \"device_id\": \"<string>\"\n  },\n  \"order_id\": \"<string>\",\n  \"payment_method_id\": \"<string>\",\n  \"card\": {\n    \"holder_name\": \"<string>\",\n    \"expiration_month\": \"<integer>\",\n    \"expiration_year\": \"<integer>\",\n    \"number\": \"<string>\",\n    \"cvv\": \"<string>\",\n    \"brand\": \"<string>\",\n    \"last4\": \"<string>\",\n    \"capture\": true,\n    \"installments\": 1,\n    \"token\": \"<string>\",\n    \"encrypted_data\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"notification_url\": \"<uri>\",\n  \"callback_url\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f5af0750-684c-4b90-bd10-fa3c7007cd7d",
+              "name": "Payment created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<number>\",\n  \"currency\": \"BRL\",\n  \"country\": \"BR\",\n  \"payment_method_flow\": \"<string>\",\n  \"payer\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"document\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"birth_date\": \"<date>\",\n    \"address\": {\n      \"street\": \"<string>\",\n      \"number\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip_code\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"ip\": \"<string>\",\n    \"device_id\": \"<string>\"\n  },\n  \"order_id\": \"<string>\",\n  \"payment_method_id\": \"<string>\",\n  \"card\": {\n    \"holder_name\": \"<string>\",\n    \"expiration_month\": \"<integer>\",\n    \"expiration_year\": \"<integer>\",\n    \"number\": \"<string>\",\n    \"cvv\": \"<string>\",\n    \"brand\": \"<string>\",\n    \"last4\": \"<string>\",\n    \"capture\": true,\n    \"installments\": 1,\n    \"token\": \"<string>\",\n    \"encrypted_data\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"notification_url\": \"<uri>\",\n  \"callback_url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"amount\": 2324.5496206004714,\n  \"currency\": \"string\",\n  \"country\": \"string\",\n  \"payment_method_id\": \"string\",\n  \"payment_method_type\": \"string\",\n  \"payment_method_flow\": \"string\",\n  \"card\": {\n    \"holder_name\": \"<string>\",\n    \"expiration_month\": \"<integer>\",\n    \"expiration_year\": \"<integer>\",\n    \"number\": \"<string>\",\n    \"cvv\": \"<string>\",\n    \"brand\": \"<string>\",\n    \"last4\": \"<string>\",\n    \"capture\": true,\n    \"installments\": 1,\n    \"token\": \"<string>\",\n    \"encrypted_data\": \"<string>\"\n  },\n  \"created_date\": \"1984-04-03T08:28:18.423Z\",\n  \"approved_date\": \"1996-01-18T12:10:16.640Z\",\n  \"status\": \"CANCELLED\",\n  \"status_code\": \"string\",\n  \"status_detail\": \"string\",\n  \"order_id\": \"string\",\n  \"notification_url\": \"string\",\n  \"redirect_url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "938eb167-b319-4bd4-98dc-ae75736a92e7",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<number>\",\n  \"currency\": \"BRL\",\n  \"country\": \"BR\",\n  \"payment_method_flow\": \"<string>\",\n  \"payer\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"document\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"birth_date\": \"<date>\",\n    \"address\": {\n      \"street\": \"<string>\",\n      \"number\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip_code\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"ip\": \"<string>\",\n    \"device_id\": \"<string>\"\n  },\n  \"order_id\": \"<string>\",\n  \"payment_method_id\": \"<string>\",\n  \"card\": {\n    \"holder_name\": \"<string>\",\n    \"expiration_month\": \"<integer>\",\n    \"expiration_year\": \"<integer>\",\n    \"number\": \"<string>\",\n    \"cvv\": \"<string>\",\n    \"brand\": \"<string>\",\n    \"last4\": \"<string>\",\n    \"capture\": true,\n    \"installments\": 1,\n    \"token\": \"<string>\",\n    \"encrypted_data\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"notification_url\": \"<uri>\",\n  \"callback_url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 202,\n  \"message\": \"string\",\n  \"param\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "250fe6ad-acc7-4eeb-a0e3-cb674dd57f72",
+              "name": "Invalid credentials or signature",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<number>\",\n  \"currency\": \"BRL\",\n  \"country\": \"BR\",\n  \"payment_method_flow\": \"<string>\",\n  \"payer\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"document\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"birth_date\": \"<date>\",\n    \"address\": {\n      \"street\": \"<string>\",\n      \"number\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip_code\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"ip\": \"<string>\",\n    \"device_id\": \"<string>\"\n  },\n  \"order_id\": \"<string>\",\n  \"payment_method_id\": \"<string>\",\n  \"card\": {\n    \"holder_name\": \"<string>\",\n    \"expiration_month\": \"<integer>\",\n    \"expiration_year\": \"<integer>\",\n    \"number\": \"<string>\",\n    \"cvv\": \"<string>\",\n    \"brand\": \"<string>\",\n    \"last4\": \"<string>\",\n    \"capture\": true,\n    \"installments\": 1,\n    \"token\": \"<string>\",\n    \"encrypted_data\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"notification_url\": \"<uri>\",\n  \"callback_url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 202,\n  \"message\": \"string\",\n  \"param\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "557fbf83-538f-4bbb-b6ad-490f2aac36df",
+          "name": "Retrieve A Payment",
+          "request": {
+            "name": "Retrieve A Payment",
+            "description": {
+              "content": "Retrieve full payment details. Payments older than 12 months may return 404.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                ":payment_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "payment_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9f65eb5d-e7c8-4f24-8c80-59dc0db8348b",
+              "name": "Payment found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":payment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "payment_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"amount\": 2324.5496206004714,\n  \"currency\": \"string\",\n  \"country\": \"string\",\n  \"payment_method_id\": \"string\",\n  \"payment_method_type\": \"string\",\n  \"payment_method_flow\": \"string\",\n  \"card\": {\n    \"holder_name\": \"<string>\",\n    \"expiration_month\": \"<integer>\",\n    \"expiration_year\": \"<integer>\",\n    \"number\": \"<string>\",\n    \"cvv\": \"<string>\",\n    \"brand\": \"<string>\",\n    \"last4\": \"<string>\",\n    \"capture\": true,\n    \"installments\": 1,\n    \"token\": \"<string>\",\n    \"encrypted_data\": \"<string>\"\n  },\n  \"created_date\": \"1984-04-03T08:28:18.423Z\",\n  \"approved_date\": \"1996-01-18T12:10:16.640Z\",\n  \"status\": \"CANCELLED\",\n  \"status_code\": \"string\",\n  \"status_detail\": \"string\",\n  \"order_id\": \"string\",\n  \"notification_url\": \"string\",\n  \"redirect_url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b67d6939-79f4-44f5-abe9-73969b7b165b",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":payment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "payment_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 202,\n  \"message\": \"string\",\n  \"param\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a4fb7974-1839-4498-9dd2-a18bccdf6754",
+          "name": "Retrieve A Payment Status",
+          "request": {
+            "name": "Retrieve A Payment Status",
+            "description": {
+              "content": "Retrieve a lightweight status snapshot of a payment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                ":payment_id",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "payment_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0c28ed41-16f9-4066-97b6-269c548b011a",
+              "name": "Status returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":payment_id",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "payment_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"status_code\": \"string\",\n  \"status_detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b407f31b-a704-4cad-a249-0abed87893d4",
+          "name": "Cancel An Alternative Payment",
+          "request": {
+            "name": "Cancel An Alternative Payment",
+            "description": {
+              "content": "Cancel a pending alternative (non-card) payment such as a cash ticket or bank transfer.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                ":payment_id",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "payment_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5f592235-3935-4dda-8034-88e696576962",
+              "name": "Payment cancelled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":payment_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "payment_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"amount\": 2324.5496206004714,\n  \"currency\": \"string\",\n  \"country\": \"string\",\n  \"payment_method_id\": \"string\",\n  \"payment_method_type\": \"string\",\n  \"payment_method_flow\": \"string\",\n  \"card\": {\n    \"holder_name\": \"<string>\",\n    \"expiration_month\": \"<integer>\",\n    \"expiration_year\": \"<integer>\",\n    \"number\": \"<string>\",\n    \"cvv\": \"<string>\",\n    \"brand\": \"<string>\",\n    \"last4\": \"<string>\",\n    \"capture\": true,\n    \"installments\": 1,\n    \"token\": \"<string>\",\n    \"encrypted_data\": \"<string>\"\n  },\n  \"created_date\": \"1984-04-03T08:28:18.423Z\",\n  \"approved_date\": \"1996-01-18T12:10:16.640Z\",\n  \"status\": \"CANCELLED\",\n  \"status_code\": \"string\",\n  \"status_detail\": \"string\",\n  \"order_id\": \"string\",\n  \"notification_url\": \"string\",\n  \"redirect_url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f07e8134-46be-4fbe-9d0c-c71aa600ed3d",
+          "name": "Search Payment Methods",
+          "request": {
+            "name": "Search Payment Methods",
+            "description": {
+              "content": "List supported payment methods for a country and currency.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payment-methods"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "373911f4-7b7f-43a0-9ae7-2cd0800339c1",
+              "name": "Payment methods returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment-methods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "BR"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "5fddece9-fbf9-4ab6-9bef-3d432077e064",
+      "name": "Authorizations",
+      "description": {
+        "content": "Authorize a card transaction and capture or cancel later.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a8184e52-4ff3-4c41-8448-a15e5b4e460d",
+          "name": "Create An Authorization",
+          "request": {
+            "name": "Create An Authorization",
+            "description": {
+              "content": "Authorize a card transaction without capturing funds. Set capture=false on the card object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "secure_payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"country\": \"<string>\",\n  \"payment_method_flow\": \"<string>\",\n  \"payer\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"document\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"birth_date\": \"<date>\",\n    \"address\": {\n      \"street\": \"<string>\",\n      \"number\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip_code\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"ip\": \"<string>\",\n    \"device_id\": \"<string>\"\n  },\n  \"order_id\": \"<string>\",\n  \"payment_method_id\": \"<string>\",\n  \"card\": {\n    \"holder_name\": \"<string>\",\n    \"expiration_month\": \"<integer>\",\n    \"expiration_year\": \"<integer>\",\n    \"number\": \"<string>\",\n    \"cvv\": \"<string>\",\n    \"brand\": \"<string>\",\n    \"last4\": \"<string>\",\n    \"capture\": true,\n    \"installments\": 1,\n    \"token\": \"<string>\",\n    \"encrypted_data\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"notification_url\": \"<uri>\",\n  \"callback_url\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "845d2731-ddcb-4418-8dd5-3ae95020f12f",
+              "name": "Authorization created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "secure_payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<number>\",\n  \"currency\": \"BRL\",\n  \"country\": \"BR\",\n  \"payment_method_flow\": \"<string>\",\n  \"payer\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"document\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"birth_date\": \"<date>\",\n    \"address\": {\n      \"street\": \"<string>\",\n      \"number\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip_code\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"ip\": \"<string>\",\n    \"device_id\": \"<string>\"\n  },\n  \"order_id\": \"<string>\",\n  \"payment_method_id\": \"<string>\",\n  \"card\": {\n    \"holder_name\": \"<string>\",\n    \"expiration_month\": \"<integer>\",\n    \"expiration_year\": \"<integer>\",\n    \"number\": \"<string>\",\n    \"cvv\": \"<string>\",\n    \"brand\": \"<string>\",\n    \"last4\": \"<string>\",\n    \"capture\": true,\n    \"installments\": 1,\n    \"token\": \"<string>\",\n    \"encrypted_data\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"notification_url\": \"<uri>\",\n  \"callback_url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"amount\": 4183.896490384222,\n  \"currency\": \"string\",\n  \"country\": \"string\",\n  \"payment_method_id\": \"string\",\n  \"payment_method_type\": \"string\",\n  \"payment_method_flow\": \"string\",\n  \"card\": {\n    \"holder_name\": \"<string>\",\n    \"expiration_month\": \"<integer>\",\n    \"expiration_year\": \"<integer>\",\n    \"number\": \"<string>\",\n    \"cvv\": \"<string>\",\n    \"brand\": \"<string>\",\n    \"last4\": \"<string>\",\n    \"capture\": true,\n    \"installments\": 1,\n    \"token\": \"<string>\",\n    \"encrypted_data\": \"<string>\"\n  },\n  \"created_date\": \"1954-07-23T19:51:56.905Z\",\n  \"approved_date\": \"2010-02-28T20:02:32.886Z\",\n  \"status\": \"EXPIRED\",\n  \"status_code\": \"string\",\n  \"status_detail\": \"string\",\n  \"order_id\": \"string\",\n  \"notification_url\": \"string\",\n  \"redirect_url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b758bf9f-3482-4304-a193-635b75f67e9f",
+          "name": "Capture An Authorization",
+          "request": {
+            "name": "Capture An Authorization",
+            "description": {
+              "content": "Capture funds previously authorized.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                ":authorization_id",
+                "captures"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "authorization_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9a10b8ce-dd0d-46c3-b6dc-177cfa3c27c4",
+              "name": "Capture successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":authorization_id",
+                    "captures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "authorization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0673de93-1268-4dc4-bfee-517049b8485a",
+          "name": "Cancel An Authorization",
+          "request": {
+            "name": "Cancel An Authorization",
+            "description": {
+              "content": "Release a previously authorized payment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                ":authorization_id",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "authorization_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "21495a59-0ccd-427c-b214-4e95863939a5",
+              "name": "Authorization cancelled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":authorization_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "authorization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.dlocal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0a0b74ba-d439-4ea9-90da-94829bc70c2c",
+    "name": "dLocal Payments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The dLocal Payments API (Payins) lets you create, retrieve, cancel, and\nauthorize payments using over 1,000 local payment methods across 60+\nemerging-market countries in Latin America, Africa, and Asia. Supports\ncard payments, Pix, UPI, M-Pesa, bank transfers, cash vouchers, digital\nwallets, BNPL, and QR codes. All requests are authenticated with the\n`V2-HMAC-SHA256` signature scheme using `X-Login`, `X-Trans-Key`, and\n`X-Date` headers.\n\n\nContact Support:\n Name: dLocal Support",
+      "type": "text/plain"
+    }
+  }
+}

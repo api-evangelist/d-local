@@ -1,0 +1,135 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "dLocal Payouts V3 API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payouts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Request A Payout",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dlocal.com/payouts/v3",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new payout to a beneficiary in a supported destination country."
+        },
+        {
+          "info": {
+            "name": "Get A Payout",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dlocal.com/payouts/v3/:payout_id",
+            "params": [
+              {
+                "name": "payout_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a payout by ID."
+        },
+        {
+          "info": {
+            "name": "Cancel A Payout",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dlocal.com/payouts/v3/:payout_id/cancel",
+            "params": [
+              {
+                "name": "payout_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel a payout that has not yet been released."
+        },
+        {
+          "info": {
+            "name": "Release A Payout",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dlocal.com/payouts/v3/:payout_id/release",
+            "params": [
+              {
+                "name": "payout_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Release a payout previously held with `on_hold=true`."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Balance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Payouts Balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dlocal.com/payouts/v3/balance"
+          },
+          "docs": "Retrieve the merchant's available payout balance."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Quotes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create A Quote",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dlocal.com/payouts/v3/quotes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate an FX quote for a payout amount that locks the exchange rate."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

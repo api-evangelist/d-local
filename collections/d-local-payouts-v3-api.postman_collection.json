@@ -1,0 +1,723 @@
+{
+  "item": [
+    {
+      "id": "33be7a82-bd45-4663-8967-5d1ee540832a",
+      "name": "Payouts",
+      "description": {
+        "content": "Request, retrieve, release, and cancel payouts.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "898592c9-30ed-4cc0-8d7f-dc435c0fd141",
+          "name": "Request A Payout",
+          "request": {
+            "name": "Request A Payout",
+            "description": {
+              "content": "Create a new payout to a beneficiary in a supported destination country.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payouts",
+                "v3"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"external_id\": \"<string>\",\n  \"country\": \"<string>\",\n  \"payment_method_id\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"purpose\": \"<string>\",\n  \"flow_type\": \"<string>\",\n  \"beneficiary\": {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"document\": \"<string>\",\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"document_type\": \"<string>\",\n    \"address\": \"<object>\",\n    \"bank_details\": {\n      \"bank_code\": \"<string>\",\n      \"bank_account\": \"<string>\",\n      \"account_type\": \"<string>\",\n      \"branch\": \"<string>\"\n    }\n  },\n  \"currency_to_pay\": \"<string>\",\n  \"quote_id\": \"<string>\",\n  \"statement_descriptor\": \"<string>\",\n  \"description\": \"<string>\",\n  \"on_hold\": false,\n  \"notification_url\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "15fb1d23-c9e6-44d5-bf6f-339b607e3588",
+              "name": "Payout created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payouts",
+                    "v3"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"external_id\": \"<string>\",\n  \"country\": \"<string>\",\n  \"payment_method_id\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"purpose\": \"<string>\",\n  \"flow_type\": \"<string>\",\n  \"beneficiary\": {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"document\": \"<string>\",\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"document_type\": \"<string>\",\n    \"address\": \"<object>\",\n    \"bank_details\": {\n      \"bank_code\": \"<string>\",\n      \"bank_account\": \"<string>\",\n      \"account_type\": \"<string>\",\n      \"branch\": \"<string>\"\n    }\n  },\n  \"currency_to_pay\": \"<string>\",\n  \"quote_id\": \"<string>\",\n  \"statement_descriptor\": \"<string>\",\n  \"description\": \"<string>\",\n  \"on_hold\": false,\n  \"notification_url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"external_id\": \"string\",\n  \"status\": \"string\",\n  \"status_code\": \"string\",\n  \"status_detail\": \"string\",\n  \"created_date\": \"1951-10-31T19:17:13.554Z\",\n  \"last_updated\": \"2002-12-18T06:47:52.917Z\",\n  \"amount\": 9118.093696994536,\n  \"currency\": \"string\",\n  \"currency_to_pay\": \"string\",\n  \"country\": \"string\",\n  \"payment_method_id\": \"string\",\n  \"amount_details\": {\n    \"fees\": 2434.6749312159745,\n    \"taxes\": 8846.69032285441,\n    \"exchange_rate\": 6367.672344921869\n  },\n  \"beneficiary\": {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"document\": \"<string>\",\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"document_type\": \"<string>\",\n    \"address\": \"<object>\",\n    \"bank_details\": {\n      \"bank_code\": \"<string>\",\n      \"bank_account\": \"<string>\",\n      \"account_type\": \"<string>\",\n      \"branch\": \"<string>\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "568f2fb0-1bd3-4cd6-89f1-65bcd57de778",
+              "name": "Invalid parameters or duplicate external_id",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payouts",
+                    "v3"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"external_id\": \"<string>\",\n  \"country\": \"<string>\",\n  \"payment_method_id\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"purpose\": \"<string>\",\n  \"flow_type\": \"<string>\",\n  \"beneficiary\": {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"document\": \"<string>\",\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"document_type\": \"<string>\",\n    \"address\": \"<object>\",\n    \"bank_details\": {\n      \"bank_code\": \"<string>\",\n      \"bank_account\": \"<string>\",\n      \"account_type\": \"<string>\",\n      \"branch\": \"<string>\"\n    }\n  },\n  \"currency_to_pay\": \"<string>\",\n  \"quote_id\": \"<string>\",\n  \"statement_descriptor\": \"<string>\",\n  \"description\": \"<string>\",\n  \"on_hold\": false,\n  \"notification_url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9e1a203c-456a-4c18-9365-c91918da454f",
+              "name": "Insufficient funds, invalid credentials, or unregistered IP",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payouts",
+                    "v3"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"external_id\": \"<string>\",\n  \"country\": \"<string>\",\n  \"payment_method_id\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"purpose\": \"<string>\",\n  \"flow_type\": \"<string>\",\n  \"beneficiary\": {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"document\": \"<string>\",\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"document_type\": \"<string>\",\n    \"address\": \"<object>\",\n    \"bank_details\": {\n      \"bank_code\": \"<string>\",\n      \"bank_account\": \"<string>\",\n      \"account_type\": \"<string>\",\n      \"branch\": \"<string>\"\n    }\n  },\n  \"currency_to_pay\": \"<string>\",\n  \"quote_id\": \"<string>\",\n  \"statement_descriptor\": \"<string>\",\n  \"description\": \"<string>\",\n  \"on_hold\": false,\n  \"notification_url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ceca95a4-5aa0-4a0a-a4de-cf01f2cd6c1e",
+          "name": "Get A Payout",
+          "request": {
+            "name": "Get A Payout",
+            "description": {
+              "content": "Retrieve a payout by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payouts",
+                "v3",
+                ":payout_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "payout_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a18ffa11-f2eb-4cf9-84b7-4d2025595134",
+              "name": "Payout returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payouts",
+                    "v3",
+                    ":payout_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "payout_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"external_id\": \"string\",\n  \"status\": \"string\",\n  \"status_code\": \"string\",\n  \"status_detail\": \"string\",\n  \"created_date\": \"1951-10-31T19:17:13.554Z\",\n  \"last_updated\": \"2002-12-18T06:47:52.917Z\",\n  \"amount\": 9118.093696994536,\n  \"currency\": \"string\",\n  \"currency_to_pay\": \"string\",\n  \"country\": \"string\",\n  \"payment_method_id\": \"string\",\n  \"amount_details\": {\n    \"fees\": 2434.6749312159745,\n    \"taxes\": 8846.69032285441,\n    \"exchange_rate\": 6367.672344921869\n  },\n  \"beneficiary\": {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"document\": \"<string>\",\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"document_type\": \"<string>\",\n    \"address\": \"<object>\",\n    \"bank_details\": {\n      \"bank_code\": \"<string>\",\n      \"bank_account\": \"<string>\",\n      \"account_type\": \"<string>\",\n      \"branch\": \"<string>\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef34e0ff-5805-4236-99d5-265c1f1cd779",
+          "name": "Cancel A Payout",
+          "request": {
+            "name": "Cancel A Payout",
+            "description": {
+              "content": "Cancel a payout that has not yet been released.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payouts",
+                "v3",
+                ":payout_id",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "payout_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b384ecbb-9b9a-4405-8ea3-d7ace38ac7f0",
+              "name": "Payout cancelled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payouts",
+                    "v3",
+                    ":payout_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "payout_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f2efc213-e36b-4184-90a7-a7b510207684",
+          "name": "Release A Payout",
+          "request": {
+            "name": "Release A Payout",
+            "description": {
+              "content": "Release a payout previously held with `on_hold=true`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payouts",
+                "v3",
+                ":payout_id",
+                "release"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "payout_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "90332ef2-ba77-47e8-ad44-3834627c6163",
+              "name": "Payout released",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payouts",
+                    "v3",
+                    ":payout_id",
+                    "release"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "payout_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ca6ec23a-c08d-4ff8-a8ce-d93b1541ed66",
+      "name": "Quotes",
+      "description": {
+        "content": "Lock in an FX quote before requesting a payout.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6485f68f-dfb9-4761-98d5-33d4c55bc50a",
+          "name": "Create A Quote",
+          "request": {
+            "name": "Create A Quote",
+            "description": {
+              "content": "Generate an FX quote for a payout amount that locks the exchange rate.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payouts",
+                "v3",
+                "quotes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"country\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"currency_to_pay\": \"<string>\",\n  \"payment_method_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "07888cd6-74d2-4284-a755-902d72715c73",
+              "name": "Quote created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payouts",
+                    "v3",
+                    "quotes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"currency_to_pay\": \"<string>\",\n  \"payment_method_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"quote_id\": \"string\",\n  \"amount\": 2768.1086833752365,\n  \"currency\": \"string\",\n  \"exchange_rate\": 7932.716766233926,\n  \"expires_at\": \"1982-04-13T20:05:51.080Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "9a452e4a-6bf4-4603-b8a8-a783e6108f2b",
+      "name": "Balance",
+      "description": {
+        "content": "Inspect available merchant balance for payouts.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f2c1018c-adb5-4d37-820a-689cd64dc688",
+          "name": "Get Payouts Balance",
+          "request": {
+            "name": "Get Payouts Balance",
+            "description": {
+              "content": "Retrieve the merchant's available payout balance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payouts",
+                "v3",
+                "balance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "da362c37-9a7f-40dd-aa67-3371bc986a36",
+              "name": "Balance returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payouts",
+                    "v3",
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"currency\": \"string\",\n  \"available_balance\": 1690.268892393948,\n  \"previous_day_closing_balance\": 3973.570654830644,\n  \"current_balance_date\": \"1969-04-19\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.dlocal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9cb8a59c-9468-4fc2-86fb-29c65ae76849",
+    "name": "dLocal Payouts V3 API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Disburse funds to beneficiaries in emerging markets via local bank\ntransfers, instant payments, mobile money, cards, and cash pick-up.\nPayouts V3 uses OAuth2 Bearer tokens for authentication (rather than\nthe HMAC signature scheme used by Payins).\n\n\nContact Support:\n Name: dLocal Support",
+      "type": "text/plain"
+    }
+  }
+}

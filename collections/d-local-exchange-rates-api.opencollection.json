@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "dLocal Exchange Rates API",
+    "version": "2.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ExchangeRates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get An Exchange Rate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dlocal.com/exchange-rates",
+            "params": [
+              {
+                "name": "from_currency",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "to_currency",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get An Exchange Rate"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

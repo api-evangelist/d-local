@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "dLocal Chargebacks API",
+    "version": "2.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Chargebacks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve A Chargeback",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dlocal.com/chargebacks/:chargeback_id",
+            "params": [
+              {
+                "name": "chargeback_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve A Chargeback"
+        },
+        {
+          "info": {
+            "name": "Retrieve A Chargeback Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dlocal.com/chargebacks/:chargeback_id/status",
+            "params": [
+              {
+                "name": "chargeback_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve A Chargeback Status"
+        },
+        {
+          "info": {
+            "name": "Simulate A Chargeback (Sandbox Only)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dlocal.com/chargebacks/simulate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Simulate a chargeback against a payment in the sandbox environment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

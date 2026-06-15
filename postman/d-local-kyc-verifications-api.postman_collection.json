@@ -1,0 +1,707 @@
+{
+  "info": {
+    "_postman_id": "a666dba7-7173-41f2-909c-4d3e06f875ae",
+    "name": "dLocal KYC Verifications API",
+    "description": "Create and manage KYC verifications across payment flows: remittances,\npayouts on hold, payins on hold, and standalone verifications.\nVerification results are delivered asynchronously via webhook.\n",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:01:19.000Z",
+    "updatedAt": "2026-06-05T15:01:19.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a666dba7-7173-41f2-909c-4d3e06f875ae"
+  },
+  "item": [
+    {
+      "name": "verifications",
+      "item": [
+        {
+          "name": "{verification_id}",
+          "item": [
+            {
+              "name": "state",
+              "item": [
+                {
+                  "name": "Update Verification State",
+                  "id": "8ba414ef-dcfa-4cd0-bfc0-c0d6c51b7fee",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"state\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/verifications/:verification_id/state",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "verifications",
+                        ":verification_id",
+                        "state"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8aafce68-0d84-4447-87d4-1c9617eff56a",
+                          "key": "verification_id",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "5d86acde-b65c-43f1-8a80-981147743442",
+                      "name": "Verification state updated",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"state\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/verifications/:verification_id/state",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "verifications",
+                            ":verification_id",
+                            "state"
+                          ],
+                          "variable": [
+                            {
+                              "key": "verification_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:01:19.000Z",
+                      "updatedAt": "2026-06-05T15:01:19.000Z",
+                      "uid": "35240-5d86acde-b65c-43f1-8a80-981147743442"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:01:19.000Z",
+                  "updatedAt": "2026-06-05T15:01:19.000Z",
+                  "uid": "35240-8ba414ef-dcfa-4cd0-bfc0-c0d6c51b7fee"
+                }
+              ],
+              "id": "fff88567-c88a-4a62-a165-c14c97503c19",
+              "createdAt": "2026-06-05T15:01:19.000Z",
+              "updatedAt": "2026-06-05T15:01:19.000Z",
+              "uid": "35240-fff88567-c88a-4a62-a165-c14c97503c19"
+            },
+            {
+              "name": "documents",
+              "item": [
+                {
+                  "name": "{document_id}",
+                  "item": [
+                    {
+                      "name": "Update A Verification Document",
+                      "id": "fa995f5a-efaf-4c42-b7be-d98d5b28a0a9",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "key": "file",
+                              "type": "file",
+                              "value": null
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/verifications/:verification_id/documents/:document_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "verifications",
+                            ":verification_id",
+                            "documents",
+                            ":document_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "d2c4a961-d8de-4a1f-a3d6-c7ded2ec53d7",
+                              "key": "verification_id",
+                              "value": "<uuid>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "ddd1e468-3804-4a45-bedb-dad4b3c1f7a2",
+                              "key": "document_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "b68f9920-1539-4331-81ec-ce08c8331dd8",
+                          "name": "Document updated",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "multipart/form-data"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "formdata",
+                              "formdata": [
+                                {
+                                  "key": "file",
+                                  "type": "file"
+                                }
+                              ]
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/verifications/:verification_id/documents/:document_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "verifications",
+                                ":verification_id",
+                                "documents",
+                                ":document_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "verification_id"
+                                },
+                                {
+                                  "key": "document_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:01:19.000Z",
+                          "updatedAt": "2026-06-05T15:01:19.000Z",
+                          "uid": "35240-b68f9920-1539-4331-81ec-ce08c8331dd8"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:01:19.000Z",
+                      "updatedAt": "2026-06-05T15:01:19.000Z",
+                      "uid": "35240-fa995f5a-efaf-4c42-b7be-d98d5b28a0a9"
+                    }
+                  ],
+                  "id": "431e7239-1b2b-4f26-abbf-6b461af956d7",
+                  "createdAt": "2026-06-05T15:01:19.000Z",
+                  "updatedAt": "2026-06-05T15:01:19.000Z",
+                  "uid": "35240-431e7239-1b2b-4f26-abbf-6b461af956d7"
+                },
+                {
+                  "name": "Get Verification Documents",
+                  "id": "31da0709-7f10-4b2e-88b6-9ea08e069759",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/verifications/:verification_id/documents",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "verifications",
+                        ":verification_id",
+                        "documents"
+                      ],
+                      "variable": [
+                        {
+                          "id": "39f44233-0c6e-4988-a8b0-45ce81351acc",
+                          "key": "verification_id",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "1f9e1276-2a98-44cd-b1e7-1112a70c4054",
+                      "name": "Documents returned",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/verifications/:verification_id/documents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "verifications",
+                            ":verification_id",
+                            "documents"
+                          ],
+                          "variable": [
+                            {
+                              "key": "verification_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:01:19.000Z",
+                      "updatedAt": "2026-06-05T15:01:19.000Z",
+                      "uid": "35240-1f9e1276-2a98-44cd-b1e7-1112a70c4054"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:01:19.000Z",
+                  "updatedAt": "2026-06-05T15:01:19.000Z",
+                  "uid": "35240-31da0709-7f10-4b2e-88b6-9ea08e069759"
+                }
+              ],
+              "id": "d16de8d9-255f-459d-97bb-da3adfa439a7",
+              "createdAt": "2026-06-05T15:01:19.000Z",
+              "updatedAt": "2026-06-05T15:01:19.000Z",
+              "uid": "35240-d16de8d9-255f-459d-97bb-da3adfa439a7"
+            },
+            {
+              "name": "Get A Verification",
+              "id": "f02c2005-22ae-4e45-ae89-c4ac78ad4187",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/verifications/:verification_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "verifications",
+                    ":verification_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "71db7ac1-fd55-4cd4-b25a-b12ad6a52401",
+                      "key": "verification_id",
+                      "value": "<uuid>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "3ef63dc3-4eae-4742-8984-091f02669887",
+                  "name": "Verification returned",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/verifications/:verification_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "verifications",
+                        ":verification_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "verification_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"type\": \"<string>\",\n  \"status\": \"PENDING\",\n  \"status_detail\": \"<string>\",\n  \"created_date\": \"<dateTime>\",\n  \"expiration_date\": \"<dateTime>\",\n  \"attributes\": {}\n}",
+                  "createdAt": "2026-06-05T15:01:19.000Z",
+                  "updatedAt": "2026-06-05T15:01:19.000Z",
+                  "uid": "35240-3ef63dc3-4eae-4742-8984-091f02669887"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:19.000Z",
+              "updatedAt": "2026-06-05T15:01:19.000Z",
+              "uid": "35240-f02c2005-22ae-4e45-ae89-c4ac78ad4187"
+            }
+          ],
+          "id": "356defcd-6b9f-4ffd-b07c-76a8fc630a41",
+          "createdAt": "2026-06-05T15:01:19.000Z",
+          "updatedAt": "2026-06-05T15:01:19.000Z",
+          "uid": "35240-356defcd-6b9f-4ffd-b07c-76a8fc630a41"
+        },
+        {
+          "name": "Create A Verification",
+          "id": "1235b167-72f5-4270-a004-a3c075db19a4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"STANDALONE\",\n  \"notification_url\": \"<uri>\",\n  \"attributes\": {},\n  \"flow\": \"standalone\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/verifications",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "verifications"
+              ]
+            },
+            "description": "Submit a KYC verification (remitter, beneficiary, or standalone)."
+          },
+          "response": [
+            {
+              "id": "e026e020-4c41-4e7d-9d5d-fd7a44130e75",
+              "name": "Verification created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"STANDALONE\",\n  \"notification_url\": \"<uri>\",\n  \"attributes\": {},\n  \"flow\": \"standalone\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/verifications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "verifications"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<uuid>\",\n  \"type\": \"<string>\",\n  \"status\": \"PENDING\",\n  \"status_detail\": \"<string>\",\n  \"created_date\": \"<dateTime>\",\n  \"expiration_date\": \"<dateTime>\",\n  \"attributes\": {}\n}",
+              "createdAt": "2026-06-05T15:01:19.000Z",
+              "updatedAt": "2026-06-05T15:01:19.000Z",
+              "uid": "35240-e026e020-4c41-4e7d-9d5d-fd7a44130e75"
+            },
+            {
+              "id": "c2b1526b-a436-4c75-9e1c-c32a758b691b",
+              "name": "Invalid request format",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"STANDALONE\",\n  \"notification_url\": \"<uri>\",\n  \"attributes\": {},\n  \"flow\": \"standalone\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/verifications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "verifications"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:01:19.000Z",
+              "updatedAt": "2026-06-05T15:01:19.000Z",
+              "uid": "35240-c2b1526b-a436-4c75-9e1c-c32a758b691b"
+            },
+            {
+              "id": "3dc02de5-7398-4b22-955e-69fc2cee8749",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"STANDALONE\",\n  \"notification_url\": \"<uri>\",\n  \"attributes\": {},\n  \"flow\": \"standalone\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/verifications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "verifications"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:01:19.000Z",
+              "updatedAt": "2026-06-05T15:01:19.000Z",
+              "uid": "35240-3dc02de5-7398-4b22-955e-69fc2cee8749"
+            },
+            {
+              "id": "bc80e742-6253-485d-93c8-c9213cb4dd24",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"STANDALONE\",\n  \"notification_url\": \"<uri>\",\n  \"attributes\": {},\n  \"flow\": \"standalone\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/verifications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "verifications"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:01:19.000Z",
+              "updatedAt": "2026-06-05T15:01:19.000Z",
+              "uid": "35240-bc80e742-6253-485d-93c8-c9213cb4dd24"
+            }
+          ],
+          "createdAt": "2026-06-05T15:01:19.000Z",
+          "updatedAt": "2026-06-05T15:01:19.000Z",
+          "uid": "35240-1235b167-72f5-4270-a004-a3c075db19a4"
+        }
+      ],
+      "id": "ed42a502-fb78-49bc-9e0f-e98a5c0387b6",
+      "createdAt": "2026-06-05T15:01:19.000Z",
+      "updatedAt": "2026-06-05T15:01:19.000Z",
+      "uid": "35240-ed42a502-fb78-49bc-9e0f-e98a5c0387b6"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.dlocal.com"
+    }
+  ]
+}

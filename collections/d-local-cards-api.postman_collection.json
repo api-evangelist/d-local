@@ -1,0 +1,330 @@
+{
+  "item": [
+    {
+      "id": "9dabc408-e8e3-4495-b32c-c705ff0b5435",
+      "name": "Cards",
+      "description": {
+        "content": "Tokenize, retrieve, and delete cards.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f2ae238e-a024-4b4a-91c1-3c7bb897fa9b",
+          "name": "Create A Card",
+          "request": {
+            "name": "Create A Card",
+            "description": {
+              "content": "Tokenize a card for use in future payments and recurring billing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "secure_cards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"card\": {\n    \"holder_name\": \"<string>\",\n    \"number\": \"<string>\",\n    \"expiration_month\": \"<integer>\",\n    \"expiration_year\": \"<integer>\",\n    \"cvv\": \"<string>\",\n    \"encrypted_data\": \"<string>\",\n    \"token\": \"<string>\",\n    \"cvv_token\": \"<string>\"\n  },\n  \"payer\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"document\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"birth_date\": \"<date>\",\n    \"address\": \"<object>\",\n    \"ip\": \"<string>\",\n    \"device_id\": \"<string>\"\n  },\n  \"country\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9d6b4044-562a-49e6-a4dc-3bbcc70c3f95",
+              "name": "Card created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "secure_cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"card\": {\n    \"holder_name\": \"<string>\",\n    \"number\": \"<string>\",\n    \"expiration_month\": \"<integer>\",\n    \"expiration_year\": \"<integer>\",\n    \"cvv\": \"<string>\",\n    \"encrypted_data\": \"<string>\",\n    \"token\": \"<string>\",\n    \"cvv_token\": \"<string>\"\n  },\n  \"payer\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"document\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"birth_date\": \"<date>\",\n    \"address\": \"<object>\",\n    \"ip\": \"<string>\",\n    \"device_id\": \"<string>\"\n  },\n  \"country\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"holder_name\": \"string\",\n  \"expiration_month\": 9049,\n  \"expiration_year\": 8721,\n  \"brand\": \"string\",\n  \"last4\": \"string\",\n  \"card_id\": \"string\",\n  \"country\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fb136d2f-7fdc-4123-a44c-c144bf990491",
+          "name": "Retrieve A Card",
+          "request": {
+            "name": "Retrieve A Card",
+            "description": {
+              "content": "Retrieve a previously created card token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "secure_cards",
+                ":card_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "card_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "acce86da-0ea2-4355-8ffe-0588218e36cb",
+              "name": "Card returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "secure_cards",
+                    ":card_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "card_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"holder_name\": \"string\",\n  \"expiration_month\": 9049,\n  \"expiration_year\": 8721,\n  \"brand\": \"string\",\n  \"last4\": \"string\",\n  \"card_id\": \"string\",\n  \"country\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6e5e4bcd-336c-4e6b-8207-6ef1624e1ef9",
+          "name": "Delete A Card",
+          "request": {
+            "name": "Delete A Card",
+            "description": {
+              "content": "Delete a previously created card token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "secure_cards",
+                ":card_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "card_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e361740f-eb74-486a-a31b-903802c2b9a2",
+              "name": "Card deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "secure_cards",
+                    ":card_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "card_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.dlocal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4ef256a4-bd79-4226-a11d-fea9f4912b9a",
+    "name": "dLocal Cards API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Securely store cards for repeat usage. Create returns a `card_id` token\nthat can be used in subsequent Payments and Authorizations.\n",
+      "type": "text/plain"
+    }
+  }
+}

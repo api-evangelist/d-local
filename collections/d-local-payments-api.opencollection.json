@@ -1,0 +1,176 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "dLocal Payments API",
+    "version": "2.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create A Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dlocal.com/payments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new payment using a local payment method in the target country."
+        },
+        {
+          "info": {
+            "name": "Retrieve A Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dlocal.com/payments/:payment_id",
+            "params": [
+              {
+                "name": "payment_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve full payment details. Payments older than 12 months may return 404."
+        },
+        {
+          "info": {
+            "name": "Retrieve A Payment Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dlocal.com/payments/:payment_id/status",
+            "params": [
+              {
+                "name": "payment_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a lightweight status snapshot of a payment."
+        },
+        {
+          "info": {
+            "name": "Cancel An Alternative Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dlocal.com/payments/:payment_id/cancel",
+            "params": [
+              {
+                "name": "payment_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel a pending alternative (non-card) payment such as a cash ticket or bank transfer."
+        },
+        {
+          "info": {
+            "name": "Search Payment Methods",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dlocal.com/payment-methods",
+            "params": [
+              {
+                "name": "country",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List supported payment methods for a country and currency."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Authorizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create An Authorization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dlocal.com/secure_payments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authorize a card transaction without capturing funds. Set capture=false on the card object."
+        },
+        {
+          "info": {
+            "name": "Capture An Authorization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dlocal.com/payments/:authorization_id/captures",
+            "params": [
+              {
+                "name": "authorization_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Capture funds previously authorized."
+        },
+        {
+          "info": {
+            "name": "Cancel An Authorization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dlocal.com/payments/:authorization_id/cancel",
+            "params": [
+              {
+                "name": "authorization_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Release a previously authorized payment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

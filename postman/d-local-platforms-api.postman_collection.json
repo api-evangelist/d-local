@@ -1,0 +1,1525 @@
+{
+  "info": {
+    "_postman_id": "69a32970-cf8a-4145-b2ad-f3d37f9eed82",
+    "name": "dLocal For Platforms API",
+    "description": "The dLocal for Platforms (marketplace) API onboards and manages\nsub-merchant accounts, performs KYC, manages bank accounts, settles\ntransfers between accounts, and reports balances. Used by\nmarketplaces and platforms that hold funds on behalf of sub-users.\n",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:01:18.000Z",
+    "updatedAt": "2026-06-05T15:01:18.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-69a32970-cf8a-4145-b2ad-f3d37f9eed82"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "accounts",
+          "item": [
+            {
+              "name": "{account_id}",
+              "item": [
+                {
+                  "name": "update",
+                  "item": [
+                    {
+                      "name": "Update An Account",
+                      "id": "ed73f48e-03b3-4fec-9ca4-f6d5b5d6cf61",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/accounts/:account_id/update",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "accounts",
+                            ":account_id",
+                            "update"
+                          ],
+                          "variable": [
+                            {
+                              "id": "8409172c-c143-4fd7-8f3f-85c3942c3562",
+                              "key": "account_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "ecd2acd1-bd82-496a-aa09-e1221020116d",
+                          "name": "Account updated",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/accounts/:account_id/update",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "accounts",
+                                ":account_id",
+                                "update"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:01:18.000Z",
+                          "updatedAt": "2026-06-05T15:01:18.000Z",
+                          "uid": "35240-ecd2acd1-bd82-496a-aa09-e1221020116d"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:01:18.000Z",
+                      "updatedAt": "2026-06-05T15:01:18.000Z",
+                      "uid": "35240-ed73f48e-03b3-4fec-9ca4-f6d5b5d6cf61"
+                    }
+                  ],
+                  "id": "80d9ac82-3433-44f2-bcd1-6c55cf85bd29",
+                  "createdAt": "2026-06-05T15:01:18.000Z",
+                  "updatedAt": "2026-06-05T15:01:18.000Z",
+                  "uid": "35240-80d9ac82-3433-44f2-bcd1-6c55cf85bd29"
+                },
+                {
+                  "name": "block",
+                  "item": [
+                    {
+                      "name": "Block An Account",
+                      "id": "2e80627b-bff2-4960-b56b-7061326ad743",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/accounts/:account_id/block",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "accounts",
+                            ":account_id",
+                            "block"
+                          ],
+                          "variable": [
+                            {
+                              "id": "1724bd55-650a-487f-b031-06e7bbbd63ba",
+                              "key": "account_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "3299f02f-3be7-4a46-b143-fa413b0def30",
+                          "name": "Account blocked",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/accounts/:account_id/block",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "accounts",
+                                ":account_id",
+                                "block"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:01:18.000Z",
+                          "updatedAt": "2026-06-05T15:01:18.000Z",
+                          "uid": "35240-3299f02f-3be7-4a46-b143-fa413b0def30"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:01:18.000Z",
+                      "updatedAt": "2026-06-05T15:01:18.000Z",
+                      "uid": "35240-2e80627b-bff2-4960-b56b-7061326ad743"
+                    }
+                  ],
+                  "id": "6d35a99c-2879-44d4-9606-0325ec7a7650",
+                  "createdAt": "2026-06-05T15:01:18.000Z",
+                  "updatedAt": "2026-06-05T15:01:18.000Z",
+                  "uid": "35240-6d35a99c-2879-44d4-9606-0325ec7a7650"
+                },
+                {
+                  "name": "unblock",
+                  "item": [
+                    {
+                      "name": "Unblock An Account",
+                      "id": "5bbde2ad-12d1-4ceb-8a2c-c25adebb8285",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/accounts/:account_id/unblock",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "accounts",
+                            ":account_id",
+                            "unblock"
+                          ],
+                          "variable": [
+                            {
+                              "id": "0f32e5c4-5857-4a4c-a61e-c4d8895fe598",
+                              "key": "account_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "63f8461b-4364-4a0e-8687-38de835e263d",
+                          "name": "Account unblocked",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/accounts/:account_id/unblock",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "accounts",
+                                ":account_id",
+                                "unblock"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:01:18.000Z",
+                          "updatedAt": "2026-06-05T15:01:18.000Z",
+                          "uid": "35240-63f8461b-4364-4a0e-8687-38de835e263d"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:01:18.000Z",
+                      "updatedAt": "2026-06-05T15:01:18.000Z",
+                      "uid": "35240-5bbde2ad-12d1-4ceb-8a2c-c25adebb8285"
+                    }
+                  ],
+                  "id": "ac063443-15ea-4ddb-aee7-8ebaef2c281e",
+                  "createdAt": "2026-06-05T15:01:18.000Z",
+                  "updatedAt": "2026-06-05T15:01:18.000Z",
+                  "uid": "35240-ac063443-15ea-4ddb-aee7-8ebaef2c281e"
+                },
+                {
+                  "name": "cancel",
+                  "item": [
+                    {
+                      "name": "Cancel An Account",
+                      "id": "c23f99a5-92b3-4634-b00e-b77f6099e4cd",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/accounts/:account_id/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "accounts",
+                            ":account_id",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "id": "88650ac2-aa4f-4582-a83d-5e1801b685e8",
+                              "key": "account_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "288c4244-1d1b-4976-96d6-76699c143943",
+                          "name": "Account cancelled",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/accounts/:account_id/cancel",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "accounts",
+                                ":account_id",
+                                "cancel"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:01:18.000Z",
+                          "updatedAt": "2026-06-05T15:01:18.000Z",
+                          "uid": "35240-288c4244-1d1b-4976-96d6-76699c143943"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:01:18.000Z",
+                      "updatedAt": "2026-06-05T15:01:18.000Z",
+                      "uid": "35240-c23f99a5-92b3-4634-b00e-b77f6099e4cd"
+                    }
+                  ],
+                  "id": "dc590dc5-2769-4e77-b4d0-ad589237b3aa",
+                  "createdAt": "2026-06-05T15:01:18.000Z",
+                  "updatedAt": "2026-06-05T15:01:18.000Z",
+                  "uid": "35240-dc590dc5-2769-4e77-b4d0-ad589237b3aa"
+                },
+                {
+                  "name": "balance",
+                  "item": [
+                    {
+                      "name": "Get Account Balance",
+                      "id": "2c35af63-ad63-42b6-83e4-d5315b434a87",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/accounts/:account_id/balance",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "accounts",
+                            ":account_id",
+                            "balance"
+                          ],
+                          "variable": [
+                            {
+                              "id": "cbae19e3-d129-4b06-83a2-14b33da6966c",
+                              "key": "account_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "a3565dd9-214d-4054-be4c-73dbaeea2725",
+                          "name": "Balance returned",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/accounts/:account_id/balance",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "accounts",
+                                ":account_id",
+                                "balance"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:01:18.000Z",
+                          "updatedAt": "2026-06-05T15:01:18.000Z",
+                          "uid": "35240-a3565dd9-214d-4054-be4c-73dbaeea2725"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:01:18.000Z",
+                      "updatedAt": "2026-06-05T15:01:18.000Z",
+                      "uid": "35240-2c35af63-ad63-42b6-83e4-d5315b434a87"
+                    }
+                  ],
+                  "id": "f857c51a-87b8-4c67-a37f-2721c5108b50",
+                  "createdAt": "2026-06-05T15:01:18.000Z",
+                  "updatedAt": "2026-06-05T15:01:18.000Z",
+                  "uid": "35240-f857c51a-87b8-4c67-a37f-2721c5108b50"
+                },
+                {
+                  "name": "credentials",
+                  "item": [
+                    {
+                      "name": "Get Account Credentials",
+                      "id": "d5e5f4bb-7874-4b5c-bcb2-5469f9dd52c4",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/accounts/:account_id/credentials",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "accounts",
+                            ":account_id",
+                            "credentials"
+                          ],
+                          "variable": [
+                            {
+                              "id": "67bd6360-260a-4a91-a602-d07f3eeb7fa4",
+                              "key": "account_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "da5265bc-df94-4a74-9daf-fda231ac10f3",
+                          "name": "Credentials returned",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/accounts/:account_id/credentials",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "accounts",
+                                ":account_id",
+                                "credentials"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:01:18.000Z",
+                          "updatedAt": "2026-06-05T15:01:18.000Z",
+                          "uid": "35240-da5265bc-df94-4a74-9daf-fda231ac10f3"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:01:18.000Z",
+                      "updatedAt": "2026-06-05T15:01:18.000Z",
+                      "uid": "35240-d5e5f4bb-7874-4b5c-bcb2-5469f9dd52c4"
+                    }
+                  ],
+                  "id": "10b1296d-7443-4ca6-a155-8aa449bbdc24",
+                  "createdAt": "2026-06-05T15:01:18.000Z",
+                  "updatedAt": "2026-06-05T15:01:18.000Z",
+                  "uid": "35240-10b1296d-7443-4ca6-a155-8aa449bbdc24"
+                },
+                {
+                  "name": "kyc",
+                  "item": [
+                    {
+                      "name": "Get Account KYC",
+                      "id": "5afa1ae1-08f1-4f35-b44b-96257d1e6aa4",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/accounts/:account_id/kyc",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "accounts",
+                            ":account_id",
+                            "kyc"
+                          ],
+                          "variable": [
+                            {
+                              "id": "52f38563-bf41-4496-abf1-aa740c0c20b6",
+                              "key": "account_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "bb14765e-8065-4230-89e3-0b94c754ce28",
+                          "name": "KYC state returned",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/accounts/:account_id/kyc",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "accounts",
+                                ":account_id",
+                                "kyc"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:01:18.000Z",
+                          "updatedAt": "2026-06-05T15:01:18.000Z",
+                          "uid": "35240-bb14765e-8065-4230-89e3-0b94c754ce28"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:01:18.000Z",
+                      "updatedAt": "2026-06-05T15:01:18.000Z",
+                      "uid": "35240-5afa1ae1-08f1-4f35-b44b-96257d1e6aa4"
+                    }
+                  ],
+                  "id": "526fb4b7-f1ff-4106-aa10-0860732dc486",
+                  "createdAt": "2026-06-05T15:01:18.000Z",
+                  "updatedAt": "2026-06-05T15:01:18.000Z",
+                  "uid": "35240-526fb4b7-f1ff-4106-aa10-0860732dc486"
+                },
+                {
+                  "name": "bank-accounts",
+                  "item": [
+                    {
+                      "name": "{bank_account_id}",
+                      "item": [
+                        {
+                          "name": "Get A Bank Account",
+                          "id": "d6af55e5-24b8-4a5f-9a6a-de658698b694",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/accounts/:account_id/bank-accounts/:bank_account_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "accounts",
+                                ":account_id",
+                                "bank-accounts",
+                                ":bank_account_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "141ff20e-5cdf-41b1-bbcd-9bc40a8448b4",
+                                  "key": "account_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "4f48e061-010f-4824-973f-88de6185f625",
+                                  "key": "bank_account_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "0999e61b-92e4-4b98-8447-cf63829a8778",
+                              "name": "Bank account returned",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/accounts/:account_id/bank-accounts/:bank_account_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "accounts",
+                                    ":account_id",
+                                    "bank-accounts",
+                                    ":bank_account_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "account_id"
+                                    },
+                                    {
+                                      "key": "bank_account_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:01:18.000Z",
+                              "updatedAt": "2026-06-05T15:01:18.000Z",
+                              "uid": "35240-0999e61b-92e4-4b98-8447-cf63829a8778"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:01:18.000Z",
+                          "updatedAt": "2026-06-05T15:01:18.000Z",
+                          "uid": "35240-d6af55e5-24b8-4a5f-9a6a-de658698b694"
+                        },
+                        {
+                          "name": "Disable A Bank Account",
+                          "id": "a7c6d815-1dc8-4c65-9ccd-0dba45b2303a",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/accounts/:account_id/bank-accounts/:bank_account_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "accounts",
+                                ":account_id",
+                                "bank-accounts",
+                                ":bank_account_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "4447fbb8-a705-4e67-9adf-b4eb9b8b73ae",
+                                  "key": "account_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "971bbc8b-5426-4c51-9a7d-604304b79783",
+                                  "key": "bank_account_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "f4761429-ea3f-41de-87df-5c9d8a756368",
+                              "name": "Bank account disabled",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/accounts/:account_id/bank-accounts/:bank_account_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "accounts",
+                                    ":account_id",
+                                    "bank-accounts",
+                                    ":bank_account_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "account_id"
+                                    },
+                                    {
+                                      "key": "bank_account_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:01:18.000Z",
+                              "updatedAt": "2026-06-05T15:01:18.000Z",
+                              "uid": "35240-f4761429-ea3f-41de-87df-5c9d8a756368"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:01:18.000Z",
+                          "updatedAt": "2026-06-05T15:01:18.000Z",
+                          "uid": "35240-a7c6d815-1dc8-4c65-9ccd-0dba45b2303a"
+                        }
+                      ],
+                      "id": "7110ffaa-d7a8-44c1-974c-9f0affbd7dc8",
+                      "createdAt": "2026-06-05T15:01:18.000Z",
+                      "updatedAt": "2026-06-05T15:01:18.000Z",
+                      "uid": "35240-7110ffaa-d7a8-44c1-974c-9f0affbd7dc8"
+                    },
+                    {
+                      "name": "Add Bank Account",
+                      "id": "567e8892-ee2a-41da-9871-0dd266095cb3",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/accounts/:account_id/bank-accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "accounts",
+                            ":account_id",
+                            "bank-accounts"
+                          ],
+                          "variable": [
+                            {
+                              "id": "054a76d0-7046-4f2b-b15d-f94555d6b4da",
+                              "key": "account_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "5a4afab2-82f6-4284-999d-baae45efddce",
+                          "name": "Bank account added",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/accounts/:account_id/bank-accounts",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "accounts",
+                                ":account_id",
+                                "bank-accounts"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:01:18.000Z",
+                          "updatedAt": "2026-06-05T15:01:18.000Z",
+                          "uid": "35240-5a4afab2-82f6-4284-999d-baae45efddce"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:01:18.000Z",
+                      "updatedAt": "2026-06-05T15:01:18.000Z",
+                      "uid": "35240-567e8892-ee2a-41da-9871-0dd266095cb3"
+                    },
+                    {
+                      "name": "Get Bank Account List",
+                      "id": "9b00d26d-7dff-4ca0-9b73-f21dcc03e0d5",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/accounts/:account_id/bank-accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "accounts",
+                            ":account_id",
+                            "bank-accounts"
+                          ],
+                          "variable": [
+                            {
+                              "id": "f6d1b094-0e46-4aaf-a1bf-a8da71816264",
+                              "key": "account_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "1d6a6db6-18ab-4c7c-a00f-ed1a8c2fd0a2",
+                          "name": "List returned",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/accounts/:account_id/bank-accounts",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "accounts",
+                                ":account_id",
+                                "bank-accounts"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:01:18.000Z",
+                          "updatedAt": "2026-06-05T15:01:18.000Z",
+                          "uid": "35240-1d6a6db6-18ab-4c7c-a00f-ed1a8c2fd0a2"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:01:18.000Z",
+                      "updatedAt": "2026-06-05T15:01:18.000Z",
+                      "uid": "35240-9b00d26d-7dff-4ca0-9b73-f21dcc03e0d5"
+                    }
+                  ],
+                  "id": "674c4859-20a4-4c45-bd14-eb06f0e4fbc3",
+                  "createdAt": "2026-06-05T15:01:18.000Z",
+                  "updatedAt": "2026-06-05T15:01:18.000Z",
+                  "uid": "35240-674c4859-20a4-4c45-bd14-eb06f0e4fbc3"
+                },
+                {
+                  "name": "Get An Account",
+                  "id": "3d507a14-04d4-4211-a16b-081610b4c0f4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/accounts/:account_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "accounts",
+                        ":account_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f3c7d435-016e-412b-afdf-f160fefc739e",
+                          "key": "account_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "20c1e8d1-ad2d-4674-89a1-b04934c6e373",
+                      "name": "Account returned",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/accounts/:account_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "accounts",
+                            ":account_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "account_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"account_id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"status_code\": \"<string>\",\n  \"creation_date\": \"<dateTime>\",\n  \"ubo_id\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:01:18.000Z",
+                      "updatedAt": "2026-06-05T15:01:18.000Z",
+                      "uid": "35240-20c1e8d1-ad2d-4674-89a1-b04934c6e373"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:01:18.000Z",
+                  "updatedAt": "2026-06-05T15:01:18.000Z",
+                  "uid": "35240-3d507a14-04d4-4211-a16b-081610b4c0f4"
+                }
+              ],
+              "id": "09ed7238-8762-4e23-815f-fdcb28b8722e",
+              "createdAt": "2026-06-05T15:01:18.000Z",
+              "updatedAt": "2026-06-05T15:01:18.000Z",
+              "uid": "35240-09ed7238-8762-4e23-815f-fdcb28b8722e"
+            },
+            {
+              "name": "Create An Account",
+              "id": "102e584f-1439-485b-b462-16674ad3f30e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"platform_type\": \"<string>\",\n  \"tax_category\": \"company\",\n  \"account_name\": \"<string>\",\n  \"account_email\": \"<email>\",\n  \"account_country\": \"<string>\",\n  \"notification_url\": \"<uri>\",\n  \"company_information\": {},\n  \"settings\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/accounts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "accounts"
+                  ]
+                },
+                "description": "Onboard a new sub-merchant account (company or individual)."
+              },
+              "response": [
+                {
+                  "id": "2ec97cc7-1f19-4084-95ea-450ac19f6a79",
+                  "name": "Account created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"platform_type\": \"<string>\",\n  \"tax_category\": \"company\",\n  \"account_name\": \"<string>\",\n  \"account_email\": \"<email>\",\n  \"account_country\": \"<string>\",\n  \"notification_url\": \"<uri>\",\n  \"company_information\": {},\n  \"settings\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/accounts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "accounts"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"account_id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"status_code\": \"<string>\",\n  \"creation_date\": \"<dateTime>\",\n  \"ubo_id\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:01:18.000Z",
+                  "updatedAt": "2026-06-05T15:01:18.000Z",
+                  "uid": "35240-2ec97cc7-1f19-4084-95ea-450ac19f6a79"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:18.000Z",
+              "updatedAt": "2026-06-05T15:01:18.000Z",
+              "uid": "35240-102e584f-1439-485b-b462-16674ad3f30e"
+            }
+          ],
+          "id": "c2067843-e663-4c30-99e2-97b578bfcf5a",
+          "createdAt": "2026-06-05T15:01:18.000Z",
+          "updatedAt": "2026-06-05T15:01:18.000Z",
+          "uid": "35240-c2067843-e663-4c30-99e2-97b578bfcf5a"
+        },
+        {
+          "name": "transfers",
+          "item": [
+            {
+              "name": "{transfer_id}",
+              "item": [
+                {
+                  "name": "cancel",
+                  "item": [
+                    {
+                      "name": "Cancel A Transfer",
+                      "id": "277977af-ec8e-40ff-befc-9d28bb81449b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/transfers/:transfer_id/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "transfers",
+                            ":transfer_id",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "id": "defbe909-7535-4786-9db9-d38ecf94cee1",
+                              "key": "transfer_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "0f2d2ade-18ad-43a5-a487-1a0a22962bcb",
+                          "name": "Transfer cancelled",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/transfers/:transfer_id/cancel",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "transfers",
+                                ":transfer_id",
+                                "cancel"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "transfer_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:01:18.000Z",
+                          "updatedAt": "2026-06-05T15:01:18.000Z",
+                          "uid": "35240-0f2d2ade-18ad-43a5-a487-1a0a22962bcb"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:01:18.000Z",
+                      "updatedAt": "2026-06-05T15:01:18.000Z",
+                      "uid": "35240-277977af-ec8e-40ff-befc-9d28bb81449b"
+                    }
+                  ],
+                  "id": "128b56f3-1880-4034-99e3-91cb72bb3d97",
+                  "createdAt": "2026-06-05T15:01:18.000Z",
+                  "updatedAt": "2026-06-05T15:01:18.000Z",
+                  "uid": "35240-128b56f3-1880-4034-99e3-91cb72bb3d97"
+                },
+                {
+                  "name": "Get A Transfer",
+                  "id": "94578cba-a990-488b-80f8-59a5ab7616fd",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/transfers/:transfer_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "transfers",
+                        ":transfer_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "b4598d29-cfe2-413d-a32e-03fc9a39529b",
+                          "key": "transfer_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "047b7e3b-e66d-496e-b632-2a5a95408452",
+                      "name": "Transfer returned",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/transfers/:transfer_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "transfers",
+                            ":transfer_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "transfer_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:01:18.000Z",
+                      "updatedAt": "2026-06-05T15:01:18.000Z",
+                      "uid": "35240-047b7e3b-e66d-496e-b632-2a5a95408452"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:01:18.000Z",
+                  "updatedAt": "2026-06-05T15:01:18.000Z",
+                  "uid": "35240-94578cba-a990-488b-80f8-59a5ab7616fd"
+                }
+              ],
+              "id": "931baae2-658f-4f24-809b-075227f138eb",
+              "createdAt": "2026-06-05T15:01:18.000Z",
+              "updatedAt": "2026-06-05T15:01:18.000Z",
+              "uid": "35240-931baae2-658f-4f24-809b-075227f138eb"
+            },
+            {
+              "name": "Create A Transfer",
+              "id": "4bf100ff-87c4-459e-8c02-2ca312d64524",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"from_account\": \"<string>\",\n  \"to_account\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/transfers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "transfers"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "d7f0ef46-8e67-467f-b696-12948c9c1407",
+                  "name": "Transfer created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"from_account\": \"<string>\",\n  \"to_account\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/transfers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "transfers"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:01:18.000Z",
+                  "updatedAt": "2026-06-05T15:01:18.000Z",
+                  "uid": "35240-d7f0ef46-8e67-467f-b696-12948c9c1407"
+                }
+              ],
+              "createdAt": "2026-06-05T15:01:18.000Z",
+              "updatedAt": "2026-06-05T15:01:18.000Z",
+              "uid": "35240-4bf100ff-87c4-459e-8c02-2ca312d64524"
+            }
+          ],
+          "id": "3c6a0453-2538-4218-a954-2fa6bb0fd4f8",
+          "createdAt": "2026-06-05T15:01:18.000Z",
+          "updatedAt": "2026-06-05T15:01:18.000Z",
+          "uid": "35240-3c6a0453-2538-4218-a954-2fa6bb0fd4f8"
+        }
+      ],
+      "id": "530235c7-5242-4e4f-8242-d29116985368",
+      "createdAt": "2026-06-05T15:01:18.000Z",
+      "updatedAt": "2026-06-05T15:01:18.000Z",
+      "uid": "35240-530235c7-5242-4e4f-8242-d29116985368"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://marketplace-api.dlocal.com"
+    }
+  ]
+}
