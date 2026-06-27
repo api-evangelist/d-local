@@ -49,11 +49,11 @@ apis:
       - url: json-structure/payments-payment-structure.json
         type: JSONStructure
       - url: examples/payments-create-payment-example.json
-        type: Example
+        type: Examples
       - url: examples/payments-retrieve-payment-example.json
-        type: Example
+        type: Examples
       - url: examples/payments-pix-example.json
-        type: Example
+        type: Examples
     description: |
       Create, retrieve, cancel, and authorize payments using 1,000+ local
       payment methods including cards, Pix, UPI, M-Pesa, Boleto, OXXO, SPEI,
@@ -76,7 +76,7 @@ apis:
       - url: json-schema/refunds-refund-schema.json
         type: JSONSchema
       - url: examples/refunds-make-refund-example.json
-        type: Example
+        type: Examples
     description: |
       Create, retrieve, and inspect refunds against previously successful
       payments. Refunds may be full or partial and are settled in the
@@ -98,7 +98,7 @@ apis:
       - url: json-schema/cards-card-token-schema.json
         type: JSONSchema
       - url: examples/cards-create-card-example.json
-        type: Example
+        type: Examples
     description: |
       Securely tokenize cards (server-side) for repeat usage. Returns a
       card_id token consumable by subsequent Payments and Authorizations.
@@ -124,9 +124,9 @@ apis:
       - url: json-structure/payouts-v3-payout-structure.json
         type: JSONStructure
       - url: examples/payouts-v3-request-payout-example.json
-        type: Example
+        type: Examples
       - url: examples/payouts-v3-get-balance-example.json
-        type: Example
+        type: Examples
     description: |
       Disburse funds to beneficiaries across 60+ countries via local bank
       transfers, instant payments, cards, mobile money, and cash pick-up.
@@ -153,7 +153,7 @@ apis:
       - url: json-schema/platforms-account-schema.json
         type: JSONSchema
       - url: examples/platforms-create-account-example.json
-        type: Example
+        type: Examples
     description: |
       The dLocal for Platforms (marketplace) API onboards sub-merchant
       accounts, manages KYC, attaches bank accounts, settles inter-account
@@ -177,7 +177,7 @@ apis:
       - url: openapi/d-local-kyc-verifications-api-openapi.yml
         type: OpenAPI
       - url: examples/kyc-create-verification-example.json
-        type: Example
+        type: Examples
     description: |
       Create and manage KYC verifications across remittance, payouts-on-hold,
       payins-on-hold, and standalone flows. Receives asynchronous status
@@ -239,61 +239,58 @@ apis:
       - url: openapi/d-local-exchange-rates-api-openapi.yml
         type: OpenAPI
       - url: examples/exchange-rates-get-rate-example.json
-        type: Example
+        type: Examples
     description: |
       Retrieve real-time FX rates between settlement currencies and local
       currencies before creating a payment or payout.
 common:
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/dlocal/overview
-  - type: ArazzoWorkflows
-    url: arazzo/
-    workflows:
-      - url: arazzo/d-local-authorize-and-capture-payment-workflow.yml
-        name: dLocal Authorize and Capture Payment
-        summary: Authorize a card transaction, confirm the authorization, then capture the funds.
-      - url: arazzo/d-local-cancel-pending-payment-workflow.yml
-        name: dLocal Cancel Pending Payment
-        summary: Create an alternative payment, check its status, and cancel it while it is still PENDING.
-      - url: arazzo/d-local-create-and-resolve-kyc-verification-workflow.yml
-        name: dLocal Create and Resolve KYC Verification
-        summary: Create a KYC verification, confirm it persisted, then branch on its status to update state or list documents.
-      - url: arazzo/d-local-create-payment-and-confirm-status-workflow.yml
-        name: dLocal Create Payment and Confirm Status
-        summary: Discover a supported payment method, create a payment, then poll its status until it settles.
-      - url: arazzo/d-local-enroll-and-charge-recurring-workflow.yml
-        name: dLocal Enroll and Charge Recurring
-        summary: Enroll a payer for Pix Automatico, confirm the enrollment is ACTIVE, then place the first recurring charge.
-      - url: arazzo/d-local-fx-preview-and-pay-workflow.yml
-        name: dLocal FX Preview and Pay
-        summary: Preview the exchange rate for a corridor, then create a payment in the local currency.
-      - url: arazzo/d-local-hold-and-release-payout-workflow.yml
-        name: dLocal Hold and Release Payout
-        summary: Request a payout on hold, review it, then release or cancel based on the review.
-      - url: arazzo/d-local-list-payment-refunds-workflow.yml
-        name: dLocal List and Inspect Payment Refunds
-        summary: Confirm a payment, list all refunds raised against it, then retrieve one refund in detail.
-      - url: arazzo/d-local-manage-account-bank-accounts-workflow.yml
-        name: dLocal Manage Account Bank Accounts
-        summary: Add a bank account to a sub-merchant, list the account's bank accounts, retrieve one, then disable it.
-      - url: arazzo/d-local-onboard-submerchant-account-workflow.yml
-        name: dLocal Onboard Sub-Merchant Account
-        summary: Create a platform sub-merchant account, attach a bank account, then confirm KYC and balance.
-      - url: arazzo/d-local-quote-and-request-payout-workflow.yml
-        name: dLocal Quote and Request Payout
-        summary: Check balance, lock an FX quote, request a payout against the quote, then confirm its status.
-      - url: arazzo/d-local-refund-payment-and-confirm-workflow.yml
-        name: dLocal Refund Payment and Confirm
-        summary: Confirm a payment is PAID, issue a refund against it, then verify the refund status.
-      - url: arazzo/d-local-settle-transfer-between-accounts-workflow.yml
-        name: dLocal Settle Transfer Between Accounts
-        summary: Check the source account balance, transfer funds to another account, then confirm the transfer.
-      - url: arazzo/d-local-simulate-and-inspect-chargeback-workflow.yml
-        name: dLocal Simulate and Inspect Chargeback
-        summary: Create a payment, simulate a chargeback against it in sandbox, then inspect the chargeback and its status.
-      - url: arazzo/d-local-tokenize-card-and-charge-workflow.yml
-        name: dLocal Tokenize Card and Charge
-        summary: Tokenize a card, verify the stored token, then charge it in a card payment.
+  - type: Arazzo
+    url: arazzo/d-local-authorize-and-capture-payment-workflow.yml
+    name: dLocal Authorize and Capture Payment
+  - type: Arazzo
+    url: arazzo/d-local-cancel-pending-payment-workflow.yml
+    name: dLocal Cancel Pending Payment
+  - type: Arazzo
+    url: arazzo/d-local-create-and-resolve-kyc-verification-workflow.yml
+    name: dLocal Create and Resolve KYC Verification
+  - type: Arazzo
+    url: arazzo/d-local-create-payment-and-confirm-status-workflow.yml
+    name: dLocal Create Payment and Confirm Status
+  - type: Arazzo
+    url: arazzo/d-local-enroll-and-charge-recurring-workflow.yml
+    name: dLocal Enroll and Charge Recurring
+  - type: Arazzo
+    url: arazzo/d-local-fx-preview-and-pay-workflow.yml
+    name: dLocal FX Preview and Pay
+  - type: Arazzo
+    url: arazzo/d-local-hold-and-release-payout-workflow.yml
+    name: dLocal Hold and Release Payout
+  - type: Arazzo
+    url: arazzo/d-local-list-payment-refunds-workflow.yml
+    name: dLocal List and Inspect Payment Refunds
+  - type: Arazzo
+    url: arazzo/d-local-manage-account-bank-accounts-workflow.yml
+    name: dLocal Manage Account Bank Accounts
+  - type: Arazzo
+    url: arazzo/d-local-onboard-submerchant-account-workflow.yml
+    name: dLocal Onboard Sub-Merchant Account
+  - type: Arazzo
+    url: arazzo/d-local-quote-and-request-payout-workflow.yml
+    name: dLocal Quote and Request Payout
+  - type: Arazzo
+    url: arazzo/d-local-refund-payment-and-confirm-workflow.yml
+    name: dLocal Refund Payment and Confirm
+  - type: Arazzo
+    url: arazzo/d-local-settle-transfer-between-accounts-workflow.yml
+    name: dLocal Settle Transfer Between Accounts
+  - type: Arazzo
+    url: arazzo/d-local-simulate-and-inspect-chargeback-workflow.yml
+    name: dLocal Simulate and Inspect Chargeback
+  - type: Arazzo
+    url: arazzo/d-local-tokenize-card-and-charge-workflow.yml
+    name: dLocal Tokenize Card and Charge
   - url: https://dlocal.com/
     type: Portal
   - url: https://docs.dlocal.com/
@@ -304,7 +301,7 @@ common:
     type: GettingStarted
   - url: https://docs.dlocal.com/docs/make-a-test-payment
     name: Make a test payment
-    type: Quickstart
+    type: GettingStarted
   - url: https://docs.dlocal.com/docs/enable-live-mode
     type: Documentation
   - url: https://docs.dlocal.com/docs/initial-settings
@@ -323,13 +320,13 @@ common:
     type: Documentation
   - url: https://docs.dlocal.com/reference/postman-api-collection
     name: dLocal Postman Collection
-    type: SDK
+    type: SDKs
   - url: https://dlocal.statuspage.io/
     type: StatusPage
   - url: https://dlocal.com/blog/
     type: Blog
   - url: https://dlocal.com/contact-sales/
-    type: SignUp
+    type: Signup
   - url: https://dlocal.com/careers/
     name: dLocal Careers
     type: Resources
@@ -349,31 +346,31 @@ common:
     type: GitHubOrganization
   - url: https://github.com/dlocal/dlocal-direct-ios-sdk
     name: dLocal Direct iOS SDK
-    type: SDK
+    type: SDKs
   - url: https://github.com/dlocal/dlocal-direct-android-sdk
     name: dLocal Direct Android SDK
-    type: SDK
+    type: SDKs
   - url: https://github.com/dlocal/mobile-checkout-sdk-ios
     name: dLocal Mobile Checkout iOS SDK
-    type: SDK
+    type: SDKs
   - url: https://github.com/dlocal/mobile-checkout-sdk-android
     name: dLocal Mobile Checkout Android SDK
-    type: SDK
+    type: SDKs
   - url: https://github.com/dlocal/web-drop-in-sdk-android
     name: dLocal Web Drop-In Android SDK
-    type: SDK
+    type: SDKs
   - url: https://github.com/dlocal/data-collector-sdk-ios
     name: dLocal Data Collector iOS SDK
-    type: SDK
+    type: SDKs
   - url: https://github.com/dlocal/data-collector-sdk-android
     name: dLocal Data Collector Android SDK
-    type: SDK
+    type: SDKs
   - url: https://github.com/dlocal/dlocal-data-collector-capacitor-plugin
     name: dLocal Data Collector Capacitor Plugin
-    type: SDK
+    type: SDKs
   - url: https://github.com/dlocal/dlocal-direct-js-native-integration
     name: dLocal Direct JS-Native Integration
-    type: SDK
+    type: SDKs
   - url: https://github.com/dlocal/smart-fields-examples
     name: dLocal SmartFields Examples
     type: CodeExamples
@@ -382,7 +379,7 @@ common:
     type: CodeExamples
   - url: https://docs.dlocal.com/reference/including-dlocaljs
     name: dlocal.js (SmartFields)
-    type: SDK
+    type: SDKs
   - url: https://docs.dlocal.com/reference/troubleshooting-integration
     type: Troubleshooting
   - url: https://docs.dlocal.com/reference/troubleshooting-signature
@@ -390,13 +387,13 @@ common:
   - url: https://docs.dlocal.com/reference/payment-status-codes
     type: Documentation
   - url: https://docs.dlocal.com/reference/http-errors-payments
-    type: Errors
+    type: ErrorCodes
   - url: https://docs.dlocal.com/reference/http-errors-refunds
-    type: Errors
+    type: ErrorCodes
   - url: https://docs.dlocal.com/reference/http-errors-cards
-    type: Errors
+    type: ErrorCodes
   - url: https://docs.dlocal.com/reference/error-codes-payouts-v3
-    type: Errors
+    type: ErrorCodes
   - url: https://docs.dlocal.com/reference/country-reference
     type: Documentation
   - url: https://docs.dlocal.com/docs/overview-payins
