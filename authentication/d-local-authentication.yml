@@ -1,0 +1,32 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/d-local-cards-api-openapi.yml, openapi/d-local-chargebacks-api-openapi.yml,
+  openapi/d-local-enrollments-api-openapi.yml, openapi/d-local-exchange-rates-api-openapi.yml,
+  openapi/d-local-kyc-verifications-api-openapi.yml, openapi/d-local-payments-api-openapi.yml,
+  openapi/d-local-payouts-v3-api-openapi.yml, openapi/d-local-platforms-api-openapi.yml, openapi/d-local-refunds-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: dLocalSignature
+  type: apiKey
+  in: header
+  parameter: Authorization
+  sources:
+  - openapi/d-local-cards-api-openapi.yml
+  - openapi/d-local-chargebacks-api-openapi.yml
+  - openapi/d-local-enrollments-api-openapi.yml
+  - openapi/d-local-exchange-rates-api-openapi.yml
+  - openapi/d-local-kyc-verifications-api-openapi.yml
+  - openapi/d-local-payments-api-openapi.yml
+  - openapi/d-local-refunds-api-openapi.yml
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  sources:
+  - openapi/d-local-payouts-v3-api-openapi.yml
+  - openapi/d-local-platforms-api-openapi.yml

@@ -244,6 +244,10 @@ apis:
       Retrieve real-time FX rates between settlement currencies and local
       currencies before creating a payment or payout.
 common:
+  - type: DomainSecurity
+    url: security/d-local-domain-security.yml
+  - type: Authentication
+    url: authentication/d-local-authentication.yml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/dlocal/overview
   - type: Arazzo
