@@ -244,6 +244,8 @@ apis:
       Retrieve real-time FX rates between settlement currencies and local
       currencies before creating a payment or payout.
 common:
+  - type: AgenticAccess
+    url: agentic-access/d-local-agentic-access.yml
   - type: DomainSecurity
     url: security/d-local-domain-security.yml
   - type: Authentication
