@@ -1,0 +1,74 @@
+openapi: 3.0.3
+info:
+  title: dLocal Cards Accounts ExchangeRates API
+  version: '2.1'
+  description: 'Securely store cards for repeat usage. Create returns a `card_id` token
+
+    that can be used in subsequent Payments and Authorizations.
+
+    '
+servers:
+- url: https://api.dlocal.com
+  description: Production
+- url: https://sandbox.dlocal.com
+  description: Sandbox
+security:
+- dLocalSignature: []
+tags:
+- name: ExchangeRates
+  description: Retrieve real-time FX rates.
+paths:
+  /exchange-rates:
+    get:
+      tags:
+      - ExchangeRates
+      operationId: getExchangeRate
+      summary: Get An Exchange Rate
+      parameters:
+      - name: from_currency
+        in: query
+        required: true
+        schema:
+          type: string
+          example: USD
+      - name: to_currency
+        in: query
+        required: true
+        schema:
+          type: string
+          example: BRL
+      - name: country
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Exchange rate returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExchangeRate'
+components:
+  schemas:
+    ExchangeRate:
+      type: object
+      properties:
+        from_currency:
+          type: string
+        to_currency:
+          type: string
+        rate:
+          type: number
+        inverse_rate:
+          type: number
+        country:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+  securitySchemes:
+    dLocalSignature:
+      type: apiKey
+      in: header
+      name: Authorization

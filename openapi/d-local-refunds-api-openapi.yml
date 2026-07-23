@@ -1,25 +1,27 @@
 openapi: 3.0.3
 info:
-  title: dLocal Refunds API
+  title: dLocal Cards Accounts Refunds API
   version: '2.1'
-  description: |
-    Create and track refunds against successful payments. Refunds can be
-    full or partial and are settled in the original payment currency.
-  contact:
-    name: dLocal Support
-    url: https://docs.dlocal.com/
+  description: 'Securely store cards for repeat usage. Create returns a `card_id` token
+
+    that can be used in subsequent Payments and Authorizations.
+
+    '
 servers:
-  - url: https://api.dlocal.com
-    description: Production
-  - url: https://sandbox.dlocal.com
-    description: Sandbox
+- url: https://api.dlocal.com
+  description: Production
+- url: https://sandbox.dlocal.com
+  description: Sandbox
+security:
+- dLocalSignature: []
 tags:
-  - name: Refunds
-    description: Initiate and inspect refunds.
+- name: Refunds
+  description: Initiate and inspect refunds.
 paths:
   /refunds:
     post:
-      tags: [Refunds]
+      tags:
+      - Refunds
       operationId: createRefund
       summary: Make A Refund
       description: Initiate a refund for a previous payment. Omit `amount` to refund the full payment.
@@ -38,15 +40,17 @@ paths:
                 $ref: '#/components/schemas/Refund'
   /refunds/{refund_id}:
     get:
-      tags: [Refunds]
+      tags:
+      - Refunds
       operationId: retrieveRefund
       summary: Retrieve A Refund
       description: Retrieve a refund by ID.
       parameters:
-        - name: refund_id
-          in: path
-          required: true
-          schema: { type: string }
+      - name: refund_id
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Refund returned
@@ -56,29 +60,33 @@ paths:
                 $ref: '#/components/schemas/Refund'
   /refunds/{refund_id}/status:
     get:
-      tags: [Refunds]
+      tags:
+      - Refunds
       operationId: retrieveRefundStatus
       summary: Retrieve A Refund Status
       description: Retrieve just the status of a refund.
       parameters:
-        - name: refund_id
-          in: path
-          required: true
-          schema: { type: string }
+      - name: refund_id
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Refund status returned
   /payments/{payment_id}/refunds:
     get:
-      tags: [Refunds]
+      tags:
+      - Refunds
       operationId: retrieveOrderRefund
       summary: Retrieve Order Refund
       description: List all refunds for a given payment.
       parameters:
-        - name: payment_id
-          in: path
-          required: true
-          schema: { type: string }
+      - name: payment_id
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Refunds returned
@@ -86,29 +94,50 @@ components:
   schemas:
     RefundRequest:
       type: object
-      required: [payment_id]
+      required:
+      - payment_id
       properties:
-        payment_id: { type: string, maxLength: 50 }
-        amount: { type: number }
-        currency: { type: string, maxLength: 3 }
-        notification_url: { type: string, format: uri }
-        description: { type: string }
-        beneficiary: { type: object }
+        payment_id:
+          type: string
+          maxLength: 50
+        amount:
+          type: number
+        currency:
+          type: string
+          maxLength: 3
+        notification_url:
+          type: string
+          format: uri
+        description:
+          type: string
+        beneficiary:
+          type: object
     Refund:
       type: object
       properties:
-        id: { type: string }
-        payment_id: { type: string }
-        status: { type: string, enum: [SUCCESS, PENDING, REJECTED] }
-        status_code: { type: integer }
-        status_detail: { type: string }
-        amount: { type: number }
-        currency: { type: string }
-        created_date: { type: string, format: date-time }
+        id:
+          type: string
+        payment_id:
+          type: string
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - PENDING
+          - REJECTED
+        status_code:
+          type: integer
+        status_detail:
+          type: string
+        amount:
+          type: number
+        currency:
+          type: string
+        created_date:
+          type: string
+          format: date-time
   securitySchemes:
     dLocalSignature:
       type: apiKey
       in: header
       name: Authorization
-security:
-  - dLocalSignature: []

@@ -1,0 +1,192 @@
+openapi: 3.0.3
+info:
+  title: dLocal Cards Accounts API
+  version: '2.1'
+  description: 'Securely store cards for repeat usage. Create returns a `card_id` token
+
+    that can be used in subsequent Payments and Authorizations.
+
+    '
+servers:
+- url: https://api.dlocal.com
+  description: Production
+- url: https://sandbox.dlocal.com
+  description: Sandbox
+security:
+- dLocalSignature: []
+tags:
+- name: Accounts
+  description: Create and manage sub-merchant accounts.
+paths:
+  /v2/accounts:
+    post:
+      tags:
+      - Accounts
+      operationId: createAccount
+      summary: Create An Account
+      description: Onboard a new sub-merchant account (company or individual).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountRequest'
+      responses:
+        '201':
+          description: Account created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+  /v2/accounts/{account_id}:
+    get:
+      tags:
+      - Accounts
+      operationId: getAccount
+      summary: Get An Account
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      responses:
+        '200':
+          description: Account returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+  /v2/accounts/{account_id}/update:
+    patch:
+      tags:
+      - Accounts
+      operationId: updateAccount
+      summary: Update An Account
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Account updated
+  /v2/accounts/{account_id}/block:
+    post:
+      tags:
+      - Accounts
+      operationId: blockAccount
+      summary: Block An Account
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      responses:
+        '200':
+          description: Account blocked
+  /v2/accounts/{account_id}/unblock:
+    post:
+      tags:
+      - Accounts
+      operationId: unblockAccount
+      summary: Unblock An Account
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      responses:
+        '200':
+          description: Account unblocked
+  /v2/accounts/{account_id}/cancel:
+    post:
+      tags:
+      - Accounts
+      operationId: cancelAccount
+      summary: Cancel An Account
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      responses:
+        '200':
+          description: Account cancelled
+  /v2/accounts/{account_id}/balance:
+    get:
+      tags:
+      - Accounts
+      operationId: getAccountBalance
+      summary: Get Account Balance
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      responses:
+        '200':
+          description: Balance returned
+  /v2/accounts/{account_id}/credentials:
+    get:
+      tags:
+      - Accounts
+      operationId: getAccountCredentials
+      summary: Get Account Credentials
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      responses:
+        '200':
+          description: Credentials returned
+components:
+  schemas:
+    AccountRequest:
+      type: object
+      required:
+      - platform_type
+      - tax_category
+      - account_name
+      - account_email
+      - account_country
+      properties:
+        platform_type:
+          type: string
+        tax_category:
+          type: string
+          enum:
+          - company
+          - individual
+        account_name:
+          type: string
+        account_email:
+          type: string
+          format: email
+        account_country:
+          type: string
+        notification_url:
+          type: string
+          format: uri
+        consents:
+          type: array
+          items:
+            type: object
+        company_information:
+          type: object
+        settings:
+          type: object
+    Account:
+      type: object
+      properties:
+        account_id:
+          type: string
+        status:
+          type: string
+        status_code:
+          type: string
+        creation_date:
+          type: string
+          format: date-time
+        consents:
+          type: array
+          items:
+            type: object
+        ubo_id:
+          type: string
+  parameters:
+    AccountId:
+      name: account_id
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    dLocalSignature:
+      type: apiKey
+      in: header
+      name: Authorization

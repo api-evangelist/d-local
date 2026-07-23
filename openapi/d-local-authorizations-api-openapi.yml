@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: dLocal Cards Accounts Payments API
+  title: dLocal Cards Accounts Authorizations API
   version: '2.1'
   description: 'Securely store cards for repeat usage. Create returns a `card_id` token
 
@@ -15,16 +15,16 @@ servers:
 security:
 - dLocalSignature: []
 tags:
-- name: Payments
-  description: Create and manage payments using local payment methods.
+- name: Authorizations
+  description: Authorize a card transaction and capture or cancel later.
 paths:
-  /payments:
+  /secure_payments:
     post:
       tags:
-      - Payments
-      operationId: createPayment
-      summary: Create A Payment
-      description: Create a new payment using a local payment method in the target country.
+      - Authorizations
+      operationId: createAuthorization
+      summary: Create An Authorization
+      description: Authorize a card transaction without capturing funds. Set capture=false on the card object.
       requestBody:
         required: true
         content:
@@ -33,82 +33,54 @@ paths:
               $ref: '#/components/schemas/PaymentRequest'
       responses:
         '200':
-          description: Payment created
+          description: Authorization created
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Payment'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-  /payments/{payment_id}:
-    get:
-      tags:
-      - Payments
-      operationId: retrievePayment
-      summary: Retrieve A Payment
-      description: Retrieve full payment details. Payments older than 12 months may return 404.
-      parameters:
-      - $ref: '#/components/parameters/PaymentId'
-      responses:
-        '200':
-          description: Payment found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Payment'
-        '404':
-          $ref: '#/components/responses/NotFound'
-  /payments/{payment_id}/status:
-    get:
-      tags:
-      - Payments
-      operationId: retrievePaymentStatus
-      summary: Retrieve A Payment Status
-      description: Retrieve a lightweight status snapshot of a payment.
-      parameters:
-      - $ref: '#/components/parameters/PaymentId'
-      responses:
-        '200':
-          description: Status returned
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PaymentStatus'
-  /payments/{payment_id}/cancel:
+  /payments/{authorization_id}/captures:
     post:
       tags:
-      - Payments
-      operationId: cancelAlternativePayment
-      summary: Cancel An Alternative Payment
-      description: Cancel a pending alternative (non-card) payment such as a cash ticket or bank transfer.
+      - Authorizations
+      operationId: captureAuthorization
+      summary: Capture An Authorization
+      description: Capture funds previously authorized.
       parameters:
-      - $ref: '#/components/parameters/PaymentId'
-      responses:
-        '200':
-          description: Payment cancelled
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Payment'
-  /payment-methods:
-    get:
-      tags:
-      - Payments
-      operationId: searchPaymentMethods
-      summary: Search Payment Methods
-      description: List supported payment methods for a country and currency.
-      parameters:
-      - name: country
-        in: query
+      - name: authorization_id
+        in: path
         required: true
         schema:
           type: string
-          example: BR
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: number
+                currency:
+                  type: string
       responses:
         '200':
-          description: Payment methods returned
+          description: Capture successful
+  /payments/{authorization_id}/cancel:
+    post:
+      tags:
+      - Authorizations
+      operationId: cancelAuthorization
+      summary: Cancel An Authorization
+      description: Release a previously authorized payment.
+      parameters:
+      - name: authorization_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Authorization cancelled
 components:
   schemas:
     Address:
@@ -125,17 +97,6 @@ components:
         zip_code:
           type: string
         country:
-          type: string
-    PaymentStatus:
-      type: object
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-        status_code:
-          type: string
-        status_detail:
           type: string
     Payer:
       type: object
@@ -285,41 +246,6 @@ components:
           type: string
         encrypted_data:
           type: string
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        param:
-          type: string
-  responses:
-    Unauthorized:
-      description: Invalid credentials or signature
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    PaymentId:
-      name: payment_id
-      in: path
-      required: true
-      schema:
-        type: string
   securitySchemes:
     dLocalSignature:
       type: apiKey

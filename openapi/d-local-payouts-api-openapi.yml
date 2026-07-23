@@ -1,0 +1,238 @@
+openapi: 3.0.3
+info:
+  title: dLocal Cards Accounts Payouts API
+  version: '2.1'
+  description: 'Securely store cards for repeat usage. Create returns a `card_id` token
+
+    that can be used in subsequent Payments and Authorizations.
+
+    '
+servers:
+- url: https://api.dlocal.com
+  description: Production
+- url: https://sandbox.dlocal.com
+  description: Sandbox
+security:
+- dLocalSignature: []
+tags:
+- name: Payouts
+  description: Request, retrieve, release, and cancel payouts.
+paths:
+  /payouts/v3:
+    post:
+      tags:
+      - Payouts
+      operationId: requestPayout
+      summary: Request A Payout
+      description: Create a new payout to a beneficiary in a supported destination country.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PayoutRequest'
+      responses:
+        '200':
+          description: Payout created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payout'
+        '400':
+          description: Invalid parameters or duplicate external_id
+        '403':
+          description: Insufficient funds, invalid credentials, or unregistered IP
+  /payouts/v3/{payout_id}:
+    get:
+      tags:
+      - Payouts
+      operationId: getPayout
+      summary: Get A Payout
+      description: Retrieve a payout by ID.
+      parameters:
+      - name: payout_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Payout returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payout'
+  /payouts/v3/{payout_id}/cancel:
+    post:
+      tags:
+      - Payouts
+      operationId: cancelPayout
+      summary: Cancel A Payout
+      description: Cancel a payout that has not yet been released.
+      parameters:
+      - name: payout_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Payout cancelled
+  /payouts/v3/{payout_id}/release:
+    post:
+      tags:
+      - Payouts
+      operationId: releasePayout
+      summary: Release A Payout
+      description: Release a payout previously held with `on_hold=true`.
+      parameters:
+      - name: payout_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Payout released
+components:
+  schemas:
+    Payout:
+      type: object
+      properties:
+        id:
+          type: string
+        external_id:
+          type: string
+        status:
+          type: string
+        status_code:
+          type: string
+        status_detail:
+          type: string
+        created_date:
+          type: string
+          format: date-time
+        last_updated:
+          type: string
+          format: date-time
+        amount:
+          type: number
+        currency:
+          type: string
+        currency_to_pay:
+          type: string
+        country:
+          type: string
+        payment_method_id:
+          type: string
+        amount_details:
+          type: object
+          properties:
+            fees:
+              type: number
+            taxes:
+              type: number
+            exchange_rate:
+              type: number
+        beneficiary:
+          $ref: '#/components/schemas/Beneficiary'
+    Beneficiary:
+      type: object
+      required:
+      - first_name
+      - last_name
+      - document
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        document:
+          type: string
+        document_type:
+          type: string
+        address:
+          type: object
+        bank_details:
+          type: object
+          properties:
+            bank_code:
+              type: string
+            bank_account:
+              type: string
+            account_type:
+              type: string
+            branch:
+              type: string
+    PayoutRequest:
+      type: object
+      required:
+      - external_id
+      - country
+      - payment_method_id
+      - amount
+      - currency
+      - purpose
+      - flow_type
+      - beneficiary
+      properties:
+        external_id:
+          type: string
+          description: Merchant payout identifier
+        country:
+          type: string
+        payment_method_id:
+          type: string
+          enum:
+          - BANK_TRANSFER
+          - INSTANT_PAYMENT
+          - CARD
+          - CASH_PICK_UP
+        amount:
+          type: number
+        currency:
+          type: string
+        currency_to_pay:
+          type: string
+        quote_id:
+          type: string
+        purpose:
+          type: string
+          enum:
+          - REMITTANCES
+          - PAYROLL
+          - SUPPLIER_PAYMENT
+          - REFUND
+          - AID
+          - INVESTMENT
+          - OTHER
+        flow_type:
+          type: string
+          enum:
+          - B2C
+          - B2B
+          - P2P
+        statement_descriptor:
+          type: string
+        description:
+          type: string
+        on_hold:
+          type: boolean
+          default: false
+        notification_url:
+          type: string
+          format: uri
+        beneficiary:
+          $ref: '#/components/schemas/Beneficiary'
+  securitySchemes:
+    dLocalSignature:
+      type: apiKey
+      in: header
+      name: Authorization

@@ -1,0 +1,91 @@
+openapi: 3.0.3
+info:
+  title: dLocal Cards Accounts BankAccounts API
+  version: '2.1'
+  description: 'Securely store cards for repeat usage. Create returns a `card_id` token
+
+    that can be used in subsequent Payments and Authorizations.
+
+    '
+servers:
+- url: https://api.dlocal.com
+  description: Production
+- url: https://sandbox.dlocal.com
+  description: Sandbox
+security:
+- dLocalSignature: []
+tags:
+- name: BankAccounts
+  description: Manage bank accounts attached to sub-merchant accounts.
+paths:
+  /v2/accounts/{account_id}/bank-accounts:
+    post:
+      tags:
+      - BankAccounts
+      operationId: addBankAccount
+      summary: Add Bank Account
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Bank account added
+    get:
+      tags:
+      - BankAccounts
+      operationId: getBankAccountList
+      summary: Get Bank Account List
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      responses:
+        '200':
+          description: List returned
+  /v2/accounts/{account_id}/bank-accounts/{bank_account_id}:
+    get:
+      tags:
+      - BankAccounts
+      operationId: getBankAccount
+      summary: Get A Bank Account
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - name: bank_account_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Bank account returned
+    delete:
+      tags:
+      - BankAccounts
+      operationId: disableBankAccount
+      summary: Disable A Bank Account
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - name: bank_account_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Bank account disabled
+components:
+  parameters:
+    AccountId:
+      name: account_id
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    dLocalSignature:
+      type: apiKey
+      in: header
+      name: Authorization

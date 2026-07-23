@@ -1,0 +1,44 @@
+openapi: 3.0.3
+info:
+  title: dLocal Cards Accounts KYC API
+  version: '2.1'
+  description: 'Securely store cards for repeat usage. Create returns a `card_id` token
+
+    that can be used in subsequent Payments and Authorizations.
+
+    '
+servers:
+- url: https://api.dlocal.com
+  description: Production
+- url: https://sandbox.dlocal.com
+  description: Sandbox
+security:
+- dLocalSignature: []
+tags:
+- name: KYC
+  description: Submit KYC data and documents for accounts.
+paths:
+  /v2/accounts/{account_id}/kyc:
+    get:
+      tags:
+      - KYC
+      operationId: getAccountKyc
+      summary: Get Account KYC
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      responses:
+        '200':
+          description: KYC state returned
+components:
+  parameters:
+    AccountId:
+      name: account_id
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    dLocalSignature:
+      type: apiKey
+      in: header
+      name: Authorization

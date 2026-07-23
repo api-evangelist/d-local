@@ -1,0 +1,78 @@
+openapi: 3.0.3
+info:
+  title: dLocal Cards Accounts Quotes API
+  version: '2.1'
+  description: 'Securely store cards for repeat usage. Create returns a `card_id` token
+
+    that can be used in subsequent Payments and Authorizations.
+
+    '
+servers:
+- url: https://api.dlocal.com
+  description: Production
+- url: https://sandbox.dlocal.com
+  description: Sandbox
+security:
+- dLocalSignature: []
+tags:
+- name: Quotes
+  description: Lock in an FX quote before requesting a payout.
+paths:
+  /payouts/v3/quotes:
+    post:
+      tags:
+      - Quotes
+      operationId: createQuote
+      summary: Create A Quote
+      description: Generate an FX quote for a payout amount that locks the exchange rate.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuoteRequest'
+      responses:
+        '200':
+          description: Quote created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quote'
+components:
+  schemas:
+    Quote:
+      type: object
+      properties:
+        quote_id:
+          type: string
+        amount:
+          type: number
+        currency:
+          type: string
+        exchange_rate:
+          type: number
+        expires_at:
+          type: string
+          format: date-time
+    QuoteRequest:
+      type: object
+      required:
+      - country
+      - amount
+      - currency
+      properties:
+        country:
+          type: string
+        amount:
+          type: number
+        currency:
+          type: string
+        currency_to_pay:
+          type: string
+        payment_method_id:
+          type: string
+  securitySchemes:
+    dLocalSignature:
+      type: apiKey
+      in: header
+      name: Authorization

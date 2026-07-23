@@ -1,0 +1,87 @@
+openapi: 3.0.3
+info:
+  title: dLocal Cards Accounts Transfers API
+  version: '2.1'
+  description: 'Securely store cards for repeat usage. Create returns a `card_id` token
+
+    that can be used in subsequent Payments and Authorizations.
+
+    '
+servers:
+- url: https://api.dlocal.com
+  description: Production
+- url: https://sandbox.dlocal.com
+  description: Sandbox
+security:
+- dLocalSignature: []
+tags:
+- name: Transfers
+  description: Settle and transfer between accounts.
+paths:
+  /v2/transfers:
+    post:
+      tags:
+      - Transfers
+      operationId: createTransfer
+      summary: Create A Transfer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - from_account
+              - to_account
+              - amount
+              - currency
+              properties:
+                from_account:
+                  type: string
+                to_account:
+                  type: string
+                amount:
+                  type: number
+                currency:
+                  type: string
+                description:
+                  type: string
+      responses:
+        '201':
+          description: Transfer created
+  /v2/transfers/{transfer_id}:
+    get:
+      tags:
+      - Transfers
+      operationId: getTransfer
+      summary: Get A Transfer
+      parameters:
+      - name: transfer_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Transfer returned
+  /v2/transfers/{transfer_id}/cancel:
+    post:
+      tags:
+      - Transfers
+      operationId: cancelTransfer
+      summary: Cancel A Transfer
+      parameters:
+      - name: transfer_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Transfer cancelled
+components:
+  securitySchemes:
+    dLocalSignature:
+      type: apiKey
+      in: header
+      name: Authorization

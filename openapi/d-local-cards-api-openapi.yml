@@ -1,22 +1,27 @@
 openapi: 3.0.3
 info:
-  title: dLocal Cards API
+  title: dLocal Accounts Cards API
   version: '2.1'
-  description: |
-    Securely store cards for repeat usage. Create returns a `card_id` token
+  description: 'Securely store cards for repeat usage. Create returns a `card_id` token
+
     that can be used in subsequent Payments and Authorizations.
+
+    '
 servers:
-  - url: https://api.dlocal.com
-    description: Production
-  - url: https://sandbox.dlocal.com
-    description: Sandbox
+- url: https://api.dlocal.com
+  description: Production
+- url: https://sandbox.dlocal.com
+  description: Sandbox
+security:
+- dLocalSignature: []
 tags:
-  - name: Cards
-    description: Tokenize, retrieve, and delete cards.
+- name: Cards
+  description: Tokenize, retrieve, and delete cards.
 paths:
   /secure_cards:
     post:
-      tags: [Cards]
+      tags:
+      - Cards
       operationId: createCard
       summary: Create A Card
       description: Tokenize a card for use in future payments and recurring billing.
@@ -35,15 +40,17 @@ paths:
                 $ref: '#/components/schemas/CardToken'
   /secure_cards/{card_id}:
     get:
-      tags: [Cards]
+      tags:
+      - Cards
       operationId: retrieveCard
       summary: Retrieve A Card
       description: Retrieve a previously created card token.
       parameters:
-        - name: card_id
-          in: path
-          required: true
-          schema: { type: string }
+      - name: card_id
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Card returned
@@ -52,62 +59,94 @@ paths:
               schema:
                 $ref: '#/components/schemas/CardToken'
     delete:
-      tags: [Cards]
+      tags:
+      - Cards
       operationId: deleteCard
       summary: Delete A Card
       description: Delete a previously created card token.
       parameters:
-        - name: card_id
-          in: path
-          required: true
-          schema: { type: string }
+      - name: card_id
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '204':
           description: Card deleted
 components:
   schemas:
-    CardRequest:
-      type: object
-      required: [card, payer]
-      properties:
-        country: { type: string }
-        card:
-          type: object
-          required: [holder_name, number, expiration_month, expiration_year]
-          properties:
-            holder_name: { type: string }
-            number: { type: string }
-            expiration_month: { type: integer }
-            expiration_year: { type: integer }
-            cvv: { type: string }
-            encrypted_data: { type: string }
-            token: { type: string }
-            cvv_token: { type: string }
-        payer:
-          type: object
-          properties:
-            name: { type: string }
-            email: { type: string, format: email }
-            document: { type: string }
-            phone: { type: string }
-            birth_date: { type: string, format: date }
-            address: { type: object }
-            ip: { type: string }
-            device_id: { type: string }
     CardToken:
       type: object
       properties:
-        holder_name: { type: string }
-        expiration_month: { type: integer }
-        expiration_year: { type: integer }
-        brand: { type: string }
-        last4: { type: string }
-        card_id: { type: string }
-        country: { type: string }
+        holder_name:
+          type: string
+        expiration_month:
+          type: integer
+        expiration_year:
+          type: integer
+        brand:
+          type: string
+        last4:
+          type: string
+        card_id:
+          type: string
+        country:
+          type: string
+    CardRequest:
+      type: object
+      required:
+      - card
+      - payer
+      properties:
+        country:
+          type: string
+        card:
+          type: object
+          required:
+          - holder_name
+          - number
+          - expiration_month
+          - expiration_year
+          properties:
+            holder_name:
+              type: string
+            number:
+              type: string
+            expiration_month:
+              type: integer
+            expiration_year:
+              type: integer
+            cvv:
+              type: string
+            encrypted_data:
+              type: string
+            token:
+              type: string
+            cvv_token:
+              type: string
+        payer:
+          type: object
+          properties:
+            name:
+              type: string
+            email:
+              type: string
+              format: email
+            document:
+              type: string
+            phone:
+              type: string
+            birth_date:
+              type: string
+              format: date
+            address:
+              type: object
+            ip:
+              type: string
+            device_id:
+              type: string
   securitySchemes:
     dLocalSignature:
       type: apiKey
       in: header
       name: Authorization
-security:
-  - dLocalSignature: []

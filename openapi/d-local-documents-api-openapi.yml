@@ -1,0 +1,72 @@
+openapi: 3.0.3
+info:
+  title: dLocal Cards Accounts Documents API
+  version: '2.1'
+  description: 'Securely store cards for repeat usage. Create returns a `card_id` token
+
+    that can be used in subsequent Payments and Authorizations.
+
+    '
+servers:
+- url: https://api.dlocal.com
+  description: Production
+- url: https://sandbox.dlocal.com
+  description: Sandbox
+security:
+- dLocalSignature: []
+tags:
+- name: Documents
+  description: Upload and retrieve verification documents.
+paths:
+  /verifications/{verification_id}/documents:
+    get:
+      tags:
+      - Documents
+      operationId: getVerificationDocuments
+      summary: Get Verification Documents
+      parameters:
+      - name: verification_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Documents returned
+  /verifications/{verification_id}/documents/{document_id}:
+    patch:
+      tags:
+      - Documents
+      operationId: updateVerificationDocument
+      summary: Update A Verification Document
+      parameters:
+      - name: verification_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: document_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Document updated
+components:
+  securitySchemes:
+    dLocalSignature:
+      type: apiKey
+      in: header
+      name: Authorization

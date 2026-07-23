@@ -1,0 +1,53 @@
+openapi: 3.0.3
+info:
+  title: dLocal Cards Accounts Balance API
+  version: '2.1'
+  description: 'Securely store cards for repeat usage. Create returns a `card_id` token
+
+    that can be used in subsequent Payments and Authorizations.
+
+    '
+servers:
+- url: https://api.dlocal.com
+  description: Production
+- url: https://sandbox.dlocal.com
+  description: Sandbox
+security:
+- dLocalSignature: []
+tags:
+- name: Balance
+  description: Inspect available merchant balance for payouts.
+paths:
+  /payouts/v3/balance:
+    get:
+      tags:
+      - Balance
+      operationId: getPayoutsBalance
+      summary: Get Payouts Balance
+      description: Retrieve the merchant's available payout balance.
+      responses:
+        '200':
+          description: Balance returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Balance'
+components:
+  schemas:
+    Balance:
+      type: object
+      properties:
+        currency:
+          type: string
+        available_balance:
+          type: number
+        previous_day_closing_balance:
+          type: number
+        current_balance_date:
+          type: string
+          format: date
+  securitySchemes:
+    dLocalSignature:
+      type: apiKey
+      in: header
+      name: Authorization
