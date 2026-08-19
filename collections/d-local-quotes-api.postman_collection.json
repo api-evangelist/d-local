@@ -1,0 +1,152 @@
+{
+  "item": [
+    {
+      "id": "e31b68a5-3129-4275-9b25-8d67c33ca627",
+      "name": "Quotes",
+      "description": {
+        "content": "Lock in an FX quote before requesting a payout.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d5c01458-4178-4bf3-ae11-6d86f37d4a60",
+          "name": "Create A Quote",
+          "request": {
+            "name": "Create A Quote",
+            "description": {
+              "content": "Generate an FX quote for a payout amount that locks the exchange rate.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payouts",
+                "v3",
+                "quotes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"country\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"currency_to_pay\": \"<string>\",\n  \"payment_method_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f7bb600c-b316-4a19-a572-4ed840aa9081",
+              "name": "Quote created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payouts",
+                    "v3",
+                    "quotes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"currency_to_pay\": \"<string>\",\n  \"payment_method_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"quote_id\": \"string\",\n  \"amount\": 4850.936395770177,\n  \"currency\": \"string\",\n  \"exchange_rate\": 5129.869408851796,\n  \"expires_at\": \"1977-02-12T16:52:56.421Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.dlocal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e6ce501b-954d-4c2e-9bd9-1b3f8037817d",
+    "name": "dLocal Cards Accounts Quotes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Securely store cards for repeat usage. Create returns a `card_id` token\nthat can be used in subsequent Payments and Authorizations.\n",
+      "type": "text/plain"
+    }
+  }
+}

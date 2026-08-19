@@ -1,7 +1,7 @@
 {
   "item": [
     {
-      "id": "cf212caa-98f1-4528-a1ea-8f0afc218a8c",
+      "id": "7828b19e-0444-49ed-a362-d29175601fc3",
       "name": "Chargebacks",
       "description": {
         "content": "Retrieve and simulate chargebacks.",
@@ -9,7 +9,7 @@
       },
       "item": [
         {
-          "id": "bc0c54d4-e9cf-45e1-8505-0f3015cd0d88",
+          "id": "1ec8b679-9d27-48aa-aa65-772aac5ffa1b",
           "name": "Retrieve A Chargeback",
           "request": {
             "name": "Retrieve A Chargeback",
@@ -44,7 +44,7 @@
           },
           "response": [
             {
-              "id": "b0e00e88-b157-4036-8385-a528e900b0fd",
+              "id": "d45ee367-bcfb-489d-8e54-2ebf7ae64f34",
               "name": "Chargeback returned",
               "originalRequest": {
                 "url": {
@@ -91,7 +91,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"payment_id\": \"string\",\n  \"amount\": 8907.225218879039,\n  \"currency\": \"string\",\n  \"status\": \"string\",\n  \"status_code\": \"string\",\n  \"status_detail\": \"string\",\n  \"reason_code\": \"string\",\n  \"category\": \"string\",\n  \"created_date\": \"1969-07-26T09:35:05.563Z\"\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"payment_id\": \"string\",\n  \"amount\": 7053.032610822156,\n  \"currency\": \"string\",\n  \"status\": \"string\",\n  \"status_code\": \"string\",\n  \"status_detail\": \"string\",\n  \"reason_code\": \"string\",\n  \"category\": \"string\",\n  \"created_date\": \"2008-05-16T14:37:54.926Z\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -102,7 +102,7 @@
           }
         },
         {
-          "id": "43cd356a-06bf-4cfa-811a-bf2bfb3285d9",
+          "id": "3e4b086f-a485-446e-b7e7-686a256d9d4a",
           "name": "Retrieve A Chargeback Status",
           "request": {
             "name": "Retrieve A Chargeback Status",
@@ -132,7 +132,7 @@
           },
           "response": [
             {
-              "id": "ccd85560-7987-4cff-8ecd-7b068728ce4f",
+              "id": "e8dd9813-7d76-4a76-b926-28e6558e4889",
               "name": "Status returned",
               "originalRequest": {
                 "url": {
@@ -187,7 +187,7 @@
           }
         },
         {
-          "id": "b7c48768-2cab-4d7c-9a88-f96686c5d19f",
+          "id": "d6696f1d-2c9c-4101-afbd-525139fd18d7",
           "name": "Simulate A Chargeback (Sandbox Only)",
           "request": {
             "name": "Simulate A Chargeback (Sandbox Only)",
@@ -226,7 +226,7 @@
           },
           "response": [
             {
-              "id": "b52cdedc-8996-463e-93ba-0910a87705eb",
+              "id": "98dbd442-60f0-45e8-bbc0-9eda25d8f1e9",
               "name": "Chargeback simulated",
               "originalRequest": {
                 "url": {
@@ -309,11 +309,11 @@
     ]
   },
   "info": {
-    "_postman_id": "15976b10-e42c-4aed-acca-33b3f4bfa6b6",
-    "name": "dLocal Chargebacks API",
+    "_postman_id": "1ab70bff-32d7-48ce-a9ca-2a44166f510b",
+    "name": "dLocal Cards Accounts Chargebacks API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
-      "content": "Retrieve chargeback details and status, simulate chargebacks in sandbox,\nand receive asynchronous chargeback notifications via webhook.\n",
+      "content": "Securely store cards for repeat usage. Create returns a `card_id` token\nthat can be used in subsequent Payments and Authorizations.\n",
       "type": "text/plain"
     }
   }

@@ -1,0 +1,131 @@
+{
+  "item": [
+    {
+      "id": "3c9608e3-00a0-4d76-927e-422fdf8d5bc3",
+      "name": "Balance",
+      "description": {
+        "content": "Inspect available merchant balance for payouts.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "96c15d5e-bd6f-4e5e-9aac-42988127b016",
+          "name": "Get Payouts Balance",
+          "request": {
+            "name": "Get Payouts Balance",
+            "description": {
+              "content": "Retrieve the merchant's available payout balance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payouts",
+                "v3",
+                "balance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c7ac2654-e8fd-4a18-8bac-11c89c5d5356",
+              "name": "Balance returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payouts",
+                    "v3",
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"currency\": \"string\",\n  \"available_balance\": 9714.572739414954,\n  \"previous_day_closing_balance\": 9611.747025851788,\n  \"current_balance_date\": \"2016-04-29\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.dlocal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6aa386f8-7ec6-45b8-9981-37783d2851cf",
+    "name": "dLocal Cards Accounts Balance API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Securely store cards for repeat usage. Create returns a `card_id` token\nthat can be used in subsequent Payments and Authorizations.\n",
+      "type": "text/plain"
+    }
+  }
+}

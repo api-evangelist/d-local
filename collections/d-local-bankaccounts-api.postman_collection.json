@@ -1,125 +1,25 @@
 {
   "item": [
     {
-      "id": "be2a20a8-63bf-489c-8753-7ae4018386e2",
-      "name": "Refunds",
+      "id": "701a4d71-e59e-4948-9bcf-49cbe697d17c",
+      "name": "BankAccounts",
       "description": {
-        "content": "Initiate and inspect refunds.",
+        "content": "Manage bank accounts attached to sub-merchant accounts.",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "cd78f97a-a534-407c-a766-3753cf731a04",
-          "name": "Make A Refund",
+          "id": "02b42ece-263c-43a7-bd88-d355afe46e9b",
+          "name": "Add Bank Account",
           "request": {
-            "name": "Make A Refund",
-            "description": {
-              "content": "Initiate a refund for a previous payment. Omit `amount` to refund the full payment.",
-              "type": "text/plain"
-            },
+            "name": "Add Bank Account",
+            "description": {},
             "url": {
               "path": [
-                "refunds"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"payment_id\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"notification_url\": \"<uri>\",\n  \"description\": \"<string>\",\n  \"beneficiary\": \"<object>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "3dffdb5c-aea0-4968-a707-803a0abef5e6",
-              "name": "Refund created",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "refunds"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"payment_id\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"notification_url\": \"<uri>\",\n  \"description\": \"<string>\",\n  \"beneficiary\": \"<object>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"payment_id\": \"string\",\n  \"status\": \"REJECTED\",\n  \"status_code\": 3061,\n  \"status_detail\": \"string\",\n  \"amount\": 9601.95392251806,\n  \"currency\": \"string\",\n  \"created_date\": \"1998-01-28T11:06:21.979Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "bb7bbdd5-b709-4f12-b34c-8d0a0ee50c9c",
-          "name": "Retrieve A Refund",
-          "request": {
-            "name": "Retrieve A Refund",
-            "description": {
-              "content": "Retrieve a refund by ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "refunds",
-                ":refund_id"
+                "v2",
+                "accounts",
+                ":account_id",
+                "bank-accounts"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -130,29 +30,40 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "refund_id",
+                  "key": "account_id",
                   "description": "(Required) "
                 }
               ]
             },
             "header": [
               {
-                "key": "Accept",
+                "key": "Content-Type",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
           },
           "response": [
             {
-              "id": "411f8a24-aace-403a-b1f6-dc8c0f13790d",
-              "name": "Refund returned",
+              "id": "3579b3db-2d65-41b6-a2be-457e0be6a077",
+              "name": "Bank account added",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "refunds",
-                    ":refund_id"
+                    "v2",
+                    "accounts",
+                    ":account_id",
+                    "bank-accounts"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -163,7 +74,7 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "refund_id",
+                      "key": "account_id",
                       "description": "(Required) "
                     }
                   ]
@@ -176,26 +87,30 @@
                     },
                     "key": "Authorization",
                     "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
               },
-              "status": "OK",
-              "code": 200,
+              "status": "Created",
+              "code": 201,
               "header": [
                 {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "text/plain"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"payment_id\": \"string\",\n  \"status\": \"REJECTED\",\n  \"status_code\": 3061,\n  \"status_detail\": \"string\",\n  \"amount\": 9601.95392251806,\n  \"currency\": \"string\",\n  \"created_date\": \"1998-01-28T11:06:21.979Z\"\n}",
+              "body": "",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "text"
             }
           ],
           "event": [],
@@ -204,19 +119,17 @@
           }
         },
         {
-          "id": "65efb67a-da4e-4a2b-91e0-8e30ae08b882",
-          "name": "Retrieve A Refund Status",
+          "id": "a638e7a2-e2da-4c3d-82b3-c49d044e29cd",
+          "name": "Get Bank Account List",
           "request": {
-            "name": "Retrieve A Refund Status",
-            "description": {
-              "content": "Retrieve just the status of a refund.",
-              "type": "text/plain"
-            },
+            "name": "Get Bank Account List",
+            "description": {},
             "url": {
               "path": [
-                "refunds",
-                ":refund_id",
-                "status"
+                "v2",
+                "accounts",
+                ":account_id",
+                "bank-accounts"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -227,7 +140,7 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "refund_id",
+                  "key": "account_id",
                   "description": "(Required) "
                 }
               ]
@@ -237,14 +150,15 @@
           },
           "response": [
             {
-              "id": "94611b30-6acf-40db-8df6-9e0a18379655",
-              "name": "Refund status returned",
+              "id": "3afe0def-2618-4296-aa6d-f7dd8c7ce229",
+              "name": "List returned",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "refunds",
-                    ":refund_id",
-                    "status"
+                    "v2",
+                    "accounts",
+                    ":account_id",
+                    "bank-accounts"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -255,7 +169,7 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "refund_id",
+                      "key": "account_id",
                       "description": "(Required) "
                     }
                   ]
@@ -292,19 +206,18 @@
           }
         },
         {
-          "id": "bec1b633-9e03-48e9-b462-07f6dffea0f6",
-          "name": "Retrieve Order Refund",
+          "id": "9473df53-1a83-496c-b8a3-4479dd2a5912",
+          "name": "Get A Bank Account",
           "request": {
-            "name": "Retrieve Order Refund",
-            "description": {
-              "content": "List all refunds for a given payment.",
-              "type": "text/plain"
-            },
+            "name": "Get A Bank Account",
+            "description": {},
             "url": {
               "path": [
-                "payments",
-                ":payment_id",
-                "refunds"
+                "v2",
+                "accounts",
+                ":account_id",
+                "bank-accounts",
+                ":bank_account_id"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -315,7 +228,14 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "payment_id",
+                  "key": "account_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bank_account_id",
                   "description": "(Required) "
                 }
               ]
@@ -325,14 +245,16 @@
           },
           "response": [
             {
-              "id": "f13d0d4d-bc27-4dfc-8275-0447638a5da8",
-              "name": "Refunds returned",
+              "id": "80bc5f5e-ea21-4547-9c26-82496437e6dd",
+              "name": "Bank account returned",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "payments",
-                    ":payment_id",
-                    "refunds"
+                    "v2",
+                    "accounts",
+                    ":account_id",
+                    "bank-accounts",
+                    ":bank_account_id"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -343,7 +265,14 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "payment_id",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bank_account_id",
                       "description": "(Required) "
                     }
                   ]
@@ -363,6 +292,109 @@
               },
               "status": "OK",
               "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7cb6f47c-0f4e-44ac-8b79-417b41246ec0",
+          "name": "Disable A Bank Account",
+          "request": {
+            "name": "Disable A Bank Account",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "accounts",
+                ":account_id",
+                "bank-accounts",
+                ":bank_account_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bank_account_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "042958d3-b54e-4766-8bba-e3ae2106f32a",
+              "name": "Bank account disabled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "accounts",
+                    ":account_id",
+                    "bank-accounts",
+                    ":bank_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bank_account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
               "header": [
                 {
                   "key": "Content-Type",
@@ -409,8 +441,8 @@
     ]
   },
   "info": {
-    "_postman_id": "4312848f-62f7-412a-a626-ae5aac0e5852",
-    "name": "dLocal Cards Accounts Refunds API",
+    "_postman_id": "cf870c7a-221c-4229-99f6-11d299c5de08",
+    "name": "dLocal Cards Accounts BankAccounts API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "Securely store cards for repeat usage. Create returns a `card_id` token\nthat can be used in subsequent Payments and Authorizations.\n",

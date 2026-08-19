@@ -1,25 +1,25 @@
 {
   "item": [
     {
-      "id": "ec632fbc-75bd-4330-ac30-b8d1edf6846a",
-      "name": "Cards",
+      "id": "ac84a417-dc8e-4b9a-9696-083ecf0f2cbf",
+      "name": "Authorizations",
       "description": {
-        "content": "Tokenize, retrieve, and delete cards.",
+        "content": "Authorize a card transaction and capture or cancel later.",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "3e131314-6564-451c-a8ef-faa9329a39f7",
-          "name": "Create A Card",
+          "id": "428833ca-a92d-4190-8b01-6aaa11ebbdc6",
+          "name": "Create An Authorization",
           "request": {
-            "name": "Create A Card",
+            "name": "Create An Authorization",
             "description": {
-              "content": "Tokenize a card for use in future payments and recurring billing.",
+              "content": "Authorize a card transaction without capturing funds. Set capture=false on the card object.",
               "type": "text/plain"
             },
             "url": {
               "path": [
-                "secure_cards"
+                "secure_payments"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -41,7 +41,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"card\": {\n    \"holder_name\": \"<string>\",\n    \"number\": \"<string>\",\n    \"expiration_month\": \"<integer>\",\n    \"expiration_year\": \"<integer>\",\n    \"cvv\": \"<string>\",\n    \"encrypted_data\": \"<string>\",\n    \"token\": \"<string>\",\n    \"cvv_token\": \"<string>\"\n  },\n  \"payer\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"document\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"birth_date\": \"<date>\",\n    \"address\": \"<object>\",\n    \"ip\": \"<string>\",\n    \"device_id\": \"<string>\"\n  },\n  \"country\": \"<string>\"\n}",
+              "raw": "{\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"country\": \"<string>\",\n  \"payment_method_flow\": \"<string>\",\n  \"payer\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"document\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"birth_date\": \"<date>\",\n    \"address\": {\n      \"street\": \"<string>\",\n      \"number\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip_code\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"ip\": \"<string>\",\n    \"device_id\": \"<string>\"\n  },\n  \"order_id\": \"<string>\",\n  \"payment_method_id\": \"<string>\",\n  \"card\": {\n    \"holder_name\": \"<string>\",\n    \"expiration_month\": \"<integer>\",\n    \"expiration_year\": \"<integer>\",\n    \"number\": \"<string>\",\n    \"cvv\": \"<string>\",\n    \"brand\": \"<string>\",\n    \"last4\": \"<string>\",\n    \"capture\": true,\n    \"installments\": 1,\n    \"token\": \"<string>\",\n    \"encrypted_data\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"notification_url\": \"<uri>\",\n  \"callback_url\": \"<uri>\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -51,12 +51,12 @@
           },
           "response": [
             {
-              "id": "63ab8be3-d314-4546-8997-10a481fc97b6",
-              "name": "Card created",
+              "id": "c6e31193-0a35-477c-b72e-fa79744b6bae",
+              "name": "Authorization created",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "secure_cards"
+                    "secure_payments"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -81,7 +81,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"card\": {\n    \"holder_name\": \"<string>\",\n    \"number\": \"<string>\",\n    \"expiration_month\": \"<integer>\",\n    \"expiration_year\": \"<integer>\",\n    \"cvv\": \"<string>\",\n    \"encrypted_data\": \"<string>\",\n    \"token\": \"<string>\",\n    \"cvv_token\": \"<string>\"\n  },\n  \"payer\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"document\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"birth_date\": \"<date>\",\n    \"address\": \"<object>\",\n    \"ip\": \"<string>\",\n    \"device_id\": \"<string>\"\n  },\n  \"country\": \"<string>\"\n}",
+                  "raw": "{\n  \"amount\": \"<number>\",\n  \"currency\": \"BRL\",\n  \"country\": \"BR\",\n  \"payment_method_flow\": \"<string>\",\n  \"payer\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"document\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"birth_date\": \"<date>\",\n    \"address\": {\n      \"street\": \"<string>\",\n      \"number\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip_code\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"ip\": \"<string>\",\n    \"device_id\": \"<string>\"\n  },\n  \"order_id\": \"<string>\",\n  \"payment_method_id\": \"<string>\",\n  \"card\": {\n    \"holder_name\": \"<string>\",\n    \"expiration_month\": \"<integer>\",\n    \"expiration_year\": \"<integer>\",\n    \"number\": \"<string>\",\n    \"cvv\": \"<string>\",\n    \"brand\": \"<string>\",\n    \"last4\": \"<string>\",\n    \"capture\": true,\n    \"installments\": 1,\n    \"token\": \"<string>\",\n    \"encrypted_data\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"notification_url\": \"<uri>\",\n  \"callback_url\": \"<uri>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -97,7 +97,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"holder_name\": \"string\",\n  \"expiration_month\": 4401,\n  \"expiration_year\": 1109,\n  \"brand\": \"string\",\n  \"last4\": \"string\",\n  \"card_id\": \"string\",\n  \"country\": \"string\"\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"amount\": 7302.318522846463,\n  \"currency\": \"string\",\n  \"country\": \"string\",\n  \"payment_method_id\": \"string\",\n  \"payment_method_type\": \"string\",\n  \"payment_method_flow\": \"string\",\n  \"card\": {\n    \"holder_name\": \"<string>\",\n    \"expiration_month\": \"<integer>\",\n    \"expiration_year\": \"<integer>\",\n    \"number\": \"<string>\",\n    \"cvv\": \"<string>\",\n    \"brand\": \"<string>\",\n    \"last4\": \"<string>\",\n    \"capture\": true,\n    \"installments\": 1,\n    \"token\": \"<string>\",\n    \"encrypted_data\": \"<string>\"\n  },\n  \"created_date\": \"1950-06-06T06:02:28.880Z\",\n  \"approved_date\": \"2023-01-19T20:59:30.604Z\",\n  \"status\": \"EXPIRED\",\n  \"status_code\": \"string\",\n  \"status_detail\": \"string\",\n  \"order_id\": \"string\",\n  \"notification_url\": \"string\",\n  \"redirect_url\": \"string\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -108,18 +108,19 @@
           }
         },
         {
-          "id": "0a677c13-a7fc-40c1-8178-5c2d30a09134",
-          "name": "Retrieve A Card",
+          "id": "17f696c3-6df2-463d-a78e-f243837eb147",
+          "name": "Capture An Authorization",
           "request": {
-            "name": "Retrieve A Card",
+            "name": "Capture An Authorization",
             "description": {
-              "content": "Retrieve a previously created card token.",
+              "content": "Capture funds previously authorized.",
               "type": "text/plain"
             },
             "url": {
               "path": [
-                "secure_cards",
-                ":card_id"
+                "payments",
+                ":authorization_id",
+                "captures"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -130,29 +131,39 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "card_id",
+                  "key": "authorization_id",
                   "description": "(Required) "
                 }
               ]
             },
             "header": [
               {
-                "key": "Accept",
+                "key": "Content-Type",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
           },
           "response": [
             {
-              "id": "58b2ad49-5617-4254-a364-24f78bbebb55",
-              "name": "Card returned",
+              "id": "52c9af32-bcca-41aa-9cce-d70195d59ec9",
+              "name": "Capture successful",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "secure_cards",
-                    ":card_id"
+                    "payments",
+                    ":authorization_id",
+                    "captures"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -163,7 +174,7 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "card_id",
+                      "key": "authorization_id",
                       "description": "(Required) "
                     }
                   ]
@@ -176,26 +187,30 @@
                     },
                     "key": "Authorization",
                     "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
               },
               "status": "OK",
               "code": 200,
               "header": [
                 {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "text/plain"
                 }
               ],
-              "body": "{\n  \"holder_name\": \"string\",\n  \"expiration_month\": 4401,\n  \"expiration_year\": 1109,\n  \"brand\": \"string\",\n  \"last4\": \"string\",\n  \"card_id\": \"string\",\n  \"country\": \"string\"\n}",
+              "body": "",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "text"
             }
           ],
           "event": [],
@@ -204,18 +219,19 @@
           }
         },
         {
-          "id": "0773c371-70d3-470b-ab06-1e1814f63249",
-          "name": "Delete A Card",
+          "id": "381ee0c6-7403-4eb8-af75-3795aecd1f5f",
+          "name": "Cancel An Authorization",
           "request": {
-            "name": "Delete A Card",
+            "name": "Cancel An Authorization",
             "description": {
-              "content": "Delete a previously created card token.",
+              "content": "Release a previously authorized payment.",
               "type": "text/plain"
             },
             "url": {
               "path": [
-                "secure_cards",
-                ":card_id"
+                "payments",
+                ":authorization_id",
+                "cancel"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -226,23 +242,24 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "card_id",
+                  "key": "authorization_id",
                   "description": "(Required) "
                 }
               ]
             },
-            "method": "DELETE",
+            "method": "POST",
             "auth": null
           },
           "response": [
             {
-              "id": "e77aa367-52c4-463b-be02-cdc8d6641a27",
-              "name": "Card deleted",
+              "id": "08fd74db-98e0-4a4a-91ab-ea6ac8e4a70a",
+              "name": "Authorization cancelled",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "secure_cards",
-                    ":card_id"
+                    "payments",
+                    ":authorization_id",
+                    "cancel"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -253,7 +270,7 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "card_id",
+                      "key": "authorization_id",
                       "description": "(Required) "
                     }
                   ]
@@ -268,11 +285,11 @@
                     "value": "<API Key>"
                   }
                 ],
-                "method": "DELETE",
+                "method": "POST",
                 "body": {}
               },
-              "status": "No Content",
-              "code": 204,
+              "status": "OK",
+              "code": 200,
               "header": [
                 {
                   "key": "Content-Type",
@@ -319,8 +336,8 @@
     ]
   },
   "info": {
-    "_postman_id": "3864bf4a-07a2-433c-a2fa-46e01fd99a19",
-    "name": "dLocal Accounts Cards API",
+    "_postman_id": "1355a1dc-7a4b-42f8-a295-947e7911aaf3",
+    "name": "dLocal Cards Accounts Authorizations API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "Securely store cards for repeat usage. Create returns a `card_id` token\nthat can be used in subsequent Payments and Authorizations.\n",

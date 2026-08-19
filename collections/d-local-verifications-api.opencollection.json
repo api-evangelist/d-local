@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "dLocal Cards Accounts Enrollments API",
+    "name": "dLocal Cards Accounts Verifications API",
     "version": "2.1"
   },
   "request": {
@@ -15,60 +15,64 @@
   "items": [
     {
       "info": {
-        "name": "Enrollments",
+        "name": "Verifications",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "Create An Enrollment",
+            "name": "Create A Verification",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://api.dlocal.com/enrollments",
+            "url": "https://api.dlocal.com/verifications",
             "body": {
               "type": "json",
               "data": "{}"
             }
           },
-          "docs": "Enroll a payer for Pix Automático or Pix Biometrics recurring transactions."
+          "docs": "Submit a KYC verification (remitter, beneficiary, or standalone)."
         },
         {
           "info": {
-            "name": "Get An Enrollment",
+            "name": "Get A Verification",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://api.dlocal.com/enrollments/:enrollment_id",
+            "url": "https://api.dlocal.com/verifications/:verification_id",
             "params": [
               {
-                "name": "enrollment_id",
+                "name": "verification_id",
                 "value": "",
                 "type": "path"
               }
             ]
           },
-          "docs": "Get An Enrollment"
+          "docs": "Get A Verification"
         },
         {
           "info": {
-            "name": "Cancel An Enrollment",
+            "name": "Update Verification State",
             "type": "http"
           },
           "http": {
-            "method": "POST",
-            "url": "https://api.dlocal.com/enrollments/:enrollment_id/cancel",
+            "method": "PATCH",
+            "url": "https://api.dlocal.com/verifications/:verification_id/state",
             "params": [
               {
-                "name": "enrollment_id",
+                "name": "verification_id",
                 "value": "",
                 "type": "path"
               }
-            ]
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
           },
-          "docs": "Cancel An Enrollment"
+          "docs": "Update Verification State"
         }
       ]
     }

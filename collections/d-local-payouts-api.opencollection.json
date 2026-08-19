@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "dLocal Cards Accounts Refunds API",
+    "name": "dLocal Cards Accounts Payouts API",
     "version": "2.1"
   },
   "request": {
@@ -15,78 +15,78 @@
   "items": [
     {
       "info": {
-        "name": "Refunds",
+        "name": "Payouts",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "Make A Refund",
+            "name": "Request A Payout",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://api.dlocal.com/refunds",
+            "url": "https://api.dlocal.com/payouts/v3",
             "body": {
               "type": "json",
               "data": "{}"
             }
           },
-          "docs": "Initiate a refund for a previous payment. Omit `amount` to refund the full payment."
+          "docs": "Create a new payout to a beneficiary in a supported destination country."
         },
         {
           "info": {
-            "name": "Retrieve A Refund",
+            "name": "Get A Payout",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://api.dlocal.com/refunds/:refund_id",
+            "url": "https://api.dlocal.com/payouts/v3/:payout_id",
             "params": [
               {
-                "name": "refund_id",
+                "name": "payout_id",
                 "value": "",
                 "type": "path"
               }
             ]
           },
-          "docs": "Retrieve a refund by ID."
+          "docs": "Retrieve a payout by ID."
         },
         {
           "info": {
-            "name": "Retrieve A Refund Status",
+            "name": "Cancel A Payout",
             "type": "http"
           },
           "http": {
-            "method": "GET",
-            "url": "https://api.dlocal.com/refunds/:refund_id/status",
+            "method": "POST",
+            "url": "https://api.dlocal.com/payouts/v3/:payout_id/cancel",
             "params": [
               {
-                "name": "refund_id",
+                "name": "payout_id",
                 "value": "",
                 "type": "path"
               }
             ]
           },
-          "docs": "Retrieve just the status of a refund."
+          "docs": "Cancel a payout that has not yet been released."
         },
         {
           "info": {
-            "name": "Retrieve Order Refund",
+            "name": "Release A Payout",
             "type": "http"
           },
           "http": {
-            "method": "GET",
-            "url": "https://api.dlocal.com/payments/:payment_id/refunds",
+            "method": "POST",
+            "url": "https://api.dlocal.com/payouts/v3/:payout_id/release",
             "params": [
               {
-                "name": "payment_id",
+                "name": "payout_id",
                 "value": "",
                 "type": "path"
               }
             ]
           },
-          "docs": "List all refunds for a given payment."
+          "docs": "Release a payout previously held with `on_hold=true`."
         }
       ]
     }

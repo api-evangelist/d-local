@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "dLocal Payments API",
+    "name": "dLocal Cards Accounts Payments API",
     "version": "2.1"
   },
   "request": {
@@ -105,69 +105,6 @@
             ]
           },
           "docs": "List supported payment methods for a country and currency."
-        }
-      ]
-    },
-    {
-      "info": {
-        "name": "Authorizations",
-        "type": "folder"
-      },
-      "items": [
-        {
-          "info": {
-            "name": "Create An Authorization",
-            "type": "http"
-          },
-          "http": {
-            "method": "POST",
-            "url": "https://api.dlocal.com/secure_payments",
-            "body": {
-              "type": "json",
-              "data": "{}"
-            }
-          },
-          "docs": "Authorize a card transaction without capturing funds. Set capture=false on the card object."
-        },
-        {
-          "info": {
-            "name": "Capture An Authorization",
-            "type": "http"
-          },
-          "http": {
-            "method": "POST",
-            "url": "https://api.dlocal.com/payments/:authorization_id/captures",
-            "params": [
-              {
-                "name": "authorization_id",
-                "value": "",
-                "type": "path"
-              }
-            ],
-            "body": {
-              "type": "json",
-              "data": "{}"
-            }
-          },
-          "docs": "Capture funds previously authorized."
-        },
-        {
-          "info": {
-            "name": "Cancel An Authorization",
-            "type": "http"
-          },
-          "http": {
-            "method": "POST",
-            "url": "https://api.dlocal.com/payments/:authorization_id/cancel",
-            "params": [
-              {
-                "name": "authorization_id",
-                "value": "",
-                "type": "path"
-              }
-            ]
-          },
-          "docs": "Release a previously authorized payment."
         }
       ]
     }

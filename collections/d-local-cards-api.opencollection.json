@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "dLocal Cards API",
+    "name": "dLocal Accounts Cards API",
     "version": "2.1"
   },
   "request": {

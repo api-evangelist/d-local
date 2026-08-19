@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "dLocal Cards Accounts Documents API",
+    "version": "2.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Verification Documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dlocal.com/verifications/:verification_id/documents",
+            "params": [
+              {
+                "name": "verification_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Verification Documents"
+        },
+        {
+          "info": {
+            "name": "Update A Verification Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.dlocal.com/verifications/:verification_id/documents/:document_id",
+            "params": [
+              {
+                "name": "verification_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "document_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Update A Verification Document"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

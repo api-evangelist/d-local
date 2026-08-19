@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "dLocal Cards Accounts Enrollments API",
+    "name": "dLocal Cards Accounts Transfers API",
     "version": "2.1"
   },
   "request": {
@@ -15,60 +15,60 @@
   "items": [
     {
       "info": {
-        "name": "Enrollments",
+        "name": "Transfers",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "Create An Enrollment",
+            "name": "Create A Transfer",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://api.dlocal.com/enrollments",
+            "url": "https://api.dlocal.com/v2/transfers",
             "body": {
               "type": "json",
               "data": "{}"
             }
           },
-          "docs": "Enroll a payer for Pix Automático or Pix Biometrics recurring transactions."
+          "docs": "Create A Transfer"
         },
         {
           "info": {
-            "name": "Get An Enrollment",
+            "name": "Get A Transfer",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://api.dlocal.com/enrollments/:enrollment_id",
+            "url": "https://api.dlocal.com/v2/transfers/:transfer_id",
             "params": [
               {
-                "name": "enrollment_id",
+                "name": "transfer_id",
                 "value": "",
                 "type": "path"
               }
             ]
           },
-          "docs": "Get An Enrollment"
+          "docs": "Get A Transfer"
         },
         {
           "info": {
-            "name": "Cancel An Enrollment",
+            "name": "Cancel A Transfer",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://api.dlocal.com/enrollments/:enrollment_id/cancel",
+            "url": "https://api.dlocal.com/v2/transfers/:transfer_id/cancel",
             "params": [
               {
-                "name": "enrollment_id",
+                "name": "transfer_id",
                 "value": "",
                 "type": "path"
               }
             ]
           },
-          "docs": "Cancel An Enrollment"
+          "docs": "Cancel A Transfer"
         }
       ]
     }

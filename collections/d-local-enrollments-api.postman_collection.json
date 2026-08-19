@@ -1,7 +1,7 @@
 {
   "item": [
     {
-      "id": "b6ff865d-ad18-430e-ad1d-a91950a1e6f8",
+      "id": "53fe1e19-cf76-44e4-af69-00a0d7b6cfd9",
       "name": "Enrollments",
       "description": {
         "content": "Create, retrieve, and cancel Pix enrollments.",
@@ -9,7 +9,7 @@
       },
       "item": [
         {
-          "id": "57101c32-c3f2-4f38-832f-239f738fa5e5",
+          "id": "b345640e-f0db-455e-9c7c-4a97ab96b50b",
           "name": "Create An Enrollment",
           "request": {
             "name": "Create An Enrollment",
@@ -51,7 +51,7 @@
           },
           "response": [
             {
-              "id": "efc8f0d9-d5c3-4e69-bc9c-d811dd12b042",
+              "id": "29886ff2-d20b-4836-8a95-7322fdaafd9c",
               "name": "Enrollment created",
               "originalRequest": {
                 "url": {
@@ -97,7 +97,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"status\": \"EXPIRED\",\n  \"redirect_url\": \"https://HCXXtOc.ubjkk5d9st-w5J\",\n  \"created_date\": \"2025-02-08T18:16:46.439Z\",\n  \"expiration_date\": \"1998-11-26T13:57:10.024Z\",\n  \"type\": \"string\",\n  \"country\": \"string\"\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"PENDING\",\n  \"redirect_url\": \"https://xqiYcfeNcalBu.dgxbmXY7ob.xt6Z-tL0WX5MuYyeOCppwiNxQZyWLzHLD\",\n  \"created_date\": \"1955-08-17T04:11:51.542Z\",\n  \"expiration_date\": \"1955-04-14T14:55:55.359Z\",\n  \"type\": \"string\",\n  \"country\": \"string\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -108,7 +108,7 @@
           }
         },
         {
-          "id": "7fe83686-43a0-4cdd-be86-b89af5347e33",
+          "id": "2f8b0e0e-9019-445a-8ecd-839ca0ebf222",
           "name": "Get An Enrollment",
           "request": {
             "name": "Get An Enrollment",
@@ -143,7 +143,7 @@
           },
           "response": [
             {
-              "id": "ffa7f4e4-19e2-4b7e-a2c9-ba9dfec3bbda",
+              "id": "c5af03c3-088a-4b54-9a38-a0782422e2bf",
               "name": "Enrollment returned",
               "originalRequest": {
                 "url": {
@@ -190,7 +190,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"status\": \"EXPIRED\",\n  \"redirect_url\": \"https://HCXXtOc.ubjkk5d9st-w5J\",\n  \"created_date\": \"2025-02-08T18:16:46.439Z\",\n  \"expiration_date\": \"1998-11-26T13:57:10.024Z\",\n  \"type\": \"string\",\n  \"country\": \"string\"\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"PENDING\",\n  \"redirect_url\": \"https://xqiYcfeNcalBu.dgxbmXY7ob.xt6Z-tL0WX5MuYyeOCppwiNxQZyWLzHLD\",\n  \"created_date\": \"1955-08-17T04:11:51.542Z\",\n  \"expiration_date\": \"1955-04-14T14:55:55.359Z\",\n  \"type\": \"string\",\n  \"country\": \"string\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -201,7 +201,7 @@
           }
         },
         {
-          "id": "c8066bd2-7636-4aee-a991-0541e9e1c0f0",
+          "id": "05ce47b4-cc9d-4b33-9dd2-6d8ee1b823dd",
           "name": "Cancel An Enrollment",
           "request": {
             "name": "Cancel An Enrollment",
@@ -231,7 +231,7 @@
           },
           "response": [
             {
-              "id": "dc7706df-5762-4906-9637-576c7a2885a3",
+              "id": "91adaeab-4344-4173-af2c-f2dc625b182f",
               "name": "Enrollment cancelled",
               "originalRequest": {
                 "url": {
@@ -315,11 +315,11 @@
     ]
   },
   "info": {
-    "_postman_id": "dd3e70d3-8be1-4510-ac99-dc53b763a240",
-    "name": "dLocal Enrollments API",
+    "_postman_id": "0c288fa6-d69b-40f5-9d77-4d681fe9cb7e",
+    "name": "dLocal Cards Accounts Enrollments API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
-      "content": "Enrollments power Brazil's Pix Automático recurring payments and\nPix biometrics flows. Use Enrollments to register a payer once and\nsubsequently charge them through Pix recurring transactions.\n",
+      "content": "Securely store cards for repeat usage. Create returns a `card_id` token\nthat can be used in subsequent Payments and Authorizations.\n",
       "type": "text/plain"
     }
   }

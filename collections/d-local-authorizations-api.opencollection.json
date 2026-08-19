@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "dLocal Cards Accounts Enrollments API",
+    "name": "dLocal Cards Accounts Authorizations API",
     "version": "2.1"
   },
   "request": {
@@ -15,60 +15,64 @@
   "items": [
     {
       "info": {
-        "name": "Enrollments",
+        "name": "Authorizations",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "Create An Enrollment",
+            "name": "Create An Authorization",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://api.dlocal.com/enrollments",
+            "url": "https://api.dlocal.com/secure_payments",
             "body": {
               "type": "json",
               "data": "{}"
             }
           },
-          "docs": "Enroll a payer for Pix Automático or Pix Biometrics recurring transactions."
+          "docs": "Authorize a card transaction without capturing funds. Set capture=false on the card object."
         },
         {
           "info": {
-            "name": "Get An Enrollment",
-            "type": "http"
-          },
-          "http": {
-            "method": "GET",
-            "url": "https://api.dlocal.com/enrollments/:enrollment_id",
-            "params": [
-              {
-                "name": "enrollment_id",
-                "value": "",
-                "type": "path"
-              }
-            ]
-          },
-          "docs": "Get An Enrollment"
-        },
-        {
-          "info": {
-            "name": "Cancel An Enrollment",
+            "name": "Capture An Authorization",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://api.dlocal.com/enrollments/:enrollment_id/cancel",
+            "url": "https://api.dlocal.com/payments/:authorization_id/captures",
             "params": [
               {
-                "name": "enrollment_id",
+                "name": "authorization_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Capture funds previously authorized."
+        },
+        {
+          "info": {
+            "name": "Cancel An Authorization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dlocal.com/payments/:authorization_id/cancel",
+            "params": [
+              {
+                "name": "authorization_id",
                 "value": "",
                 "type": "path"
               }
             ]
           },
-          "docs": "Cancel An Enrollment"
+          "docs": "Release a previously authorized payment."
         }
       ]
     }

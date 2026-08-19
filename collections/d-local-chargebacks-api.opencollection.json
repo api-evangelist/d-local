@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "dLocal Chargebacks API",
+    "name": "dLocal Cards Accounts Chargebacks API",
     "version": "2.1"
   },
   "request": {
