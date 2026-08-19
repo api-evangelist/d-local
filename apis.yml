@@ -29,7 +29,7 @@ description: |
 created: '2026-05-24'
 modified: '2026-05-24'
 position: Consuming
-specificationVersion: '0.16'
+specificationVersion: '0.23'
 tags:
   - Payments
   - Payouts
