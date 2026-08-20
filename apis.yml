@@ -33,6 +33,15 @@ specificationVersion: '0.23'
 tags:
   - Payments
   - Payouts
+  - Emerging Markets
+  - LatAm
+  - Africa
+  - Asia
+  - FX
+  - Fintech
+tags_raw:
+  - Payments
+  - Payouts
   - EmergingMarkets
   - LatAm
   - Africa
@@ -174,6 +183,8 @@ apis:
   humanURL: https://docs.dlocal.com/reference/create-payment
   baseURL: https://api.dlocal.com
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -266,6 +277,8 @@ apis:
   humanURL: https://docs.dlocal.com/reference/create-payment
   baseURL: https://api.dlocal.com
   tags:
+  - Balances
+  tags_raw:
   - Balance
   properties:
   - type: OpenAPI
@@ -312,6 +325,8 @@ apis:
   humanURL: https://docs.dlocal.com/reference/create-payment
   baseURL: https://api.dlocal.com
   tags:
+  - Bank Accounts
+  tags_raw:
   - BankAccounts
   properties:
   - type: OpenAPI
@@ -404,6 +419,8 @@ apis:
   humanURL: https://docs.dlocal.com/reference/create-payment
   baseURL: https://api.dlocal.com
   tags:
+  - Exchange Rates
+  tags_raw:
   - ExchangeRates
   properties:
   - type: OpenAPI
@@ -634,6 +651,8 @@ apis:
   humanURL: https://docs.dlocal.com/reference/create-payment
   baseURL: https://api.dlocal.com
   tags:
+  - Verification
+  tags_raw:
   - Verifications
   properties:
   - type: OpenAPI
