@@ -11,8 +11,14 @@ info:
     underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
+- name: balanceApi
+  url: ../openapi/d-local-balance-api-openapi.yml
+  type: openapi
 - name: payoutsApi
-  url: ../openapi/d-local-payouts-v3-api-openapi.yml
+  url: ../openapi/d-local-payouts-api-openapi.yml
+  type: openapi
+- name: quotesApi
+  url: ../openapi/d-local-quotes-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: quote-and-request-payout

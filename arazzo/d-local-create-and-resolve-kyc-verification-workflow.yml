@@ -12,8 +12,11 @@ info:
     OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: kycVerificationsApi
-  url: ../openapi/d-local-kyc-verifications-api-openapi.yml
+- name: documentsApi
+  url: ../openapi/d-local-documents-api-openapi.yml
+  type: openapi
+- name: verificationsApi
+  url: ../openapi/d-local-verifications-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: create-and-resolve-kyc-verification

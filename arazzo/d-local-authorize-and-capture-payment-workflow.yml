@@ -12,6 +12,9 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
+- name: authorizationsApi
+  url: ../openapi/d-local-authorizations-api-openapi.yml
+  type: openapi
 - name: paymentsApi
   url: ../openapi/d-local-payments-api-openapi.yml
   type: openapi

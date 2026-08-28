@@ -11,11 +11,11 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: paymentsApi
-  url: ../openapi/d-local-payments-api-openapi.yml
-  type: openapi
 - name: chargebacksApi
   url: ../openapi/d-local-chargebacks-api-openapi.yml
+  type: openapi
+- name: paymentsApi
+  url: ../openapi/d-local-payments-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: simulate-and-inspect-chargeback

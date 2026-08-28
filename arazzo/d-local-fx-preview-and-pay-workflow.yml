@@ -11,8 +11,8 @@ info:
     be read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: exchangeRatesApi
-  url: ../openapi/d-local-exchange-rates-api-openapi.yml
+- name: exchangeratesApi
+  url: ../openapi/d-local-exchangerates-api-openapi.yml
   type: openapi
 - name: paymentsApi
   url: ../openapi/d-local-payments-api-openapi.yml

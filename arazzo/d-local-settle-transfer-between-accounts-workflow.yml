@@ -11,8 +11,11 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: platformsApi
-  url: ../openapi/d-local-platforms-api-openapi.yml
+- name: accountsApi
+  url: ../openapi/d-local-accounts-api-openapi.yml
+  type: openapi
+- name: transfersApi
+  url: ../openapi/d-local-transfers-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: settle-transfer-between-accounts

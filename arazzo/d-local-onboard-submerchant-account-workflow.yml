@@ -10,8 +10,14 @@ info:
     read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: platformsApi
-  url: ../openapi/d-local-platforms-api-openapi.yml
+- name: accountsApi
+  url: ../openapi/d-local-accounts-api-openapi.yml
+  type: openapi
+- name: bankaccountsApi
+  url: ../openapi/d-local-bankaccounts-api-openapi.yml
+  type: openapi
+- name: kycApi
+  url: ../openapi/d-local-kyc-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: onboard-submerchant-account
