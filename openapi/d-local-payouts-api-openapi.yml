@@ -1,19 +1,26 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: dLocal Cards Accounts Payouts API
-  version: '2.1'
-  description: 'Securely store cards for repeat usage. Create returns a `card_id` token
+  title: dLocal V3 Payouts API
+  version: '3.0'
+  description: 'Disburse funds to beneficiaries in emerging markets via local bank
 
-    that can be used in subsequent Payments and Authorizations.
+    transfers, instant payments, mobile money, cards, and cash pick-up.
+
+    Payouts V3 uses OAuth2 Bearer tokens for authentication (rather than
+
+    the HMAC signature scheme used by Payins).
 
     '
+  contact:
+    name: dLocal Support
+    url: https://docs.dlocal.com/
 servers:
 - url: https://api.dlocal.com
   description: Production
 - url: https://sandbox.dlocal.com
   description: Sandbox
 security:
-- dLocalSignature: []
+- bearerAuth: []
 tags:
 - name: Payouts
   description: Request, retrieve, release, and cancel payouts.
@@ -136,41 +143,6 @@ components:
               type: number
         beneficiary:
           $ref: '#/components/schemas/Beneficiary'
-    Beneficiary:
-      type: object
-      required:
-      - first_name
-      - last_name
-      - document
-      properties:
-        first_name:
-          type: string
-        last_name:
-          type: string
-        name:
-          type: string
-        email:
-          type: string
-          format: email
-        phone:
-          type: string
-        document:
-          type: string
-        document_type:
-          type: string
-        address:
-          type: object
-        bank_details:
-          type: object
-          properties:
-            bank_code:
-              type: string
-            bank_account:
-              type: string
-            account_type:
-              type: string
-            branch:
-              type: string
     PayoutRequest:
       type: object
       required:
@@ -231,8 +203,43 @@ components:
           format: uri
         beneficiary:
           $ref: '#/components/schemas/Beneficiary'
+    Beneficiary:
+      type: object
+      required:
+      - first_name
+      - last_name
+      - document
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        document:
+          type: string
+        document_type:
+          type: string
+        address:
+          type: object
+        bank_details:
+          type: object
+          properties:
+            bank_code:
+              type: string
+            bank_account:
+              type: string
+            account_type:
+              type: string
+            branch:
+              type: string
   securitySchemes:
-    dLocalSignature:
-      type: apiKey
-      in: header
-      name: Authorization
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

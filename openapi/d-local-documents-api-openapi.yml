@@ -1,10 +1,12 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: dLocal Cards Accounts Documents API
-  version: '2.1'
-  description: 'Securely store cards for repeat usage. Create returns a `card_id` token
+  title: dLocal KYC Verifications Documents API
+  version: '1.0'
+  description: 'Create and manage KYC verifications across payment flows: remittances,
 
-    that can be used in subsequent Payments and Authorizations.
+    payouts on hold, payins on hold, and standalone verifications.
+
+    Verification results are delivered asynchronously via webhook.
 
     '
 servers:

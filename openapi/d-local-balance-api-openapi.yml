@@ -1,19 +1,26 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: dLocal Cards Accounts Balance API
-  version: '2.1'
-  description: 'Securely store cards for repeat usage. Create returns a `card_id` token
+  title: dLocal Payouts V3 Balance API
+  version: '3.0'
+  description: 'Disburse funds to beneficiaries in emerging markets via local bank
 
-    that can be used in subsequent Payments and Authorizations.
+    transfers, instant payments, mobile money, cards, and cash pick-up.
+
+    Payouts V3 uses OAuth2 Bearer tokens for authentication (rather than
+
+    the HMAC signature scheme used by Payins).
 
     '
+  contact:
+    name: dLocal Support
+    url: https://docs.dlocal.com/
 servers:
 - url: https://api.dlocal.com
   description: Production
 - url: https://sandbox.dlocal.com
   description: Sandbox
 security:
-- dLocalSignature: []
+- bearerAuth: []
 tags:
 - name: Balance
   description: Inspect available merchant balance for payouts.
@@ -47,7 +54,7 @@ components:
           type: string
           format: date
   securitySchemes:
-    dLocalSignature:
-      type: apiKey
-      in: header
-      name: Authorization
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

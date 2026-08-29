@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: dLocal Cards Accounts Refunds API
   version: '2.1'
@@ -92,26 +92,6 @@ paths:
           description: Refunds returned
 components:
   schemas:
-    RefundRequest:
-      type: object
-      required:
-      - payment_id
-      properties:
-        payment_id:
-          type: string
-          maxLength: 50
-        amount:
-          type: number
-        currency:
-          type: string
-          maxLength: 3
-        notification_url:
-          type: string
-          format: uri
-        description:
-          type: string
-        beneficiary:
-          type: object
     Refund:
       type: object
       properties:
@@ -136,6 +116,26 @@ components:
         created_date:
           type: string
           format: date-time
+    RefundRequest:
+      type: object
+      required:
+      - payment_id
+      properties:
+        payment_id:
+          type: string
+          maxLength: 50
+        amount:
+          type: number
+        currency:
+          type: string
+          maxLength: 3
+        notification_url:
+          type: string
+          format: uri
+        description:
+          type: string
+        beneficiary:
+          type: object
   securitySchemes:
     dLocalSignature:
       type: apiKey

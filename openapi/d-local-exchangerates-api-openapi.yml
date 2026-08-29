@@ -1,10 +1,12 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: dLocal Cards Accounts ExchangeRates API
+  title: dLocal Exchange Rates API
   version: '2.1'
-  description: 'Securely store cards for repeat usage. Create returns a `card_id` token
+  description: 'Retrieve real-time exchange rates between settlement currencies and
 
-    that can be used in subsequent Payments and Authorizations.
+    local currencies. Use this before creating a payment or payout to
+
+    preview the conversion rate.
 
     '
 servers:

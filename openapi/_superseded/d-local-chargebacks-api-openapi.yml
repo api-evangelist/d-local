@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: dLocal Cards Accounts Chargebacks API
   version: '2.1'

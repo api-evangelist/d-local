@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: dLocal Cards Accounts Authorizations API
   version: '2.1'
@@ -83,21 +83,6 @@ paths:
           description: Authorization cancelled
 components:
   schemas:
-    Address:
-      type: object
-      properties:
-        street:
-          type: string
-        number:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        zip_code:
-          type: string
-        country:
-          type: string
     Payer:
       type: object
       required:
@@ -123,50 +108,6 @@ components:
           type: string
         device_id:
           type: string
-    PaymentRequest:
-      type: object
-      required:
-      - amount
-      - currency
-      - country
-      - payment_method_flow
-      - payer
-      - order_id
-      properties:
-        amount:
-          type: number
-          description: Transaction amount in the specified currency.
-        currency:
-          type: string
-          description: ISO-4217 three-letter currency code.
-          example: BRL
-        country:
-          type: string
-          description: ISO 3166-1 alpha-2 country code.
-          example: BR
-        payment_method_id:
-          type: string
-          description: Local payment method code (e.g. CARD, VI, MC, PIX).
-        payment_method_flow:
-          type: string
-          enum:
-          - DIRECT
-          - REDIRECT
-        payer:
-          $ref: '#/components/schemas/Payer'
-        card:
-          $ref: '#/components/schemas/Card'
-        order_id:
-          type: string
-          description: Merchant-provided order identifier.
-        description:
-          type: string
-        notification_url:
-          type: string
-          format: uri
-        callback_url:
-          type: string
-          format: uri
     Payment:
       type: object
       properties:
@@ -217,6 +158,50 @@ components:
           type: array
           items:
             type: object
+    PaymentRequest:
+      type: object
+      required:
+      - amount
+      - currency
+      - country
+      - payment_method_flow
+      - payer
+      - order_id
+      properties:
+        amount:
+          type: number
+          description: Transaction amount in the specified currency.
+        currency:
+          type: string
+          description: ISO-4217 three-letter currency code.
+          example: BRL
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+          example: BR
+        payment_method_id:
+          type: string
+          description: Local payment method code (e.g. CARD, VI, MC, PIX).
+        payment_method_flow:
+          type: string
+          enum:
+          - DIRECT
+          - REDIRECT
+        payer:
+          $ref: '#/components/schemas/Payer'
+        card:
+          $ref: '#/components/schemas/Card'
+        order_id:
+          type: string
+          description: Merchant-provided order identifier.
+        description:
+          type: string
+        notification_url:
+          type: string
+          format: uri
+        callback_url:
+          type: string
+          format: uri
     Card:
       type: object
       properties:
@@ -245,6 +230,21 @@ components:
         token:
           type: string
         encrypted_data:
+          type: string
+    Address:
+      type: object
+      properties:
+        street:
+          type: string
+        number:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip_code:
+          type: string
+        country:
           type: string
   securitySchemes:
     dLocalSignature:
