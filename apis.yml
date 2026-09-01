@@ -45,7 +45,7 @@ specificationVersion: '0.23'
 tags:
   - Payments
   - Payouts
-  - EmergingMarkets
+  - Emerging Markets
   - LatAm
   - Africa
   - Asia
@@ -163,7 +163,7 @@ apis:
   humanURL: https://docs.dlocal.com/reference/create-payment
   baseURL: https://api.dlocal.com
   tags:
-  - BankAccounts
+  - Bank Accounts
   tags_raw:
   - BankAccounts
   properties:
@@ -489,7 +489,7 @@ apis:
   humanURL: https://docs.dlocal.com/reference/create-payment
   baseURL: https://api.dlocal.com
   tags:
-  - Verifications
+  - Verification
   tags_raw:
   - Verifications
   properties:
